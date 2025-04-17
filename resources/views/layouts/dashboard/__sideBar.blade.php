@@ -20,11 +20,11 @@
                 class="nav-item nav-link {{ request()->routeIs('dashboard') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-tachometer-alt me-2 bg-black bg-opacity-75 text-light"></i>Dashboard
             </a>
-            <a href=""
+            <a href="{{ route('dashboard.admin.index') }}"
                 class="nav-item nav-link {{ request()->routeIs('admins.*') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-th me-2 bg-black bg-opacity-75 text-light"></i>Admins
             </a>
-            <a href=""
+            <a href="{{ route('dashboard.user.index') }}"
                 class="nav-item nav-link {{ request()->routeIs('users.*') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-keyboard me-2 bg-black bg-opacity-75 text-light"></i>Users
             </a>
@@ -32,15 +32,15 @@
                 class="nav-item nav-link {{ request()->routeIs('gyms.*') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-table me-2 bg-black bg-opacity-75 text-light"></i>Gyms
             </a>
-            <a href=""
+            <a href="{{route('dashboard.video.index')}}"
                 class="nav-item nav-link {{ request()->routeIs('videos.*') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-chart-bar me-2 bg-black bg-opacity-75 text-light"></i>Videos
             </a>
-            <a href=""
+            <a href="{{route('dashboard.category.index')}}"
                 class="nav-item nav-link {{ request()->routeIs('categories.*') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-chart-bar me-2 bg-black bg-opacity-75 text-light"></i>Categories
             </a>
-            <a href=""
+            <a href="{{route('dashboard.foodItem.index')}}"
                 class="nav-item nav-link {{ request()->routeIs('food_items.*') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-chart-bar me-2 bg-black bg-opacity-75 text-light"></i>Food Items
             </a>
