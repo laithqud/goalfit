@@ -3,7 +3,7 @@
     --primary: #6c757d;
     --secondary: #6c757d;
     --light: #6C7293;
-    --dark: #000000;
+    --dark: #363b3f;
 }
 
 .back-to-top {
@@ -77,7 +77,7 @@ a{
     width: 250px;
     height: 100vh;
     overflow-y: auto;
-    background: #07377f;
+    background: black;
     transition: 0.5s;
     z-index: 999;
 }
