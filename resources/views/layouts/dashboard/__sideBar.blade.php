@@ -32,13 +32,17 @@
                 class="nav-item nav-link {{ request()->routeIs('gyms.*') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-table me-2 bg-black bg-opacity-75 text-light"></i>Gyms
             </a>
+            <a href="{{route('dashboard.videoCategory.index')}}"
+                class="nav-item nav-link {{ request()->routeIs('categories.*') ? 'active border border-dark' : '' }} text-light">
+                <i class="fa fa-chart-bar me-2 bg-black bg-opacity-75 text-light"></i>Videos Categories
+            </a>
             <a href="{{route('dashboard.video.index')}}"
                 class="nav-item nav-link {{ request()->routeIs('videos.*') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-chart-bar me-2 bg-black bg-opacity-75 text-light"></i>Videos
             </a>
             <a href="{{route('dashboard.category.index')}}"
                 class="nav-item nav-link {{ request()->routeIs('categories.*') ? 'active border border-dark' : '' }} text-light">
-                <i class="fa fa-chart-bar me-2 bg-black bg-opacity-75 text-light"></i>Categories
+                <i class="fa fa-chart-bar me-2 bg-black bg-opacity-75 text-light"></i>Food Categories
             </a>
             <a href="{{route('dashboard.foodItem.index')}}"
                 class="nav-item nav-link {{ request()->routeIs('food_items.*') ? 'active border border-dark' : '' }} text-light">

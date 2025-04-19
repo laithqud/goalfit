@@ -10,8 +10,8 @@
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">Admin Users</h6>
                         <a href="
-                            {{-- {{ route('admin.admins.create') }} --}}
-                             " class="btn btn-sm btn-primary">Add New Admin</a>
+                                    {{-- {{ route('admin.admins.create') }} --}}
+                                     " class="btn btn-sm btn-primary">Add New Admin</a>
                     </div>
 
                     <div class="table-responsive">
@@ -26,32 +26,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($admins as $admin) --}}
-                                <tr>
-                                    {{-- <td>{{ $admin->id }}</td>
-                                    <td>{{ $admin->name }}</td>
-                                    <td>{{ $admin->email }}</td>
-                                    <td>{{ $admin->created_at->format('M d, Y') }}</td> --}}
-                                    <td>
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <a href={{-- "{{ route('admin.admins.edit', $admin->id) }}" --}}
-                                                class="btn btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form action="
-                                                    {{-- {{ route('admin.admins.destroy', $admin->id) }} --}}
-                                                     " method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete this admin?')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                                {{-- @endforeach --}}
+                                @foreach($admins as $admin)
+                                    <tr>
+                                        <td>{{ $admin->id }}</td>
+                                        <td>{{ $admin->name }}</td>
+                                        <td>{{ $admin->email }}</td>
+                                        <td>{{ $admin->created_at->format('M d, Y') }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <a href={{-- "{{ route('admin.admins.edit', $admin->id) }}" --}}
+                                                    class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <form action="
+                                                                    {{-- {{ route('admin.admins.destroy', $admin->id) }} --}}
+                                                                     " method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this admin?')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

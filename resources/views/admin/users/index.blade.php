@@ -10,8 +10,8 @@
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">System Users</h6>
                         <a href="
-                            {{-- {{ route('admin.users.create') }} --}}
-                             " class="btn btn-sm btn-primary">
+                                {{-- {{ route('admin.users.create') }} --}}
+                                 " class="btn btn-sm btn-primary">
                             <i class="fas fa-plus me-1"></i> Add New User
                         </a>
                     </div>
@@ -32,70 +32,67 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($users as $user) --}}
-                                <tr>
-                                    {{-- <td>{{ $user->id }}</td> --}}
-                                    <td>
-                                        {{-- @if($user->profile_image) --}}
-                                        <img src="
-                                                {{-- {{ asset('storage/'.$user->profile_image) }} --}}
-                                                 " class="rounded-circle" width="40" height="40" alt="Profile">
-                                        {{-- @else --}}
-                                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center"
-                                            style="width: 40px; height: 40px;">
-                                            <i class="fas fa-user text-light"></i>
-                                        </div>
-                                        {{-- @endif --}}
-                                    </td>
-                                    {{-- <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->gender ? ucfirst($user->gender) : 'N/A' }}</td> --}}
-                                    <td>
-                                        {{-- @if($user->birth_date)
-                                        {{ \Carbon\Carbon::parse($user->birth_date)->age }}
-                                        @else
-                                        N/A
-                                        @endif --}}
-                                        nn
-                                    </td>
-                                    <td>
-                                        {{-- @if($user->weight && $user->height)
-                                        @php
-                                        $bmi = $user->weight / (($user->height/100) ** 2);
-                                        @endphp
-                                        {{ number_format($bmi, 1) }}
-                                        @else
-                                        N/A
-                                        @endif --}}
-                                        jj
-                                    </td>
-                                    <td>
-                                        {{-- {{ $user->created_at->format('M d, Y') }} --}}
-                                        kk
-                                    </td>
-                                    <td>
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <a href="
-                                                {{-- {{ route('admin.users.edit', $user->id) }} --}}
-                                                 " class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form action="
-                                                {{-- {{ route('admin.users.destroy', $user->id) }} --}}
-                                                 " method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" title="Delete"
-                                                    onclick="return confirm('Are you sure you want to delete this user?')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                                {{-- @endforeach --}}
+                                @foreach($users as $user)
+                                                        <tr>
+                                                            <td>{{ $user->id }}</td>
+                                                            <td>
+                                                                @if($user->profile_image)
+                                                                    <img src="
+                                                                                {{ asset('storage/' . $user->profile_image) }}
+                                                                                 " class="rounded-circle" width="40" height="40" alt="Profile">
+                                                                @else
+                                                                    <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center"
+                                                                        style="width: 40px; height: 40px;">
+                                                                        <i class="fas fa-user text-light"></i>
+                                                                    </div>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ $user->name }}</td>
+                                                            <td>{{ $user->email }}</td>
+                                                            <td>{{ $user->gender ? ucfirst($user->gender) : 'N/A' }}</td>
+                                                            <td>
+                                                                @if($user->birth_date)
+                                                                    {{ \Carbon\Carbon::parse($user->birth_date)->age }}
+                                                                @else
+                                                                    N/A
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                @if($user->weight && $user->height)
+                                                                                                @php
+                                                                                                    $bmi = $user->weight / (($user->height / 100) ** 2);
+                                                                                                @endphp
+                                                                                                {{ number_format($bmi, 1) }}
+                                                                @else
+                                                                    N/A
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                {{ $user->created_at->format('M d, Y') }}
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex justify-content-center gap-2">
+                                                                    <a href="
+                                                                            {{-- {{ route('admin.users.edit', $user->id) }} --}}
+                                                                             " class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
+                                                                        data-bs-placement="top" title="Edit">
+                                                                        <i class="fas fa-edit"></i>
+                                                                    </a>
+                                                                    <form action="
+                                                                            {{-- {{ route('admin.users.destroy', $user->id) }} --}}
+                                                                             " method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                                                            data-bs-placement="top" title="Delete"
+                                                                            onclick="return confirm('Are you sure you want to delete this user?')">
+                                                                            <i class="fas fa-trash"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

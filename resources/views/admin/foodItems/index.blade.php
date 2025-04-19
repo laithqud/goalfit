@@ -34,17 +34,17 @@
                             <div class="col-md-3">
                                 <select name="category" class="form-select bg-dark text-light">
                                     <option value="">All Categories</option>
-                                    {{-- @foreach($categories as $category)
+                                    @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ request('category')==$category->id ? 'selected' :
                                         '' }}>
                                         {{ $category->name }}
                                     </option>
-                                    @endforeach --}}
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-3">
                                 <select name="sort" class="form-select bg-dark text-light">
-                                    {{-- <option value="name_asc" {{ request('sort')=='name_asc' ? 'selected' : '' }}>Name
+                                    <option value="name_asc" {{ request('sort')=='name_asc' ? 'selected' : '' }}>Name
                                         (A-Z)</option>
                                     <option value="name_desc" {{ request('sort')=='name_desc' ? 'selected' : '' }}>Name
                                         (Z-A)</option>
@@ -55,8 +55,7 @@
                                     <option value="newest" {{ request('sort')=='newest' ? 'selected' : '' }}>Newest First
                                     </option>
                                     <option value="oldest" {{ request('sort')=='oldest' ? 'selected' : '' }}>Oldest First
-                                    </option> --}}
-                                    <option value="jj">jjjjjjj</option>
+                                    </option>
                                 </select>
                             </div>
                             <div class="col-md-2">
@@ -79,13 +78,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($foodItems as $item) --}}
+                                @foreach($foodItems as $item)
                                 <tr>
-                                    {{-- <td>{{ $item->id }}</td> --}}
+                                    <td>{{ $item->id }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="flex-shrink-0 me-2">
-                                                {{-- @switch($item->foodCategory->name)
+                                                @switch($item->foodCategory->name)
                                                 @case('Fruits')
                                                 <i class="fas fa-apple-alt text-success"></i>
                                                 @break
@@ -100,32 +99,32 @@
                                                 @break
                                                 @default
                                                 <i class="fas fa-utensils text-info"></i>
-                                                @endswitch --}}
+                                                @endswitch
                                             </div>
                                             <div class="flex-grow-1">
-                                                {{-- {{ $item->name }} --}}
+                                                {{ $item->name }}
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <span class="badge bg-secondary">
-                                            {{-- {{ $item->foodCategory->name }} --}}
+                                            {{ $item->foodCategory->name }}
                                         </span>
                                     </td>
                                     <td>
-                                        {{-- <span
+                                        <span
                                             class="badge bg-{{ $item->calories > 300 ? 'danger' : ($item->calories > 150 ? 'warning' : 'success') }}">
-                                            --}}
-                                            {{-- {{ $item->calories }} kcal --}}
+                                           
+                                            {{ $item->calories }} kcal
                                         </span>
                                     </td>
                                     <td class="text-truncate" style="max-width: 200px;" data-bs-toggle="tooltip"
                                         data-bs-placement="top" title="
-                                            {{-- {{ $item->description ?? 'No description' }} --}}
+                                            {{ $item->description ?? 'No description' }}
                                              ">
-                                        {{-- {{ $item->description ? Str::limit($item->description, 30) : '-' }} --}}
+                                        {{ $item->description ? Str::limit($item->description, 30) : '-' }}
                                     </td>
-                                    {{-- <td>{{ $item->created_at->format('M d, Y') }}</td> --}}
+                                    <td>{{ $item->created_at->format('M d, Y') }}</td>
                                     <td>
                                         <div class="d-flex justify-content-center gap-2">
                                             <a href="
@@ -148,7 +147,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                {{-- @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -15,4 +15,8 @@ class FoodItem extends Model
         'calories',
         'food_category_id',
     ];
+    public function foodCategory() // Use consistent naming
+    {
+        return $this->belongsTo(FoodCategory::class);
+    }
 }

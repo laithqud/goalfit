@@ -10,8 +10,8 @@
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">Video Library</h6>
                         <a href="
-                            {{-- {{ route('admin.videos.create') }} --}}
-                             " class="btn btn-sm btn-primary">
+                                {{-- {{ route('admin.videos.create') }} --}}
+                                 " class="btn btn-sm btn-primary">
                             <i class="fas fa-plus me-1"></i> Add New Video
                         </a>
                     </div>
@@ -30,53 +30,53 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($videos as $video) --}}
-                                <tr>
-                                    {{-- <td>{{ $video->id }}</td> --}}
-                                    <td>
-                                        <div class="position-relative" style="width: 120px; height: 80px;">
-                                            <img src="{{ $video->thumbnail_url ?? 'https://via.placeholder.com/120x80?text=No+Thumbnail' }}"
-                                                class="img-thumbnail w-100 h-100" alt="Video Thumbnail">
-                                            <div class="position-absolute top-50 start-50 translate-middle">
-                                                <i class="fas fa-play text-white" style="font-size: 1.5rem;"></i>
+                                @foreach($videos as $video)
+                                    <tr>
+                                        <td>{{ $video->id }}</td>
+                                        <td>
+                                            <div class="position-relative" style="width: 120px; height: 80px;">
+                                                <img src="{{ $video->thumbnail_url ?? 'https://via.placeholder.com/120x80?text=No+Thumbnail' }}"
+                                                    class="img-thumbnail w-100 h-100" alt="Video Thumbnail">
+                                                <div class="position-absolute top-50 start-50 translate-middle">
+                                                    <i class="fas fa-play text-white" style="font-size: 1.5rem;"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    {{-- <td>{{ $video->title }}</td>
-                                    <td>{{ $video->videoCategory->name }}</td> --}}
-                                    <td class="text-truncate" style="max-width: 200px;">
-                                        {{-- {{ $video->description ?? 'No description' }} --}}
-                                    </td>
-                                    {{-- <td>{{ $video->created_at->format('M d, Y') }}</td> --}}
-                                    <td>
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <a href="
-                                                {{-- {{ route('admin.videos.edit', $video->id) }} --}}
-                                                 " class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a href="
-                                                {{-- {{ $video->video_url }} --}}
-                                                 " class="btn btn-sm btn-info" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="View" target="_blank">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <form action="
-                                                {{-- {{ route('admin.videos.destroy', $video->id) }} --}}
-                                                 " method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" title="Delete"
-                                                    onclick="return confirm('Are you sure you want to delete this video?')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                                {{-- @endforeach --}}
+                                        </td>
+                                        <td>{{ $video->title }}</td>
+                                        <td>{{ optional($video->videoCategory)->name ?? 'Uncategorized' }}</td>
+                                        <td class="text-truncate" style="max-width: 200px;">
+                                            {{ $video->description ?? 'No description' }}
+                                        </td>
+                                        <td>{{ $video->created_at->format('M d, Y') }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <a href="
+                                                        {{-- {{ route('admin.videos.edit', $video->id) }} --}}
+                                                         " class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="
+                                                        {{ $video->video_url }}
+                                                         " class="btn btn-sm btn-info" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="View" target="_blank">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <form action="
+                                                        {{-- {{ route('admin.videos.destroy', $video->id) }} --}}
+                                                         " method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="Delete"
+                                                        onclick="return confirm('Are you sure you want to delete this video?')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

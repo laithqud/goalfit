@@ -30,13 +30,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($categories as $category) --}}
+                                @foreach($categories as $category)
                                 <tr>
-                                    {{-- <td>{{ $category->id }}</td> --}}
+                                    <td>{{ $category->id }}</td>
                                     <td>
                                         <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center"
                                             style="width: 40px; height: 40px;">
-                                            {{-- @switch($category->name)
+                                            @switch($category->name)
                                             @case('Fruits')
                                             <i class="fas fa-apple-alt text-light"></i>
                                             @break
@@ -54,13 +54,13 @@
                                             @break
                                             @default
                                             <i class="fas fa-utensils text-light"></i>
-                                            @endswitch --}}
+                                            @endswitch
                                         </div>
                                     </td>
-                                    {{-- <td>{{ $category->name }}</td>
+                                    <td>{{ $category->name }}</td>
                                     <td>{{ $category->food_items_count ?? 0 }}</td>
                                     <td>{{ $category->created_at->format('M d, Y') }}</td>
-                                    <td>{{ $category->updated_at->format('M d, Y') }}</td> --}}
+                                    <td>{{ $category->updated_at->format('M d, Y') }}</td>
                                     <td>
                                         <div class="d-flex justify-content-center gap-2">
                                             <a href="
@@ -83,7 +83,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                {{-- @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

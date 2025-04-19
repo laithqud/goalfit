@@ -13,7 +13,8 @@ class GymController extends Controller
      */
     public function index()
     {
-        return view("admin.gyms.index");
+        $gyms = Gym::all();
+        return view("admin.gyms.index",compact('gyms'));
     }
 
     /**

@@ -9,6 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $table = 'food_categories';
     protected $fillable = ['name'];
 
     // A Category has many Videos
