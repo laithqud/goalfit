@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory; // Add this
 use Illuminate\Database\Eloquent\Model;
 
-class Gym extends Model
+class VideoCategory extends Model
 {
-    use HasFactory; // Add this line to enable the factory method
+    use HasFactory;
 
     protected $fillable = [
         'name',
-        'location',
-        'phone',
-        'description',
-        'image',
     ];
+
+   
 }

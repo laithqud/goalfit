@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('food_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name'); // For example: Fruits, Vegetables, Meat, etc.
             $table->timestamps();
         });
     }

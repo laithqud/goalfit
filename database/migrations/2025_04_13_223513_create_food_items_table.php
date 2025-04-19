@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('food_items', function (Blueprint $table) {
             $table->id();
+            $table->string('name'); // Name of the food item
+            $table->float('calories'); // Number of calories
+            $table->text('description')->nullable(); // Add this line
+
+            $table->foreignId('food_category_id')->constrained('food_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
