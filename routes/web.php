@@ -17,6 +17,13 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard.dashboard');
 })->name('dashboard');
 
+
+Route::view('/gym', 'public.gym');
+Route::view('/workout', 'public.workout');
+Route::view('/nutrition', 'public.nutrition');
+
+
+
 Route::get('/admins',[AdminController::class,'index'])->name('dashboard.admin.index');
 Route::get('/users',[UserController::class,'index'])->name('dashboard.user.index');
 Route::get('/gyms',[GymController::class,'index'])->name('gym.index');
