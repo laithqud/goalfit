@@ -1,4 +1,4 @@
-<footer class="footer bg-dark text-white py-5">
+<footer class="footer text-white py-5" style="background-color: rgba(0, 0, 0, 0.4)">
     <div class="container">
         <div class="row g-4 mb-4">
             <!-- Quick Links -->

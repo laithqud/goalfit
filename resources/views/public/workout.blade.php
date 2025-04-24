@@ -1,188 +1,177 @@
 @extends('layouts.public.app')
 
-@section('title', 'GoalFit - Workout')
+@section('title', 'GoalFit - Workout Programs')
 
 @section('content')
+
     <!-- Hero Section -->
-    <div class="workout-hero position-relative"
-        style="background-image: url('{{ asset('images/workout-hero.jpg') }}'); height: 600px;">
-        <div class="hero-overlay"></div>
-        <div class="hero-content container text-center text-white">
-            <h1 class="display-3 fw-bold mb-4">Find Your Perfect Workout</h1>
-            <p class="lead fs-3 mb-5">Discover personalized workout plans tailored to your goals and fitness level</p>
-            <div class="search-box mx-auto bg-white rounded-pill p-2">
-                <form class="d-flex align-items-center">
-                    <i class="fas fa-search text-dark ms-3 me-2"></i>
-                    <input type="text" class="form-control border-0 shadow-none" placeholder="Search workouts...">
-                    <button class="btn btn-danger rounded-pill px-4" type="submit">Search</button>
-                </form>
+    <section class="workout-hero position-relative"
+        style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('images/home.jpg') }}');">
+        <div class="container h-100 d-flex align-items-center">
+            <div class="text-white text-center py-5 w-100">
+                <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInDown">Transform Your Fitness Journey</h1>
+                <p class="lead fs-3 mb-5 animate__animated animate__fadeInUp">Personalized workout programs designed for
+                    your goals and lifestyle</p>
+                <a href="#categories" class="btn btn-danger btn-lg px-4 py-2 animate__animated animate__fadeIn">Explore
+                    Programs</a>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-5 bg-dark text-light">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-4">
+                    <div class="p-4 rounded bg-dark">
+                        <i class="fas fa-dumbbell fa-3x text-danger mb-3"></i>
+                        <h3>Custom Workouts</h3>
+                        <p>Programs tailored to your fitness level and equipment availability</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 rounded bg-dark">
+                        <i class="fas fa-calendar-alt fa-3x text-danger mb-3"></i>
+                        <h3>Flexible Scheduling</h3>
+                        <p>Work out on your time, at your pace, from anywhere</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 rounded bg-dark">
+                        <i class="fas fa-chart-line fa-3x text-danger mb-3"></i>
+                        <h3>Track Progress</h3>
+                        <p>Monitor your improvements and stay motivated</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Workout Categories -->
-    <section class="py-5" style="background-color: #4d0909">
+    <section id="categories" class="py-5 bg-black">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="fw-bold display-6 text-light">Workout Categories</h2>
-                <a href="#" class="btn btn-outline-danger">View All</a>
+            <h2 class="text-center text-light mb-5 display-4 fw-bold">Workout Programs</h2>
+
+            <div class="row g-4">
+                <!-- Full Body -->
+                <div class="col-md-4">
+                    <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
+                        <img src="{{asset('./images/fullbody.jpg')}}" class="card-img-top" alt="Full Body Workout">
+                        <div class="card-body bg-light">
+                            <h3 class="card-title fw-bold">Full Body</h3>
+                            <p class="card-text">Comprehensive workouts targeting all major muscle groups for balanced
+                                fitness.</p>
+                            <a href="#" class="btn btn-outline-danger">Start Programs</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upper Body -->
+                <div class="col-md-4">
+                    <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
+                        <img src="{{asset('./images/fullbody.jpg')}}" class="card-img-top" alt="Upper Body Workout">
+                        <div class="card-body bg-light">
+                            <h3 class="card-title fw-bold">Upper Body</h3>
+                            <p class="card-text">Focus on arms, shoulders, chest and back for strength and definition.</p>
+                            <a href="#" class="btn btn-outline-danger">Start Programs</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lower Body -->
+                <div class="col-md-4">
+                    <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
+                        <img src="{{asset('./images/fullbody.jpg')}}" class="card-img-top" alt="Lower Body Workout">
+                        <div class="card-body bg-light">
+                            <h3 class="card-title fw-bold">Lower Body</h3>
+                            <p class="card-text">Build strength and endurance in your legs and core muscles.</p>
+                            <a href="#" class="btn btn-outline-danger">Start Programs</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="scroller-wrapper">
-                <div class="category-scroller row flex-nowrap g-4 py-2 pb-4">
-                    @foreach(['Strength', 'Cardio', 'HIIT', 'Yoga', 'Pilates', 'CrossFit', 'Bodyweight', 'Recovery'] as $category)
-                        <div class="col-md-3 col-sm-4 col-8">
-                            <div class="card category-card h-100 border-0 overflow-hidden shadow-sm">
-                                <div class="category-card-img"
-                                    style="background-image: url('{{ asset('images/workout-' . strtolower($category) . '.jpg') }}');">
-                                    <div class="category-overlay"></div>
-                                    <div class="category-content text-white text-center p-3">
-                                        <h3 class="h4 fw-bold">{{ $category }}</h3>
-                                        <p class="small mb-0">50+ workouts</p>
-                                    </div>
-                                </div>
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-danger btn-lg px-4">View All Categories</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Guidance Section -->
+    <section class="py-5 bg-dark text-light mb-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="display-4 fw-bold mb-4">Expert Guidance</h2>
+                    <p class="lead mb-4">Our certified trainers create science-backed programs tailored to your unique needs
+                        and goals.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Personalized workout plans
+                        </li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Proper form demonstrations
+                        </li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Progressive overload
+                            techniques</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Nutrition recommendations</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{{asset('./images/coach.png')}}" alt="Fitness Coach" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            {{-- <h2 class="text-center text-light mb-5 display-4 fw-bold">Meet Our Coaches</h2> --}}
+
+            <div class="row g-4 pt-5">
+                <div class="col-md-4">
+                    <div class="card coach-card h-100 border-0 overflow-hidden bg-dark text-light shadow-lg">
+                        <img src="{{asset('./images/coach1.jpg')}}" class="card-img-top" alt="Coach Alex">
+                        <div class="card-body text-center">
+                            <h3 class="card-title fw-bold">Alex Johnson</h3>
+                            <h6 class="text-danger mb-3">Strength Training Specialist</h6>
+                            <p class="card-text">10+ years experience helping clients build functional strength.</p>
+                            <div class="social-icons mt-3">
+                                <a href="#" class="text-light mx-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-light mx-2"><i class="fab fa-twitter"></i></a>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card coach-card h-100 border-0 overflow-hidden bg-dark text-light shadow-lg">
+                        <img src="{{asset('./images/coach1.jpg')}}" class="card-img-top" alt="Coach Maria">
+                        <div class="card-body text-center">
+                            <h3 class="card-title fw-bold">Maria Garcia</h3>
+                            <h6 class="text-danger mb-3">Yoga & Mobility Expert</h6>
+                            <p class="card-text">Specializing in flexibility and injury prevention.</p>
+                            <div class="social-icons mt-3">
+                                <a href="#" class="text-light mx-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-light mx-2"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card coach-card h-100 border-0 overflow-hidden bg-dark text-light shadow-lg">
+                        <img src="{{asset('./images/coach1.jpg')}}" class="card-img-top" alt="Coach David">
+                        <div class="card-body text-center">
+                            <h3 class="card-title fw-bold">David Chen</h3>
+                            <h6 class="text-danger mb-3">HIIT & Conditioning Coach</h6>
+                            <p class="card-text">Helping clients maximize results in minimal time.</p>
+                            <div class="social-icons mt-3">
+                                <a href="#" class="text-light mx-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-light mx-2"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Workouts -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="fw-bold display-6">Featured Workouts</h2>
-                <a href="#" class="btn btn-outline-danger">View All</a>
-            </div>
-
-            <div class="row g-4">
-                @for($i = 0; $i < 3; $i++)
-                    <div class="col-md-4">
-                        <div class="card workout-card h-100 border-0 overflow-hidden shadow-sm">
-                            <div class="position-relative">
-                                <div class="workout-card-img"
-                                    style="background-image: url('{{ asset('images/workout-' . ($i + 1) . '.jpg') }}');"></div>
-                                <span class="badge bg-danger position-absolute top-0 end-0 m-2">30 min</span>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h3 class="h5 fw-bold mb-0">Full Body Burn</h3>
-                                    <span class="badge bg-success">4.7 <i class="fas fa-star"></i></span>
-                                </div>
-                                <p class="text-muted mb-3"><i class="fas fa-fire text-danger me-2"></i> Advanced Intensity</p>
-
-                                <div class="d-flex flex-wrap gap-2 mb-3">
-                                    <span class="badge bg-light text-dark border"><i class="fas fa-dumbbell me-1"></i>
-                                        Strength</span>
-                                    <span class="badge bg-light text-dark border"><i class="fas fa-heartbeat me-1"></i>
-                                        Cardio</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{ asset('images/trainer-' . ($i + 1) . '.jpg') }}" class="rounded-circle me-2"
-                                            width="30" height="30" alt="Trainer">
-                                        <small class="text-muted">Trainer Alex</small>
-                                    </div>
-                                    <a href="#" class="btn btn-sm btn-danger">Start Workout</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endfor
-            </div>
-        </div>
-    </section>
-
-    <!-- Personalized Plans -->
-    <section class="py-5 bg-dark text-white">
-        <div class="container text-center">
-            <h2 class="fw-bold display-5 mb-3">Get Your Personalized Workout Plan</h2>
-            <p class="lead opacity-75 mb-5">Answer a few questions and we'll create a plan tailored to your goals</p>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card bg-secondary bg-opacity-10 border-0 p-4">
-                        <div class="card-body">
-                            <form>
-                                <div class="mb-4 text-start">
-                                    <label class="form-label">What are your primary fitness goals?</label>
-                                    <div class="d-flex flex-wrap gap-2">
-                                        @foreach(['Weight Loss', 'Muscle Gain', 'Endurance', 'Flexibility', 'General Fitness'] as $goal)
-                                            <input type="checkbox" class="btn-check"
-                                                id="goal-{{ str_replace(' ', '-', strtolower($goal)) }}" autocomplete="off">
-                                            <label class="btn btn-outline-light"
-                                                for="goal-{{ str_replace(' ', '-', strtolower($goal)) }}">{{ $goal }}</label>
-                                        @endforeach
-                                    </div>
-                                </div>
-
-                                <div class="mb-4 text-start">
-                                    <label class="form-label">How often can you workout?</label>
-                                    <select class="form-select bg-dark text-white border-secondary">
-                                        <option>1-2 times per week</option>
-                                        <option>3-4 times per week</option>
-                                        <option>5+ times per week</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-4 text-start">
-                                    <label class="form-label">What's your current fitness level?</label>
-                                    <div class="d-flex flex-wrap gap-2">
-                                        @foreach(['Beginner', 'Intermediate', 'Advanced'] as $level)
-                                            <input type="radio" class="btn-check" name="fitness-level"
-                                                id="level-{{ strtolower($level) }}" autocomplete="off">
-                                            <label class="btn btn-outline-light"
-                                                for="level-{{ strtolower($level) }}">{{ $level }}</label>
-                                        @endforeach
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-danger btn-lg px-5">Generate My Plan</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Success Stories -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold display-5">Success Stories</h2>
-                <p class="lead text-muted">Real people, real results with GoalFit workouts</p>
-            </div>
-
-            <div class="row g-4">
-                @for($i = 0; $i < 3; $i++)
-                    <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body p-4 text-center">
-                                <img src="{{ asset('images/user-' . ($i + 1) . '.jpg') }}" class="rounded-circle mb-3" width="100"
-                                    height="100" alt="User">
-                                <h4 class="fw-bold mb-2">Sarah Johnson</h4>
-                                <div class="mb-3 text-warning">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <p class="mb-0">"The personalized workout plans helped me lose 20 pounds in 3 months. I've never
-                                    felt stronger or more confident!"</p>
-                            </div>
-                            <div class="card-footer bg-transparent border-0">
-                                <small class="text-muted">Followed the "Weight Loss Journey" plan</small>
-                            </div>
-                        </div>
-                    </div>
-                @endfor
-            </div>
-        </div>
-    </section>
 @endsection
 
 @push('styles')
@@ -190,99 +179,47 @@
         .workout-hero {
             background-size: cover;
             background-position: center;
+            min-height: 80vh;
             display: flex;
             align-items: center;
-            justify-content: center;
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+        .workout-card,
+        .coach-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .search-box {
-            max-width: 600px;
-        }
-
-        .category-card-img,
-        .workout-card-img {
-            height: 150px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .category-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(77, 9, 9, 0.7);
-        }
-
-        .category-content {
-            position: relative;
-            z-index: 2;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .category-card:hover,
         .workout-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(220, 53, 69, 0.3) !important;
+        }
+
+        .coach-card:hover {
             transform: translateY(-5px);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(220, 53, 69, 0.2) !important;
         }
 
-        .scroller-wrapper {
-            position: relative;
+        .coach-card img {
+            height: 300px;
+            object-fit: cover;
         }
 
-        .category-scroller {
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            margin-right: -15px;
-            margin-left: -15px;
-            padding-right: 15px;
-            padding-left: 15px;
+        .social-icons a {
+            transition: color 0.3s ease;
         }
 
-        .category-scroller::-webkit-scrollbar {
-            height: 8px;
+        .social-icons a:hover {
+            color: #dc3545 !important;
         }
 
-        .category-scroller::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        .category-scroller::-webkit-scrollbar-thumb {
-            background: #dc3545;
-            border-radius: 10px;
-        }
-
-        .category-scroller::-webkit-scrollbar-thumb:hover {
-            background: #bb2d3b;
-        }
-
-        @media (min-width: 992px) {
-            .category-scroller {
-                overflow-x: hidden;
-                flex-wrap: wrap;
-            }
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            color: white !important;
         }
     </style>
+@endpush
+
+@push('scripts')
+    <!-- Add any necessary scripts here -->
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 @endpush
