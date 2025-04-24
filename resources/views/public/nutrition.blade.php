@@ -12,21 +12,21 @@
                 <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInDown">Fuel Your Fitness Journey</h1>
                 <p class="lead fs-3 mb-5 animate__animated animate__fadeIn">Personalized nutrition plans to complement your
                     workouts</p>
-                <a href="#calculator" class="btn btn-danger btn-lg px-4 py-2 animate__animated animate__fadeIn">Calculate
+                <a href="#calculator" class="btn btn-success btn-lg px-4 py-2 animate__animated animate__fadeIn">Calculate
                     Your Needs</a>
             </div>
         </div>
     </section>
 
     <!-- Search and Filter Section -->
-    <section class="py-4 bg-light">
+    <section class="py-4 bg-black text-white">
         <div class="container">
             <div class="row g-3 align-items-center">
                 <div class="col-md-6">
                     <div class="input-group">
                         <span class="input-group-text bg-white border-end-0"><i class="fas fa-search"></i></span>
                         <input type="search" class="form-control border-start-0 ps-0" placeholder="Search for foods...">
-                        <button class="btn btn-danger">Search</button>
+                        <button class="btn btn-success">Search</button>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -53,40 +53,40 @@
             <div class="row">
                 <!-- Categories Sidebar -->
                 <div class="col-lg-3 mb-4 mb-lg-0">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-header bg-danger text-white">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-header bg-success text-white">
                             <h3 class="h5 mb-0">Nutrition Categories</h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body bg-secondary bg-opacity-25">
                             <ul class="nav flex-column">
                                 <li class="nav-item mb-2">
                                     <a class="nav-link d-flex align-items-center active" href="#">
-                                        <i class="fas fa-drumstick-bite me-2 text-danger"></i> Protein
+                                        <i class="fas fa-drumstick-bite me-2 text-success"></i> Protein
                                     </a>
                                 </li>
                                 <li class="nav-item mb-2">
                                     <a class="nav-link d-flex align-items-center" href="#">
-                                        <i class="fas fa-bread-slice me-2 text-danger"></i> Carbohydrates
+                                        <i class="fas fa-bread-slice me-2 text-success"></i> Carbohydrates
                                     </a>
                                 </li>
                                 <li class="nav-item mb-2">
                                     <a class="nav-link d-flex align-items-center" href="#">
-                                        <i class="fas fa-bacon me-2 text-danger"></i> Healthy Fats
+                                        <i class="fas fa-bacon me-2 text-success"></i> Healthy Fats
                                     </a>
                                 </li>
                                 <li class="nav-item mb-2">
                                     <a class="nav-link d-flex align-items-center" href="#">
-                                        <i class="fas fa-carrot me-2 text-danger"></i> Vegetables
+                                        <i class="fas fa-carrot me-2 text-success"></i> Vegetables
                                     </a>
                                 </li>
                                 <li class="nav-item mb-2">
                                     <a class="nav-link d-flex align-items-center" href="#">
-                                        <i class="fas fa-apple-alt me-2 text-danger"></i> Fruits
+                                        <i class="fas fa-apple-alt me-2 text-success"></i> Fruits
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center" href="#">
-                                        <i class="fas fa-cheese me-2 text-danger"></i> Dairy
+                                        <i class="fas fa-cheese me-2 text-success"></i> Dairy
                                     </a>
                                 </li>
                             </ul>
@@ -101,16 +101,16 @@
                         <div class="col-12">
                             <div class="card border-0 shadow-sm overflow-hidden">
                                 <div class="row g-0">
-                                    <div class="col-md-6 d-flex align-items-center p-4 bg-light">
+                                    <div class="col-md-6 d-flex align-items-center p-4 bg-secondary bg-opacity-25">
                                         <div>
                                             <h2 class="fw-bold">Beginner's Nutrition Guide</h2>
                                             <p class="lead">Learn the fundamentals of proper nutrition to fuel your workouts
                                                 and recovery.</p>
-                                            <a href="#" class="btn btn-outline-danger">Read Guide</a>
+                                            <a href="#" class="btn btn-outline-success">Read Guide</a>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="{{ asset('images/nutrition-guide.jpg') }}" class="img-fluid h-100"
+                                        <img src="{{ asset('images/guide.jpg') }}" class="img-fluid h-100"
                                             alt="Nutrition Guide" style="object-fit: cover;">
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@
                         <div class="col-md-6 col-lg-4">
                             <div class="card food-card h-100 border-0 shadow-sm">
                                 <img src="{{ asset('images/protien.jpg') }}" class="card-img-top" alt="High Protein Meal">
-                                <div class="card-body">
+                                <div class="card-body bg-secondary bg-opacity-25">
                                     <h5 class="card-title fw-bold">Grilled Chicken & Quinoa</h5>
                                     <div class="nutrition-facts mb-3">
                                         <div class="d-flex justify-content-between small">
@@ -133,7 +133,7 @@
                                             <span>Fats: 12g</span>
                                         </div>
                                     </div>
-                                    <a href="#" class="btn btn-sm btn-danger">View Recipe</a>
+                                    <a href="#" class="btn btn-sm btn-success">View Recipe</a>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                         <div class="col-md-6 col-lg-4">
                             <div class="card food-card h-100 border-0 shadow-sm">
                                 <img src="{{ asset('images/protien.jpg') }}" class="card-img-top" alt="Vegetarian Meal">
-                                <div class="card-body">
+                                <div class="card-body bg-secondary bg-opacity-25">
                                     <h5 class="card-title fw-bold">Vegetable Stir Fry</h5>
                                     <div class="nutrition-facts mb-3">
                                         <div class="d-flex justify-content-between small">
@@ -153,7 +153,7 @@
                                             <span>Fats: 8g</span>
                                         </div>
                                     </div>
-                                    <a href="#" class="btn btn-sm btn-danger">View Recipe</a>
+                                    <a href="#" class="btn btn-sm btn-success">View Recipe</a>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                         <div class="col-md-6 col-lg-4">
                             <div class="card food-card h-100 border-0 shadow-sm">
                                 <img src="{{ asset('images/protien.jpg') }}" class="card-img-top" alt="Protein Smoothie">
-                                <div class="card-body">
+                                <div class="card-body bg-secondary bg-opacity-25">
                                     <h5 class="card-title fw-bold">Protein Power Smoothie</h5>
                                     <div class="nutrition-facts mb-3">
                                         <div class="d-flex justify-content-between small">
@@ -173,7 +173,7 @@
                                             <span>Fats: 5g</span>
                                         </div>
                                     </div>
-                                    <a href="#" class="btn btn-sm btn-danger">View Recipe</a>
+                                    <a href="#" class="btn btn-sm btn-success">View Recipe</a>
                                 </div>
                             </div>
                         </div>
@@ -245,16 +245,16 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-danger btn-lg w-100 mb-4">Calculate My Needs</button>
+                                <button type="submit" class="btn btn-success btn-lg w-100 mb-4">Calculate My Needs</button>
                             </form>
 
                             <!-- Results Section (initially hidden) -->
                             <div id="results" class="mt-4 d-none">
                                 <h4 class="text-center mb-4">Your Daily Nutrition Plan</h4>
 
-                                <div class="card bg-dark border-danger mb-4">
+                                <div class="card bg-dark border-success mb-4">
                                     <div class="card-body">
-                                        <h5 class="card-title text-danger">Calorie Needs</h5>
+                                        <h5 class="card-title text-success">Calorie Needs</h5>
                                         <div class="display-4 fw-bold" id="calories-result">0</div>
                                         <p class="text-muted">calories per day</p>
                                     </div>
@@ -262,27 +262,27 @@
 
                                 <div class="row g-3">
                                     <div class="col-md-4">
-                                        <div class="card bg-dark border-danger h-100">
+                                        <div class="card bg-dark border-success h-100">
                                             <div class="card-body">
-                                                <h5 class="card-title text-danger">Protein</h5>
+                                                <h5 class="card-title text-success">Protein</h5>
                                                 <div class="h3 fw-bold" id="protein-result">0g</div>
                                                 <p class="text-muted">30% of calories</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="card bg-dark border-danger h-100">
+                                        <div class="card bg-dark border-success h-100">
                                             <div class="card-body">
-                                                <h5 class="card-title text-danger">Carbs</h5>
+                                                <h5 class="card-title text-success">Carbs</h5>
                                                 <div class="h3 fw-bold" id="carbs-result">0g</div>
                                                 <p class="text-muted">40% of calories</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="card bg-dark border-danger h-100">
+                                        <div class="card bg-dark border-success h-100">
                                             <div class="card-body">
-                                                <h5 class="card-title text-danger">Fats</h5>
+                                                <h5 class="card-title text-success">Fats</h5>
                                                 <div class="h3 fw-bold" id="fats-result">0g</div>
                                                 <p class="text-muted">30% of calories</p>
                                             </div>
@@ -301,62 +301,161 @@
         </div>
     </section>
 
-    <!-- Meal Plans Section -->
-    <section class="py-5 bg-light">
+
+    <section class="py-5 bg-secondery ">
         <div class="container">
-            <h2 class="text-center display-5 fw-bold mb-5">Sample Meal Plans</h2>
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold text-success mb-3">Recipe of the Week</h1>
+                <h2 class="h3 text-white">Quinoa Power Bowl with Roasted Vegetables</h2>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <span class="badge bg-success">Vegetarian</span>
+                    <span class="badge bg-secondary">30 mins</span>
+                    <span class="badge bg-success">High Protein</span>
+                </div>
+            </div>
 
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-header bg-danger text-white text-center py-3">
-                            <h3 class="h5 mb-0">Weight Loss</h3>
+            <div class="row g-4 align-items-center">
+                <!-- Ingredients Column -->
+                <div class="col-lg-5">
+                    <div class="card border-0 shadow-sm h-100 ">
+                        <div class="card-header bg-success text-white py-3">
+                            <h3 class="h4 mb-0"><i class="fas fa-utensils me-2"></i>Ingredients</h3>
                         </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled">
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> 1,800 calories/day
+                        <div class="card-body bg-secondary bg-opacity-25">
+                            <ul class="list-group list-group-flush ">
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
+                                    1 cup of quinoa
+                                    <span class="badge bg-light text-dark">180g</span>
                                 </li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> High protein</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> Moderate carbs</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> Healthy fats</li>
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
+                                    2 cups of water
+                                    <span class="badge bg-light text-dark">480ml</span>
+                                </li>
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
+                                    1 tsp salt
+                                    <span class="badge bg-light text-dark">5g</span>
+                                </li>
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
+                                    1 tbsp olive oil
+                                    <span class="badge bg-light text-dark">15ml</span>
+                                </li>
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
+                                    1 cup mixed vegetables
+                                    <span class="badge bg-light text-dark">carrots, peas, bell peppers</span>
+                                </li>
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
+                                    1 tsp garlic powder
+                                    <span class="badge bg-light text-dark">3g</span>
+                                </li>
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
+                                    1 tsp onion powder
+                                    <span class="badge bg-light text-dark">3g</span>
+                                </li>
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
+                                    1 tsp black pepper
+                                    <span class="badge bg-light text-dark">2g</span>
+                                </li>
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
+                                    1 tsp paprika
+                                    <span class="badge bg-light text-dark">2g</span>
+                                </li>
                             </ul>
-                            <a href="#" class="btn btn-outline-danger w-100 mt-3">View Plan</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-header bg-danger text-white text-center py-3">
-                            <h3 class="h5 mb-0">Maintenance</h3>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled">
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> 2,400 calories/day
-                                </li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> Balanced macros</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> Whole foods</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> Flexible options</li>
-                            </ul>
-                            <a href="#" class="btn btn-outline-danger w-100 mt-3">View Plan</a>
+                <!-- Image Column -->
+                <div class="col-lg-7">
+                    <div class="position-relative rounded overflow-hidden shadow-lg"
+                        style="height: 100%; min-height: 400px;">
+                        <img src="{{asset('./images/quinoa.jpg')}}" class="img-fluid w-100" alt="Quinoa Power Bowl"
+                            style="object-fit: cover; height: 425px;">
+                        <div class="position-absolute bottom-0 start-0 end-0 p-4"
+                            style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+                            <div class="text-white">
+                                <h3 class="h4">Nutrition Facts (per serving)</h3>
+                                <div class="d-flex justify-content-between">
+                                    <span>Calories: 320</span>
+                                    <span>Protein: 12g</span>
+                                    <span>Carbs: 45g</span>
+                                    <span>Fats: 8g</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-header bg-danger text-white text-center py-3">
-                            <h3 class="h5 mb-0">Muscle Gain</h3>
+            <!-- Instructions Section -->
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-success text-white py-3">
+                            <h3 class="h4 mb-0"><i class="fas fa-list-ol me-2"></i>Instructions</h3>
                         </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled">
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> 3,000+ calories/day
+                        <div class="card-body bg-secondary bg-opacity-50">
+                            <ol class="list-group list-group-numbered list-group-flush">
+                                <li class="list-group-item d-flex align-items-start bg-secondary bg-opacity-25">
+                                    <div class="ms-2 me-auto ">
+                                        <div class="fw-bold">Prepare the quinoa</div>
+                                        Rinse quinoa thoroughly under cold water. In a medium saucepan, combine quinoa,
+                                        water, and salt. Bring to boil, then reduce heat to low, cover, and simmer for 15
+                                        minutes.
+                                    </div>
                                 </li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> High protein</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> Complex carbs</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i> Calorie surplus</li>
-                            </ul>
-                            <a href="#" class="btn btn-outline-danger w-100 mt-3">View Plan</a>
+                                <li class="list-group-item d-flex align-items-start bg-secondary bg-opacity-25">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Roast the vegetables</div>
+                                        Preheat oven to 400°F (200°C). Toss vegetables with olive oil and spices. Spread on
+                                        baking sheet and roast for 20 minutes, stirring halfway.
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex align-items-start bg-secondary bg-opacity-25">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Combine and serve</div>
+                                        Fluff quinoa with fork and mix with roasted vegetables. Adjust seasoning to taste
+                                        and serve warm.
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex align-items-start bg-secondary bg-opacity-25">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Optional additions</div>
+                                        Top with avocado slices, feta cheese, or a squeeze of lemon juice for extra flavor.
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chef's Tips -->
+            <div class="row mt-4">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card border-success">
+                        <div class="card-body bg-secondary bg-opacity-25">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <img src="{{asset('./images/coach1.jpg')}}" class="rounded-circle" width="80"
+                                        height="80" alt="Chef Alex">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5 class="text-success">Chef's Tip</h5>
+                                    <p class="mb-0">"For extra protein, add grilled chicken or chickpeas to this bowl. The
+                                        spices can be adjusted to your taste - try adding cumin or chili powder for a
+                                        different flavor profile!"</p>
+                                    <p class="text-muted mt-2 mb-0">- Chef Alex, Nutrition Specialist</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -393,8 +492,8 @@
 
         .nav-link:hover,
         .nav-link.active {
-            background-color: rgba(220, 53, 69, 0.1);
-            color: #dc3545 !important;
+            background-color: rgba(61, 220, 53, 0.1);
+            color: #000000 !important;
         }
 
         .nutrition-facts {
