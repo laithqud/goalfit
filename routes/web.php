@@ -21,6 +21,7 @@ Route::get('/dashboard', function () {
 Route::view('/gym', 'public.gym');
 Route::view('/workout', 'public.workout');
 Route::view('/nutrition', 'public.nutrition');
+Route::view('/food-desc', 'public.food-desc');
 
 
 

@@ -71,7 +71,7 @@
 
 
     <section id="gym">
-        <div id="conainGymSection" class="d-flex mt-5 align-items-center" style="background-color: #4d0909; height: 100vh;">
+        <div id="conainGymSection" class="d-flex mt-5 align-items-center" style="height: 100vh;">
             <!-- Adjust height as needed -->
             <div id="gymPicDiv" class="w-50 h-100">
                 <div id="carouselExampleControls" class="carousel slide h-100" data-bs-ride="carousel">
@@ -104,11 +104,11 @@
 
             <div id="gymTextDiv" class="w-50 h-100 position-relative">
                 <div class="position-absolute w-100 h-100" style="
-                                                    background: url('{{ asset('images/dumbble2.jpg') }}') center/cover;
-                                                    filter: blur(6px);
-                                                    opacity: 1;
-                                                    z-index: 1;
-                                                 ">
+                                                            background: url('{{ asset('images/dumbble2.jpg') }}') center/cover;
+                                                            filter: blur(6px);
+                                                            opacity: 1;
+                                                            z-index: 1;
+                                                         ">
                 </div>
 
                 <div id="gymDiv"
@@ -129,7 +129,7 @@
         </div>
     </section>
 
-    <section id="home" class="p-3 p-md-5" style="background-color: #4d0909">
+    <section id="home" class="p-3 p-md-5" style="background-color: #373740; height: 100vh;">
         <center>
             <h1 class="fs-1 text-light pb-4">Home Workout</h1>
         </center>

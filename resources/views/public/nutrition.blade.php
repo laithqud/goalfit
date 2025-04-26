@@ -6,7 +6,7 @@
 
     <!-- Hero Section -->
     <section class="nutrition-hero position-relative"
-        style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('images/nutrition-hero.jpg') }}');">
+        style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('images/nutrition-hero.jpg') }}'); height: 550px;">
         <div class="container h-100 d-flex align-items-center">
             <div class="text-white text-center py-5 w-100">
                 <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInDown">Fuel Your Fitness Journey</h1>
@@ -24,158 +24,104 @@
             <div class="row g-3 align-items-center">
                 <div class="col-md-6">
                     <div class="input-group">
-                        <span class="input-group-text bg-white border-end-0"><i class="fas fa-search"></i></span>
-                        <input type="search" class="form-control border-start-0 ps-0" placeholder="Search for foods...">
-                        <button class="btn btn-success">Search</button>
+
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="d-flex align-items-center justify-content-md-end">
-                        <span class="me-2 fw-bold">Filter:</span>
-                        <select class="form-select w-auto">
-                            <option selected>All Categories</option>
-                            <option>Protein</option>
-                            <option>Carbs</option>
-                            <option>Fats</option>
-                            <option>Vegetables</option>
-                            <option>Fruits</option>
-                            <option>Dairy</option>
-                        </select>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Content Section -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row">
-                <!-- Categories Sidebar -->
-                <div class="col-lg-3 mb-4 mb-lg-0">
-                    <div class="card shadow-sm border-0 h-100">
-                        <div class="card-header bg-success text-white">
-                            <h3 class="h5 mb-0">Nutrition Categories</h3>
+    <section class="bg-suucess text-light py-5">
+        <div class="container py-4">
+            <!-- Header Section -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h2 class="display-5 fw-bold text-success mb-3">Understanding Nutrition</h2>
+                    <p class="lead mb-0">
+                        What you eat powers your fitness journey. Explore these essential food categories:
+                    </p>
+                </div>
+            </div>
+
+            <!-- Categories Grid -->
+            <div class="row g-4">
+                <!-- Protein -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-black bg-dark text-center">
+                        <img src="{{asset('./images/protien.jpg')}}" class="card-img-top" alt="Protein"
+                            style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h3 class="h4 text-success">Protein</h3>
+                            <p class="card-text small">
+                                Builds and repairs muscles. Essential for recovery.
+                            </p>
                         </div>
-                        <div class="card-body bg-secondary bg-opacity-25">
-                            <ul class="nav flex-column">
-                                <li class="nav-item mb-2">
-                                    <a class="nav-link d-flex align-items-center active" href="#">
-                                        <i class="fas fa-drumstick-bite me-2 text-success"></i> Protein
-                                    </a>
-                                </li>
-                                <li class="nav-item mb-2">
-                                    <a class="nav-link d-flex align-items-center" href="#">
-                                        <i class="fas fa-bread-slice me-2 text-success"></i> Carbohydrates
-                                    </a>
-                                </li>
-                                <li class="nav-item mb-2">
-                                    <a class="nav-link d-flex align-items-center" href="#">
-                                        <i class="fas fa-bacon me-2 text-success"></i> Healthy Fats
-                                    </a>
-                                </li>
-                                <li class="nav-item mb-2">
-                                    <a class="nav-link d-flex align-items-center" href="#">
-                                        <i class="fas fa-carrot me-2 text-success"></i> Vegetables
-                                    </a>
-                                </li>
-                                <li class="nav-item mb-2">
-                                    <a class="nav-link d-flex align-items-center" href="#">
-                                        <i class="fas fa-apple-alt me-2 text-success"></i> Fruits
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center" href="#">
-                                        <i class="fas fa-cheese me-2 text-success"></i> Dairy
-                                    </a>
-                                </li>
-                            </ul>
+                        <div class="card-footer bg-success border-0 py-3">
+                            <a href="{{asset('/food-desc')}}" class="text-white text-decoration-none">
+                                Learn More <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Food Items -->
-                <div class="col-lg-9">
-                    <div class="row g-4">
-                        <!-- Featured Nutrition Guide -->
-                        <div class="col-12">
-                            <div class="card border-0 shadow-sm overflow-hidden">
-                                <div class="row g-0">
-                                    <div class="col-md-6 d-flex align-items-center p-4 bg-secondary bg-opacity-25">
-                                        <div>
-                                            <h2 class="fw-bold">Beginner's Nutrition Guide</h2>
-                                            <p class="lead">Learn the fundamentals of proper nutrition to fuel your workouts
-                                                and recovery.</p>
-                                            <a href="#" class="btn btn-outline-success">Read Guide</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="{{ asset('images/guide.jpg') }}" class="img-fluid h-100"
-                                            alt="Nutrition Guide" style="object-fit: cover;">
-                                    </div>
-                                </div>
-                            </div>
+                <!-- Carbs -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-black bg-dark text-center">
+                        <img src="{{asset('./images/carbs.jpg')}}" class="card-img-top" alt="Carbs"
+                            style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h3 class="h4 text-success">Carbohydrates</h3>
+                            <p class="card-text small">
+                                Primary energy source for workouts and brain function.
+                            </p>
                         </div>
-
-                        <!-- Food Items -->
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card food-card h-100 border-0 shadow-sm">
-                                <img src="{{ asset('images/protien.jpg') }}" class="card-img-top" alt="High Protein Meal">
-                                <div class="card-body bg-secondary bg-opacity-25">
-                                    <h5 class="card-title fw-bold">Grilled Chicken & Quinoa</h5>
-                                    <div class="nutrition-facts mb-3">
-                                        <div class="d-flex justify-content-between small">
-                                            <span>Calories: 420</span>
-                                            <span>Protein: 38g</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between small">
-                                            <span>Carbs: 35g</span>
-                                            <span>Fats: 12g</span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="btn btn-sm btn-success">View Recipe</a>
-                                </div>
-                            </div>
+                        <div class="card-footer bg-success border-0 py-3">
+                            <a href="#" class="text-white text-decoration-none">
+                                Learn More <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card food-card h-100 border-0 shadow-sm">
-                                <img src="{{ asset('images/protien.jpg') }}" class="card-img-top" alt="Vegetarian Meal">
-                                <div class="card-body bg-secondary bg-opacity-25">
-                                    <h5 class="card-title fw-bold">Vegetable Stir Fry</h5>
-                                    <div class="nutrition-facts mb-3">
-                                        <div class="d-flex justify-content-between small">
-                                            <span>Calories: 320</span>
-                                            <span>Protein: 18g</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between small">
-                                            <span>Carbs: 42g</span>
-                                            <span>Fats: 8g</span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="btn btn-sm btn-success">View Recipe</a>
-                                </div>
-                            </div>
+                <!-- Fats -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-black bg-dark text-center">
+                        <img src="{{asset('./images/fat.jpg')}}" class="card-img-top" alt="Fats"
+                            style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h3 class="h4 text-success">Healthy Fats</h3>
+                            <p class="card-text small">
+                                Supports hormone production and nutrient absorption.
+                            </p>
                         </div>
+                        <div class="card-footer bg-success border-0 py-3">
+                            <a href="#" class="text-white text-decoration-none">
+                                Learn More <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card food-card h-100 border-0 shadow-sm">
-                                <img src="{{ asset('images/protien.jpg') }}" class="card-img-top" alt="Protein Smoothie">
-                                <div class="card-body bg-secondary bg-opacity-25">
-                                    <h5 class="card-title fw-bold">Protein Power Smoothie</h5>
-                                    <div class="nutrition-facts mb-3">
-                                        <div class="d-flex justify-content-between small">
-                                            <span>Calories: 280</span>
-                                            <span>Protein: 32g</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between small">
-                                            <span>Carbs: 24g</span>
-                                            <span>Fats: 5g</span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="btn btn-sm btn-success">View Recipe</a>
-                                </div>
-                            </div>
+                <!-- Fiber -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-black bg-dark text-center">
+                        <img src="{{asset('./images/fibers.jpg')}}" class="card-img-top" alt="Fiber"
+                            style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h3 class="h4 text-success">Dietary Fiber</h3>
+                            <p class="card-text small">
+                                Aids digestion and promotes gut health.
+                            </p>
+                        </div>
+                        <div class="card-footer bg-success border-0 py-3">
+                            <a href="#" class="text-white text-decoration-none">
+                                Learn More <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -301,159 +247,168 @@
         </div>
     </section>
 
-
-    <section class="py-5 bg-secondery ">
+    <section class="nutrition-plan-section py-5 bg-dark">
         <div class="container">
-            <div class="text-center mb-5">
-                <h1 class="display-4 fw-bold text-success mb-3">Recipe of the Week</h1>
-                <h2 class="h3 text-white">Quinoa Power Bowl with Roasted Vegetables</h2>
-                <div class="d-flex justify-content-center gap-3 mt-3">
-                    <span class="badge bg-success">Vegetarian</span>
-                    <span class="badge bg-secondary">30 mins</span>
-                    <span class="badge bg-success">High Protein</span>
-                </div>
-            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="text-center mb-5">
+                        <h2 class="display-5 fw-bold text-success mb-3">Personalized Weekly Nutrition Plan</h2>
+                        <p class="lead text-light">Get a customized 7-day meal plan based on your fitness goals</p>
+                    </div>
 
-            <div class="row g-4 align-items-center">
-                <!-- Ingredients Column -->
-                <div class="col-lg-5">
-                    <div class="card border-0 shadow-sm h-100 ">
+                    <!-- Form Section -->
+                    <div id="nutrition-form" class="card border-success mb-5 bg-dark-2">
                         <div class="card-header bg-success text-white py-3">
-                            <h3 class="h4 mb-0"><i class="fas fa-utensils me-2"></i>Ingredients</h3>
+                            <h3 class="h4 mb-0"><i class="fas fa-user-edit me-2"></i>Your Profile</h3>
                         </div>
-                        <div class="card-body bg-secondary bg-opacity-25">
-                            <ul class="list-group list-group-flush ">
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
-                                    1 cup of quinoa
-                                    <span class="badge bg-light text-dark">180g</span>
-                                </li>
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
-                                    2 cups of water
-                                    <span class="badge bg-light text-dark">480ml</span>
-                                </li>
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
-                                    1 tsp salt
-                                    <span class="badge bg-light text-dark">5g</span>
-                                </li>
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
-                                    1 tbsp olive oil
-                                    <span class="badge bg-light text-dark">15ml</span>
-                                </li>
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
-                                    1 cup mixed vegetables
-                                    <span class="badge bg-light text-dark">carrots, peas, bell peppers</span>
-                                </li>
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
-                                    1 tsp garlic powder
-                                    <span class="badge bg-light text-dark">3g</span>
-                                </li>
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
-                                    1 tsp onion powder
-                                    <span class="badge bg-light text-dark">3g</span>
-                                </li>
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
-                                    1 tsp black pepper
-                                    <span class="badge bg-light text-dark">2g</span>
-                                </li>
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center bg-secondary bg-opacity-25">
-                                    1 tsp paprika
-                                    <span class="badge bg-light text-dark">2g</span>
-                                </li>
-                            </ul>
+                        <div class="card-body p-4">
+                            <form id="plan-form">
+                                <div class="row g-3">
+                                    <!-- Basic Info -->
+                                    <div class="col-md-6">
+                                        <label class="form-label text-light">Gender</label>
+                                        <select class="form-select bg-dark border-secondary text-light" id="gender"
+                                            required>
+                                            <option value="">Select</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-light">Age</label>
+                                        <input type="number" class="form-control bg-dark border-secondary text-light"
+                                            id="age" placeholder="e.g. 28" required>
+                                    </div>
+
+                                    <!-- Body Metrics -->
+                                    <div class="col-md-6">
+                                        <label class="form-label text-light">Height (cm)</label>
+                                        <input type="number" class="form-control bg-dark border-secondary text-light"
+                                            id="height" placeholder="e.g. 175" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-light">Weight (kg)</label>
+                                        <input type="number" class="form-control bg-dark border-secondary text-light"
+                                            id="weight" placeholder="e.g. 75" required>
+                                    </div>
+
+                                    <!-- Activity Level -->
+                                    <div class="col-md-6">
+                                        <label class="form-label text-light">Activity Level</label>
+                                        <select class="form-select bg-dark border-secondary text-light" id="activity"
+                                            required>
+                                            <option value="">Select</option>
+                                            <option value="1.2">Sedentary (little exercise)</option>
+                                            <option value="1.375">Lightly Active</option>
+                                            <option value="1.55">Moderately Active</option>
+                                            <option value="1.725">Very Active</option>
+                                            <option value="1.9">Extremely Active</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Goal Selection -->
+                                    <div class="col-md-6">
+                                        <label class="form-label text-light">Your Goal</label>
+                                        <div class="btn-group w-100" role="group">
+                                            <input type="radio" class="btn-check" name="goal" id="goal-cut" value="cut"
+                                                autocomplete="off" required>
+                                            <label class="btn btn-outline-success" for="goal-cut">Cut</label>
+
+                                            <input type="radio" class="btn-check" name="goal" id="goal-normal"
+                                                value="maintain" autocomplete="off">
+                                            <label class="btn btn-outline-success" for="goal-normal">Maintain</label>
+
+                                            <input type="radio" class="btn-check" name="goal" id="goal-bulk" value="bulk"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-success" for="goal-bulk">Bulk</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 text-center">
+                                    <button type="submit" class="btn btn-success btn-lg px-5">
+                                        <i class="fas fa-calculator me-2"></i> Generate My Plan
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </div>
 
-                <!-- Image Column -->
-                <div class="col-lg-7">
-                    <div class="position-relative rounded overflow-hidden shadow-lg"
-                        style="height: 100%; min-height: 400px;">
-                        <img src="{{asset('./images/quinoa.jpg')}}" class="img-fluid w-100" alt="Quinoa Power Bowl"
-                            style="object-fit: cover; height: 425px;">
-                        <div class="position-absolute bottom-0 start-0 end-0 p-4"
-                            style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
-                            <div class="text-white">
-                                <h3 class="h4">Nutrition Facts (per serving)</h3>
-                                <div class="d-flex justify-content-between">
-                                    <span>Calories: 320</span>
-                                    <span>Protein: 12g</span>
-                                    <span>Carbs: 45g</span>
-                                    <span>Fats: 8g</span>
-                                </div>
+                    <!-- Results Section -->
+                    <div id="plan-results" class="d-none">
+                        <div class="card border-success bg-dark-2">
+                            <div class="card-header bg-success text-white py-3">
+                                <h3 class="h4 mb-0"><i class="fas fa-clipboard-list me-2"></i>Your Weekly Nutrition Plan
+                                </h3>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Instructions Section -->
-            <div class="row mt-5">
-                <div class="col-lg-8 mx-auto">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-success text-white py-3">
-                            <h3 class="h4 mb-0"><i class="fas fa-list-ol me-2"></i>Instructions</h3>
-                        </div>
-                        <div class="card-body bg-secondary bg-opacity-50">
-                            <ol class="list-group list-group-numbered list-group-flush">
-                                <li class="list-group-item d-flex align-items-start bg-secondary bg-opacity-25">
-                                    <div class="ms-2 me-auto ">
-                                        <div class="fw-bold">Prepare the quinoa</div>
-                                        Rinse quinoa thoroughly under cold water. In a medium saucepan, combine quinoa,
-                                        water, and salt. Bring to boil, then reduce heat to low, cover, and simmer for 15
-                                        minutes.
+                            <div class="card-body">
+                                <!-- Plan Overview -->
+                                <div class="row mb-4">
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <div class="card h-100 border-success bg-dark">
+                                            <div class="card-body text-center">
+                                                <h5 class="text-success">Daily Calories</h5>
+                                                <div class="display-4 fw-bold text-light" id="result-calories">0</div>
+                                                <p class="text-muted mb-0">kcal per day</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </li>
-                                <li class="list-group-item d-flex align-items-start bg-secondary bg-opacity-25">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Roast the vegetables</div>
-                                        Preheat oven to 400°F (200°C). Toss vegetables with olive oil and spices. Spread on
-                                        baking sheet and roast for 20 minutes, stirring halfway.
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <div class="card h-100 border-success bg-dark">
+                                            <div class="card-body text-center">
+                                                <h5 class="text-success">Macronutrients</h5>
+                                                <div class="d-flex justify-content-around text-light">
+                                                    <div>
+                                                        <div class="h4 fw-bold" id="result-protein">0g</div>
+                                                        <small class="text-muted">Protein</small>
+                                                    </div>
+                                                    <div>
+                                                        <div class="h4 fw-bold" id="result-carbs">0g</div>
+                                                        <small class="text-muted">Carbs</small>
+                                                    </div>
+                                                    <div>
+                                                        <div class="h4 fw-bold" id="result-fats">0g</div>
+                                                        <small class="text-muted">Fats</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </li>
-                                <li class="list-group-item d-flex align-items-start bg-secondary bg-opacity-25">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Combine and serve</div>
-                                        Fluff quinoa with fork and mix with roasted vegetables. Adjust seasoning to taste
-                                        and serve warm.
+                                    <div class="col-md-4">
+                                        <div class="card h-100 border-success bg-dark">
+                                            <div class="card-body text-center">
+                                                <h5 class="text-success">Recommended</h5>
+                                                <div class="h4 fw-bold text-light" id="result-goal">Maintain</div>
+                                                <p class="text-muted mb-0" id="result-description">Weight maintenance plan
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </li>
-                                <li class="list-group-item d-flex align-items-start bg-secondary bg-opacity-25">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Optional additions</div>
-                                        Top with avocado slices, feta cheese, or a squeeze of lemon juice for extra flavor.
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chef's Tips -->
-            <div class="row mt-4">
-                <div class="col-lg-8 mx-auto">
-                    <div class="card border-success">
-                        <div class="card-body bg-secondary bg-opacity-25">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    <img src="{{asset('./images/coach1.jpg')}}" class="rounded-circle" width="80"
-                                        height="80" alt="Chef Alex">
                                 </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h5 class="text-success">Chef's Tip</h5>
-                                    <p class="mb-0">"For extra protein, add grilled chicken or chickpeas to this bowl. The
-                                        spices can be adjusted to your taste - try adding cumin or chili powder for a
-                                        different flavor profile!"</p>
-                                    <p class="text-muted mt-2 mb-0">- Chef Alex, Nutrition Specialist</p>
+
+                                <!-- Weekly Plan Tabs -->
+                                <ul class="nav nav-tabs mb-4" id="weekDaysTab" role="tablist">
+                                    <!-- Days will be added here by JavaScript -->
+                                </ul>
+
+                                <!-- Weekly Plan Content -->
+                                <div class="tab-content" id="weekDaysContent">
+                                    <!-- Day content will be added here by JavaScript -->
+                                </div>
+
+                                <div class="mt-4 text-center">
+                                    <button id="reset-form" class="btn btn-outline-success">
+                                        <i class="fas fa-redo me-2"></i> Start Over
+                                    </button>
+                                    {{-- <button class="btn btn-success ms-2">
+                                        <i class="fas fa-download me-2"></i> Download Plan
+                                    </button> --}}
+                                    <button class="btn btn-success ms-2" onclick="downloadNutritionPlanPDF()">
+                                        <i class="fas fa-download me-2"></i> Download as PDF
+                                    </button>
+                                    <button class="btn btn-outline-success ms-2" onclick="downloadNutritionPlan()">
+                                        <i class="fas fa-file-alt me-2"></i> Download as Text
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -467,21 +422,73 @@
 
 @push('styles')
     <style>
-        .nutrition-hero {
-            background-size: cover;
-            background-position: center;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
+        .nutrition-plan-section {
+            background-color: #1a1a1a;
         }
 
-        .food-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .bg-dark-2 {
+            background-color: #2a2a2a;
         }
 
-        .food-card:hover {
+        .form-control,
+        .form-select {
+            background-color: #333;
+            border-color: #444;
+            color: #fff;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background-color: #333;
+            color: #fff;
+            border-color: #198754;
+            box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+        }
+
+        .nav-tabs {
+            border-bottom: 1px solid #444;
+        }
+
+        .nav-tabs .nav-link {
+            color: #aaa;
+            background-color: #333;
+            border-color: #444;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #fff;
+            background-color: #198754;
+            border-color: #198754;
+        }
+
+        .tab-content {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border: 1px solid #444;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .btn-check:checked+.btn-outline-success {
+            background-color: #198754;
+            color: white;
+        }
+
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .text-light {
+            color: #f8f9fa !important;
+        }
+
+        .text-muted {
+            color: #6c757d !important;
         }
 
         .nav-link {
@@ -493,7 +500,7 @@
         .nav-link:hover,
         .nav-link.active {
             background-color: rgba(61, 220, 53, 0.1);
-            color: #000000 !important;
+            color: #35dc54 !important;
         }
 
         .nutrition-facts {
@@ -505,6 +512,9 @@
 @endpush
 
 @push('scripts')
+
+    <script src="https://kit.fontawesome.com/d24639e9bf.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         document.getElementById('calorieCalculator').addEventListener('submit', function (e) {
             e.preventDefault();
@@ -520,21 +530,38 @@
             // Calculate BMR (Mifflin-St Jeor Equation)
             let bmr;
             if (gender === 'male') {
-                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
             } else {
-                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
             }
 
             // Calculate TDEE (Total Daily Energy Expenditure)
-            const tdee = bmr * activity;
+            const tdee = Math.max(1200, Math.round(bmr * activity)); // Minimum 1200 calories
 
             // Adjust for goal
-            const dailyCalories = Math.round(tdee + goalAdjustment);
+            let dailyCalories, goalText, description;
+            switch (goal) {
+                case 'cut':
+                    dailyCalories = Math.max(1200, tdee - 500); // Ensure minimum 1200 calories
+                    goalText = 'Cutting';
+                    description = 'Calorie deficit for fat loss';
+                    break;
+                case 'bulk':
+                    dailyCalories = tdee + 500;
+                    goalText = 'Bulking';
+                    description = 'Calorie surplus for muscle gain';
+                    break;
+                default:
+                    dailyCalories = tdee;
+                    goalText = 'Maintenance';
+                    description = 'Weight maintenance plan';
+            }
+
 
             // Calculate macros (30% protein, 40% carbs, 30% fat)
-            const proteinGrams = Math.round((dailyCalories * 0.3) / 4);
-            const carbsGrams = Math.round((dailyCalories * 0.4) / 4);
-            const fatGrams = Math.round((dailyCalories * 0.3) / 9);
+            const proteinGrams = Math.max(0, Math.round((dailyCalories * 0.3) / 4));
+            const carbsGrams = Math.max(0, Math.round((dailyCalories * 0.4) / 4));
+            const fatGrams = Math.max(0, Math.round((dailyCalories * 0.3) / 9));
 
             // Display results
             document.getElementById('calories-result').textContent = dailyCalories;
@@ -553,10 +580,428 @@
             document.getElementById('calorieCalculator').reset();
             document.getElementById('results').classList.add('d-none');
         });
-    </script>
-@endpush
 
-@push('scripts')
-    <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('plan-form');
+            const resultsSection = document.getElementById('plan-results');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Get form values with proper number conversion
+                const gender = document.getElementById('gender').value;
+                const age = Number(document.getElementById('age').value);
+                const height = Number(document.getElementById('height').value);
+                const weight = Number(document.getElementById('weight').value);
+                const activity = Number(document.getElementById('activity').value);
+                const goal = document.querySelector('input[name="goal"]:checked').value;
+
+                // Validate inputs
+                if (isNaN(age) || isNaN(height) || isNaN(weight) || isNaN(activity)) {
+                    alert('Please enter valid numbers for all fields');
+                    return;
+                }
+
+                // Calculate BMR (Mifflin-St Jeor Equation)
+                let bmr;
+                if (gender === 'male') {
+                    bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+                } else {
+                    bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+                }
+
+                // Calculate TDEE
+                const tdee = Math.round(bmr * activity);
+
+                // Adjust calories based on goal
+                let dailyCalories, goalText, description;
+                switch (goal) {
+                    case 'cut':
+                        dailyCalories = tdee - 500;
+                        goalText = 'Cutting';
+                        description = 'Calorie deficit for fat loss';
+                        break;
+                    case 'bulk':
+                        dailyCalories = tdee + 500;
+                        goalText = 'Bulking';
+                        description = 'Calorie surplus for muscle gain';
+                        break;
+                    default:
+                        dailyCalories = tdee;
+                        goalText = 'Maintenance';
+                        description = 'Weight maintenance plan';
+                }
+
+                // Calculate macros (30% protein, 40% carbs, 30% fat)
+                const proteinGrams = Math.round((dailyCalories * 0.3) / 4);
+                const carbsGrams = Math.round((dailyCalories * 0.4) / 4);
+                const fatGrams = Math.round((dailyCalories * 0.3) / 9);
+
+                // Display results
+                document.getElementById('result-calories').textContent = dailyCalories.toLocaleString();
+                document.getElementById('result-protein').textContent = proteinGrams + 'g';
+                document.getElementById('result-carbs').textContent = carbsGrams + 'g';
+                document.getElementById('result-fats').textContent = fatGrams + 'g';
+                document.getElementById('result-goal').textContent = goalText;
+                document.getElementById('result-description').textContent = description;
+
+                // Generate weekly meal plan
+                generateWeeklyPlan(goal, dailyCalories);
+
+                // Show results and hide form
+                resultsSection.classList.remove('d-none');
+                window.scrollTo({
+                    top: resultsSection.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Reset form button
+            document.getElementById('reset-form').addEventListener('click', function () {
+                resultsSection.classList.add('d-none');
+                form.reset();
+                document.getElementById('nutrition-form').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+
+            // Generate weekly meal plan
+            function generateWeeklyPlan(goal, calories) {
+                const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                const tabsContainer = document.getElementById('weekDaysTab');
+                const contentContainer = document.getElementById('weekDaysContent');
+
+                // Clear previous content
+                tabsContainer.innerHTML = '';
+                contentContainer.innerHTML = '';
+
+                // Create tabs and content for each day
+                days.forEach((day, index) => {
+                    // Create tab
+                    const tab = document.createElement('li');
+                    tab.className = 'nav-item';
+                    tab.innerHTML = `
+                                                                                                                                                                                                                                                                                                                                                                                            <button class="nav-link ${index === 0 ? 'active' : ''}" id="${day.toLowerCase()}-tab" data-bs-toggle="tab" 
+                                                                                                                                                                                                                                                                                                                                                                                                data-bs-target="#${day.toLowerCase()}" type="button" role="tab">
+                                                                                                                                                                                                                                                                                                                                                                                                ${day}
+                                                                                                                                                                                                                                                                                                                                                                                            </button>
+                                                                                                                                                                                                                                                                                                                                                                                        `;
+                    tabsContainer.appendChild(tab);
+
+                    // Create content
+                    const content = document.createElement('div');
+                    content.className = `tab-pane fade ${index === 0 ? 'show active' : ''}`;
+                    content.id = day.toLowerCase();
+                    content.setAttribute('role', 'tabpanel');
+
+                    // Generate meals for this day
+                    const meals = generateDailyMeals(goal, calories, days[index]);
+
+                    content.innerHTML = `
+                                                                                                                                                                                                                                                                                                                                                                                            <div class="row g-4">
+                                                                                                                                                                                                                                                                                                                                                                                                ${meals.map(meal => `
+                                                                                                                                                                                                                                                                                                                                                                                                    <div class="col-md-6 col-lg-3">
+                                                                                                                                                                                                                                                                                                                                                                                                        <div class="card h-100 border-success bg-dark">
+                                                                                                                                                                                                                                                                                                                                                                                                            <div class="card-img-top position-relative" style="height: 150px; overflow: hidden;">
+                                                                                                                                                                                                                                                                                                                                                                                                                <img src="{{ asset('images/nutrition/${meal.img}') }}" class="w-100 h-100" style="object-fit: cover;" alt="${meal.name}">
+                                                                                                                                                                                                                                                                                                                                                                                                                <span class="badge bg-success position-absolute top-0 start-0 m-2">${meal.time}</span>
+                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                            <div class="card-body">
+                                                                                                                                                                                                                                                                                                                                                                                                                <h5 class="card-title text-success">${meal.name}</h5>
+                                                                                                                                                                                                                                                                                                                                                                                                                <p class="card-text text-light small">${meal.desc}</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                <div class="nutrition-facts">
+                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="d-flex justify-content-between small text-muted">
+                                                                                                                                                                                                                                                                                                                                                                                                                        <span>${meal.calories} cal</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                        <span>P: ${meal.protein}g</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                        <span>C: ${meal.carbs}g</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                        <span>F: ${meal.fats}g</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                `).join('')}
+                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                        `;
+
+                    contentContainer.appendChild(content);
+                });
+            }
+
+            // Generate daily meals based on goal and calories
+            function generateDailyMeals(goal, totalCalories, dayName) {
+                // Different meal plans for different goals
+                const mealTemplates = {
+                    cut: [
+                        {
+                            name: "Protein Breakfast",
+                            time: "Breakfast",
+                            desc: "Egg whites, spinach, and whole grain toast",
+                            calories: Math.round(totalCalories * 0.25),
+                            protein: Math.round(totalCalories * 0.25 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.25 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.25 * 0.3 / 9),
+                            img: "breakfast-cut.jpg"
+                        },
+                        {
+                            name: "Lean Lunch",
+                            time: "Lunch",
+                            desc: "Grilled chicken with quinoa and veggies",
+                            calories: Math.round(totalCalories * 0.35),
+                            protein: Math.round(totalCalories * 0.35 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.35 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.35 * 0.3 / 9),
+                            img: "lunch-cut.jpg"
+                        },
+                        {
+                            name: "Light Dinner",
+                            time: "Dinner",
+                            desc: "Baked salmon with asparagus",
+                            calories: Math.round(totalCalories * 0.3),
+                            protein: Math.round(totalCalories * 0.3 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.3 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.3 * 0.3 / 9),
+                            img: "dinner-cut.jpg"
+                        },
+                        {
+                            name: "Healthy Snack",
+                            time: "Snack",
+                            desc: "Greek yogurt with almonds",
+                            calories: Math.round(totalCalories * 0.1),
+                            protein: Math.round(totalCalories * 0.1 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.1 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.1 * 0.3 / 9),
+                            img: "snack-cut.jpg"
+                        }
+                    ],
+                    maintain: [
+                        {
+                            name: "Balanced Breakfast",
+                            time: "Breakfast",
+                            desc: "Oatmeal with berries and nuts",
+                            calories: Math.round(totalCalories * 0.25),
+                            protein: Math.round(totalCalories * 0.25 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.25 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.25 * 0.3 / 9),
+                            img: "breakfast-maintain.jpg"
+                        },
+                        {
+                            name: "Wholesome Lunch",
+                            time: "Lunch",
+                            desc: "Turkey wrap with avocado",
+                            calories: Math.round(totalCalories * 0.35),
+                            protein: Math.round(totalCalories * 0.35 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.35 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.35 * 0.3 / 9),
+                            img: "lunch-maintain.jpg"
+                        },
+                        {
+                            name: "Nutritious Dinner",
+                            time: "Dinner",
+                            desc: "Lean beef with brown rice",
+                            calories: Math.round(totalCalories * 0.3),
+                            protein: Math.round(totalCalories * 0.3 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.3 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.3 * 0.3 / 9),
+                            img: "dinner-maintain.jpg"
+                        },
+                        {
+                            name: "Energy Snack",
+                            time: "Snack",
+                            desc: "Fruit and cheese",
+                            calories: Math.round(totalCalories * 0.1),
+                            protein: Math.round(totalCalories * 0.1 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.1 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.1 * 0.3 / 9),
+                            img: "snack-maintain.jpg"
+                        }
+                    ],
+                    bulk: [
+                        {
+                            name: "Power Breakfast",
+                            time: "Breakfast",
+                            desc: "Eggs, bacon, and pancakes",
+                            calories: Math.round(totalCalories * 0.3),
+                            protein: Math.round(totalCalories * 0.3 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.3 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.3 * 0.3 / 9),
+                            img: "breakfast-bulk.jpg"
+                        },
+                        {
+                            name: "Hearty Lunch",
+                            time: "Lunch",
+                            desc: "Beef with rice and veggies",
+                            calories: Math.round(totalCalories * 0.35),
+                            protein: Math.round(totalCalories * 0.35 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.35 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.35 * 0.3 / 9),
+                            img: "lunch-bulk.jpg"
+                        },
+                        {
+                            name: "Substantial Dinner",
+                            time: "Dinner",
+                            desc: "Chicken pasta with garlic bread",
+                            calories: Math.round(totalCalories * 0.25),
+                            protein: Math.round(totalCalories * 0.25 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.25 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.25 * 0.3 / 9),
+                            img: "dinner-bulk.jpg"
+                        },
+                        {
+                            name: "Mass Shake",
+                            time: "Post-Workout",
+                            desc: "Protein powder with peanut butter",
+                            calories: Math.round(totalCalories * 0.1),
+                            protein: Math.round(totalCalories * 0.1 * 0.3 / 4),
+                            carbs: Math.round(totalCalories * 0.1 * 0.4 / 4),
+                            fats: Math.round(totalCalories * 0.1 * 0.3 / 9),
+                            img: "shake-bulk.jpg"
+                        }
+                    ]
+                };
+
+                // For variety, we'll modify the template slightly for each day
+                const dayIndex = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].indexOf(dayName);
+                const dayVariation = dayIndex % 3;
+
+                return mealTemplates[goal].map(meal => {
+                    // Define variations inside the map function where we have access to 'meal'
+                    const variations = [
+                        {},
+                        {
+                            name: `${meal.name} Variation`,
+                            desc: `${meal.desc} (special for ${dayName})`
+                        },
+                        {
+                            name: `${dayName}'s ${meal.name}`,
+                            desc: `${meal.desc} with seasonal ingredients`
+                        }
+                    ];
+
+                    return {
+                        ...meal,
+                        ...variations[dayVariation],
+                        img: meal.img.replace('.jpg', `-${dayVariation + 1}.jpg`)
+                    };
+                });
+            }
+        });
+
+
+        // Add this inside your DOMContentLoaded event listener
+        document.querySelector('.btn-success .fa-download').closest('button').addEventListener('click', function () {
+            downloadNutritionPlan();
+        });
+
+        function downloadNutritionPlan() {
+            // Get all the plan data
+            const planData = {
+                calories: document.getElementById('result-calories').textContent,
+                protein: document.getElementById('result-protein').textContent,
+                carbs: document.getElementById('result-carbs').textContent,
+                fats: document.getElementById('result-fats').textContent,
+                goal: document.getElementById('result-goal').textContent,
+                description: document.getElementById('result-description').textContent,
+                days: []
+            };
+
+            // Get meal data for each day
+            const dayTabs = document.querySelectorAll('#weekDaysContent .tab-pane');
+            dayTabs.forEach(tab => {
+                const dayName = tab.id.charAt(0).toUpperCase() + tab.id.slice(1);
+                const meals = [];
+
+                tab.querySelectorAll('.card').forEach(card => {
+                    meals.push({
+                        time: card.querySelector('.badge').textContent,
+                        name: card.querySelector('.card-title').textContent,
+                        description: card.querySelector('.card-text').textContent,
+                        nutrition: card.querySelector('.nutrition-facts').textContent.trim()
+                    });
+                });
+
+                planData.days.push({
+                    day: dayName,
+                    meals: meals
+                });
+            });
+
+            // Format the data for download
+            let content = `=== Nutrition Plan ===\n`;
+            content += `Daily Calories: ${planData.calories}\n`;
+            content += `Protein: ${planData.protein} | Carbs: ${planData.carbs} | Fats: ${planData.fats}\n`;
+            content += `Goal: ${planData.goal} (${planData.description})\n\n`;
+
+            planData.days.forEach(day => {
+                content += `=== ${day.day} ===\n`;
+                day.meals.forEach(meal => {
+                    content += `[${meal.time}] ${meal.name}\n`;
+                    content += `${meal.description}\n`;
+                    content += `${meal.nutrition}\n\n`;
+                });
+                content += '\n';
+            });
+
+            // Create download link
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `nutrition-plan-${new Date().toISOString().slice(0, 10)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        function downloadNutritionPlanPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add title
+            doc.setFontSize(20);
+            doc.text('Nutrition Plan', 105, 20, { align: 'center' });
+
+            // Add summary
+            doc.setFontSize(12);
+            doc.text(`Daily Calories: ${document.getElementById('result-calories').textContent}`, 20, 40);
+            doc.text(`Protein: ${document.getElementById('result-protein').textContent}`, 20, 50);
+            doc.text(`Carbs: ${document.getElementById('result-carbs').textContent}`, 20, 60);
+            doc.text(`Fats: ${document.getElementById('result-fats').textContent}`, 20, 70);
+
+            // Add meals for each day
+            let yPosition = 90;
+            document.querySelectorAll('#weekDaysContent .tab-pane').forEach((tab, index) => {
+                const dayName = tab.id.charAt(0).toUpperCase() + tab.id.slice(1);
+
+                if (yPosition > 260) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+
+                doc.setFontSize(14);
+                doc.text(dayName, 20, yPosition);
+                yPosition += 10;
+
+                tab.querySelectorAll('.card').forEach(card => {
+                    if (yPosition > 260) {
+                        doc.addPage();
+                        yPosition = 20;
+                    }
+
+                    doc.setFontSize(12);
+                    doc.text(`• ${card.querySelector('.badge').textContent}: ${card.querySelector('.card-title').textContent}`, 25, yPosition);
+                    yPosition += 7;
+                    doc.text(card.querySelector('.card-text').textContent, 30, yPosition);
+                    yPosition += 7;
+                    doc.text(card.querySelector('.nutrition-facts').textContent.trim(), 30, yPosition);
+                    yPosition += 10;
+                });
+
+                yPosition += 10;
+            });
+
+            doc.save(`nutrition-plan-${new Date().toISOString().slice(0, 10)}.pdf`);
+        }
+
+    </script>
 @endpush

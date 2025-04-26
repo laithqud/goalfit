@@ -57,11 +57,13 @@
                 <div class="col-md-4">
                     <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
                         <img src="{{asset('./images/fullbody.jpg')}}" class="card-img-top" alt="Full Body Workout">
-                        <div class="card-body bg-light">
-                            <h3 class="card-title fw-bold">Full Body</h3>
-                            <p class="card-text">Comprehensive workouts targeting all major muscle groups for balanced
+                        <div class="card-body" style="background-color: #373740">
+                            <h3 class="card-title fw-bold text-light fs-4">Full Body</h3>
+                            <p class="card-text text-light fs-5">Comprehensive workouts targeting all major muscle groups
+                                for
+                                balanced
                                 fitness.</p>
-                            <a href="#" class="btn btn-outline-danger">Start Programs</a>
+                            <a href="#" class="btn btn-outline-danger mt-2">Start Programs</a>
                         </div>
                     </div>
                 </div>
@@ -70,10 +72,11 @@
                 <div class="col-md-4">
                     <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
                         <img src="{{asset('./images/fullbody.jpg')}}" class="card-img-top" alt="Upper Body Workout">
-                        <div class="card-body bg-light">
-                            <h3 class="card-title fw-bold">Upper Body</h3>
-                            <p class="card-text">Focus on arms, shoulders, chest and back for strength and definition.</p>
-                            <a href="#" class="btn btn-outline-danger">Start Programs</a>
+                        <div class="card-body" style="background-color: #373740">
+                            <h3 class="card-title fw-bold text-light fs-4">Upper Body</h3>
+                            <p class="card-text text-light fs-5">Focus on arms, shoulders, chest and back for strength and
+                                definition.</p>
+                            <a href="#" class="btn btn-outline-danger mt-2">Start Programs</a>
                         </div>
                     </div>
                 </div>
@@ -82,10 +85,11 @@
                 <div class="col-md-4">
                     <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
                         <img src="{{asset('./images/fullbody.jpg')}}" class="card-img-top" alt="Lower Body Workout">
-                        <div class="card-body bg-light">
-                            <h3 class="card-title fw-bold">Lower Body</h3>
-                            <p class="card-text">Build strength and endurance in your legs and core muscles.</p>
-                            <a href="#" class="btn btn-outline-danger">Start Programs</a>
+                        <div class="card-body" style="background-color: #373740">
+                            <h3 class="card-title fw-bold text-light fs-4">Lower Body</h3>
+                            <p class="card-text text-light fs-5">Build strength and endurance in your legs and core muscles.
+                            </p>
+                            <a href="#" class="btn btn-outline-danger mt-2">Start Programs</a>
                         </div>
                     </div>
                 </div>
@@ -103,16 +107,20 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <h2 class="display-4 fw-bold mb-4">Expert Guidance</h2>
-                    <p class="lead mb-4">Our certified trainers create science-backed programs tailored to your unique needs
+                    <p class="lead mb-4 fs-3">Our certified trainers create science-backed programs tailored to your unique
+                        needs
                         and goals.</p>
                     <ul class="list-unstyled">
-                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Personalized workout plans
+                        <li class="mb-3 fs-5"><i class="fas fa-check-circle text-danger me-2"></i> Personalized workout
+                            plans
                         </li>
-                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Proper form demonstrations
+                        <li class="mb-3 fs-5"><i class="fas fa-check-circle text-danger me-2"></i> Proper form
+                            demonstrations
                         </li>
-                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Progressive overload
+                        <li class="mb-3 fs-5"><i class="fas fa-check-circle text-danger me-2"></i> Progressive overload
                             techniques</li>
-                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Nutrition recommendations</li>
+                        <li class="mb-3 fs-5"><i class="fas fa-check-circle text-danger me-2"></i> Nutrition recommendations
+                        </li>
                     </ul>
                 </div>
                 <div class="col-lg-6">
@@ -120,10 +128,10 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            {{-- <h2 class="text-center text-light mb-5 display-4 fw-bold">Meet Our Coaches</h2> --}}
+        <div class="container mt-5">
+            <h2 class="text-center text-light display-4 fw-bold  mb-2">Meet Our Coaches</h2>
 
-            <div class="row g-4 pt-5">
+            <div class="row g-4">
                 <div class="col-md-4">
                     <div class="card coach-card h-100 border-0 overflow-hidden bg-dark text-light shadow-lg">
                         <img src="{{asset('./images/coach1.jpg')}}" class="card-img-top" alt="Coach Alex">
