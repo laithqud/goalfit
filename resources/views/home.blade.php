@@ -37,31 +37,31 @@
 
                 <a href="#gym" class="text-decoration-none">
                     <div class="d-flex flex-column align-items-center">
-                        <div class="rounded-circle bg-danger divSizeFeature"
+                        <div class="rounded-circle divSizeFeature"
                             style="background-image: url({{asset('images/feature1.png')}}); background-size: cover; background-position: center;">
                         </div>
                         <div class="border border-light border-start bg-dark text-light" style="height: 40px;"></div>
-                        <h4 class="mt-3 text-light fs-4">Explore Gyms</h4>
+                        <h4 class="mt-3 text-light fs-4 homeLink">Explore Gyms</h4>
                     </div>
                 </a>
 
                 <a href="#home" class="text-decoration-none">
                     <div class="d-flex flex-column align-items-center">
-                        <div class="rounded-circle bg-danger divSizeFeature"
+                        <div class="rounded-circle divSizeFeature"
                             style="background-image: url({{asset('images/feature2.jpg')}}); background-size: cover; background-position: center;">
                         </div>
                         <div class="border border-light border-start bg-dark" style="height: 40px;"></div>
-                        <h4 class="mt-3 text-light fs-4">Home Workout</h4>
+                        <h4 class="mt-3 text-light fs-4 homeLink">Home Workout</h4>
                     </div>
                 </a>
 
                 <a href="#nutrition" class="text-decoration-none">
                     <div class="d-flex flex-column align-items-center">
-                        <div class="rounded-circle bg-danger divSizeFeature"
+                        <div class="rounded-circle divSizeFeature"
                             style="background-image: url({{asset('images/feature3.jpg')}}); background-size: cover; background-position: center;">
                         </div>
                         <div class="border border-light border-start bg-dark" style="height: 40px;"></div>
-                        <h4 class="mt-3 text-light fs-4">Track your Nutrition</h4>
+                        <h4 class="mt-3 text-light fs-4 homeLink">Track your Nutrition</h4>
                     </div>
                 </a>
 
@@ -104,11 +104,11 @@
 
             <div id="gymTextDiv" class="w-50 h-100 position-relative">
                 <div class="position-absolute w-100 h-100" style="
-                                                            background: url('{{ asset('images/dumbble2.jpg') }}') center/cover;
-                                                            filter: blur(6px);
-                                                            opacity: 1;
-                                                            z-index: 1;
-                                                         ">
+                                                                        background: url('{{ asset('images/dumbble2.jpg') }}') center/cover;
+                                                                        filter: blur(6px);
+                                                                        opacity: 1;
+                                                                        z-index: 1;
+                                                                     ">
                 </div>
 
                 <div id="gymDiv"
@@ -123,7 +123,7 @@
                         Discover top-rated gyms with flexible plans that match your goals, lifestyle, and budget. Your
                         fitness journey starts with the right environment.
                     </h4>
-                    <a href="/gym" class="btn btn-secondary text-light px-4 py-2 fs-4">Explore Gyms</a>
+                    <a href="/gym" class="btn text-light px-4 py-2 fs-4" style="background-color: #4d0909">Explore Gyms</a>
                 </div>
             </div>
         </div>
@@ -170,7 +170,9 @@
                 <!-- Light grey with 75% opacity -->
                 <h1 class="display-3 fw-bold mb-4 text-light">Healthy Eating</h1> <!-- Dark text for contrast -->
                 <p class="lead fs-2 mb-5 text-light">Discover nutritious recipes for a better lifestyle</p>
-                <center><a href="/nutrition" class="btn btn-success btn-lg px-5 py-3">Explore Recipes</a></center>
+                <center><a href="/nutrition" class="btn btn-lg px-5 py-3 text-light"
+                        style="background-color: #4d0909">Explore
+                        Recipes</a></center>
             </div>
         </div>
     </section>

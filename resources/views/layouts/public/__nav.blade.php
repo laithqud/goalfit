@@ -1,5 +1,5 @@
 <header>
-    <nav class="d-flex justify-content-between align-items-center p-3">
+    <nav class="d-flex justify-content-between align-items-center">
         <img src="{{asset('images/logo.png')}}" alt="GoalFit Logo" class="img-fluid" style="height: 100px;">
 
         <div class="d-flex gap-4 d-none d-md-flex">

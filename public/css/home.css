@@ -32,7 +32,8 @@ body {
     /* font-family: "Poppins", serif; */
     font-family: "Teko", sans-serif;
 	line-height: 1;
-    background-color: #222222;
+    /* background-color: #222222; */
+    background-color: #37383f;
 }
 ol, ul {
 	list-style: none;
@@ -73,21 +74,21 @@ nav a{
     border-radius: 8px;
 }
 nav a:hover{
-    color:#4d0909;
-    background-color: white;
-    font-size: 30px !important;
+    color:white;
+    border-bottom: #808080 2px solid;
+    /* background-color: white; */
+    /* font-size: 30px !important; */
 }
 nav {
     position: fixed;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background for better readability */
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 1rem 2rem;
     height: 80px;
 }
 
-.profileIcon:hover{
-    color: #4d0909 !important;
-    background-color: white;
+.homeLink:hover{
+    color: white !important;
 }
 
 .divSizeFeature{
