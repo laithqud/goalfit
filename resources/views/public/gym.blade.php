@@ -19,140 +19,44 @@
         </div>
     </div>
 
-    <!-- Gym Features Section -->
-    {{-- <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold display-5">Why Choose GoalFit Gyms?</h2>
-                <p class="lead text-muted">We partner with the best fitness centers to bring you premium experiences</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-box bg-danger bg-opacity-10 text-danger rounded-circle mx-auto mb-4">
-                                <i class="fas fa-dumbbell fs-3"></i>
-                            </div>
-                            <h3 class="h5 fw-bold">State-of-the-Art Equipment</h3>
-                            <p class="text-muted">Access to the latest fitness machines and free weights for all your
-                                training needs.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-box bg-danger bg-opacity-10 text-danger rounded-circle mx-auto mb-4">
-                                <i class="fas fa-users fs-3"></i>
-                            </div>
-                            <h3 class="h5 fw-bold">Expert Trainers</h3>
-                            <p class="text-muted">Certified professionals ready to guide you through personalized workout
-                                plans.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-box bg-danger bg-opacity-10 text-danger rounded-circle mx-auto mb-4">
-                                <i class="fas fa-calendar-alt fs-3"></i>
-                            </div>
-                            <h3 class="h5 fw-bold">Flexible Memberships</h3>
-                            <p class="text-muted">Choose from daily, monthly, or annual plans that fit your schedule and
-                                budget.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
-
     <!-- Featured Gyms Section -->
-    {{-- <section class="py-5" style="background-color: #4d0909">
-        <div class="container" style="background-color: #4d0909">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="fw-bold display-6 text-light">Featured Gyms Near You</h2>
-            </div>
-
-            <div class="row g-4">
-                @for($i = 0; $i < 3; $i++) <div class="col-md-4">
-                    <div class="card gym-card h-100 border-0 overflow-hidden shadow-sm" style="background-color: lightgray">
-                        <div class="gym-card-img" style="background-image: url('{{ asset('images/gym.png') }}');"></div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                <h3 class="h5 fw-bold mb-0">Elite Fitness Center</h3>
-                                <span class="badge bg-success">4.8 <i class="fas fa-star"></i></span>
-                            </div>
-                            <p class="text-muted mb-3"><i class="fas fa-map-marker-alt text-danger me-2"></i> 1.2 miles away
-                            </p>
-
-                            <div class="d-flex flex-wrap gap-2 mb-3">
-                                <span class="badge bg-light text-dark border"><i class="fas fa-dumbbell me-1"></i>
-                                    Strength</span>
-                                <span class="badge bg-light text-dark border"><i class="fas fa-running me-1"></i>
-                                    Cardio</span>
-                                <span class="badge bg-light text-dark border"><i class="fas fa-swimming-pool me-1"></i>
-                                    Pool</span>
-                            </div>
-
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h4 class="fw-bold text-danger mb-0">$29<small class="text-muted fs-6">/month</small></h4>
-                                <a href="#" class="btn btn-sm btn-danger">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            @endfor
-        </div>
-        </div>
-    </section> --}}
-
     <!-- Featured Gyms Section -->
     <section class="py-5" style="background-color: #4d0909">
-        <div class="container" style="background-color: #4d0909">
+        <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="fw-bold display-6 text-light">Featured Gyms Near You</h2>
-                <a href="#" class="btn btn-outline-danger">View All</a>
             </div>
 
-            <div class="scroller-wrapper">
-                <div class="gym-scroller row flex-nowrap g-4 py-2 pb-4">
-                    @for($i = 0; $i < 6; $i++)
-                        <div class="col-md-4 col-sm-6 col-10">
-                            <div class="card gym-card h-100 border-0 overflow-hidden shadow-sm"
-                                style="background-color: lightgray">
-                                <div class="gym-card-img" style="background-image: url('{{ asset('images/gym.png') }}');"></div>
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-2">
-                                        <h3 class="h5 fw-bold mb-0">Elite Fitness Center</h3>
-                                        <span class="badge bg-success">4.8 <i class="fas fa-star"></i></span>
-                                    </div>
-                                    <p class="text-muted mb-3"><i class="fas fa-map-marker-alt text-danger me-2"></i> 1.2 miles
-                                        away</p>
+            <div class="row g-4">
+                @for($i = 0; $i < 4; $i++)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card gym-card h-100 border-0 overflow-hidden shadow-sm" style="background-color: lightgray">
+                            <div class="gym-card-img" style="background-image: url('{{ asset('images/gym.png') }}');"></div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h3 class="h5 fw-bold mb-0">Elite Fitness Center</h3>
+                                    <span class="badge bg-success">4.8 <i class="fas fa-star"></i></span>
+                                </div>
+                                <p class="text-muted mb-3"><i class="fas fa-map-marker-alt text-danger me-2"></i> 1.2 miles away
+                                </p>
 
-                                    <div class="d-flex flex-wrap gap-2 mb-3">
-                                        <span class="badge bg-light text-dark border"><i class="fas fa-dumbbell me-1"></i>
-                                            Strength</span>
-                                        <span class="badge bg-light text-dark border"><i class="fas fa-running me-1"></i>
-                                            Cardio</span>
-                                        <span class="badge bg-light text-dark border"><i class="fas fa-swimming-pool me-1"></i>
-                                            Pool</span>
-                                    </div>
+                                <div class="d-flex flex-wrap gap-2 mb-3">
+                                    <span class="badge bg-light text-dark border"><i class="fas fa-dumbbell me-1"></i>
+                                        Strength</span>
+                                    <span class="badge bg-light text-dark border"><i class="fas fa-running me-1"></i>
+                                        Cardio</span>
+                                    <span class="badge bg-light text-dark border"><i class="fas fa-swimming-pool me-1"></i>
+                                        Pool</span>
+                                </div>
 
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h4 class="fw-bold text-danger mb-0">$29<small class="text-muted fs-6">/month</small>
-                                        </h4>
-                                        <a href="#" class="btn btn-sm btn-danger">View Details</a>
-                                    </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4 class="fw-bold text-danger mb-0">$29<small class="text-muted fs-6">/month</small></h4>
+                                    <a href="/gym-card" class="btn btn-sm btn-danger">View Details</a>
                                 </div>
                             </div>
                         </div>
-                    @endfor
-                </div>
+                    </div>
+                @endfor
             </div>
         </div>
     </section>

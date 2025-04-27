@@ -22,6 +22,8 @@ Route::view('/gym', 'public.gym');
 Route::view('/workout', 'public.workout');
 Route::view('/nutrition', 'public.nutrition');
 Route::view('/food-desc', 'public.food-desc');
+Route::view('/gym-card', 'public.gym-card');
+Route::view('/workout-list', 'public.workout-list');
 
 
 

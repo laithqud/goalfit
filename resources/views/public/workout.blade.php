@@ -63,7 +63,7 @@
                                 for
                                 balanced
                                 fitness.</p>
-                            <a href="#" class="btn btn-outline-danger mt-2">Start Programs</a>
+                            <a href="/workout-list" class="btn btn-outline-danger mt-2">Start Programs</a>
                         </div>
                     </div>
                 </div>
