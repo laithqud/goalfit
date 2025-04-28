@@ -3,8 +3,9 @@
 @section('title', 'Workout List - GoalFit')
 
 @section('content')
-    <section class="container p-3" style="margin-top:120px; margin-bottom: 25px;">
+    <section class="container p-3 border rounded bg-secondary" style="margin-top:120px; margin-bottom: 25px;">
         <!-- Workout List -->
+        <h1 class="fs-1 my-3 pb-3 fw-bold text-center">Full Body</h1>
         @foreach([1] as $workout)
         <div class="row g-4 mb-4 border rounded overflow-hidden" style="background-color: #f8f9fa;">
             <!-- Workout Video -->

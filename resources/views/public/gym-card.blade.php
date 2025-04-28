@@ -41,7 +41,7 @@
             </div>
 
             <!-- Gym Details -->
-            <div class="col-lg-6 d-flex flex-column">
+            <div class="col-lg-6 d-flex flex-column p-4">
                 <div class="flex-grow-1">
                     <h1 class="display-5 fw-bold text-light mb-3">Planet Gym Fitness</h1>
 
@@ -102,9 +102,9 @@
 
             <!-- Join Button - Now below both columns -->
             <div class="col-12 mt-4">
-                <button class="btn btn-lg w-100 py-3 fw-bold" style="background-color: #4d0909; color: white;">
+                <a href="/paymint" class="btn btn-lg w-100 py-3 fw-bold" style="background-color: #4d0909; color: white;">
                     <i class="fas fa-heart me-2"></i>Join Now - Only $49.99/month
-                </button>
+                </a>
             </div>
         </div>
     </section>

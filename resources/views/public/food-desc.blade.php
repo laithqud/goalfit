@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="container mt-5">
+    <div class="container" style="margin-top: 6rem;">
 
         <!-- Product Main Section -->
         <div class="row g-4">

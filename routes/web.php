@@ -24,6 +24,8 @@ Route::view('/nutrition', 'public.nutrition');
 Route::view('/food-desc', 'public.food-desc');
 Route::view('/gym-card', 'public.gym-card');
 Route::view('/workout-list', 'public.workout-list');
+Route::view('/paymint', 'public.paymint');
+Route::view('/paymint2', 'public.paymint2');
 
 
 

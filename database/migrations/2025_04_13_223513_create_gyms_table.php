@@ -20,6 +20,17 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->timestamps();
         });
+        // Schema::create('gyms', function (Blueprint $table) {
+        //     $table->id(); // Auto-increment primary key
+        //     $table->string('name');
+        //     $table->string('location')->nullable(); // Nullable, as it’s optional
+        //     $table->text('description');
+        //     $table->json('opening_hours'); // JSON format for opening hours
+        //     $table->json('facilities'); // JSON format for facilities
+        //     $table->decimal('price', 8, 2); // Price column for the gym subscription
+        //     $table->json('images'); // JSON format to store image URLs
+        //     $table->timestamps(); // created_at and updated_at
+        // });
         
     }
 
