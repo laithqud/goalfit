@@ -6,38 +6,61 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('gyms', function (Blueprint $table) {
+            
             $table->id();
             $table->string('name');
+            $table->text('description');
+            $table->string('address');
             $table->string('location');
-            $table->string('phone')->nullable();
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
+            $table->string('phone');
+            $table->json('opening_hours')->comment('
+                {
+                    "monday": {"open": "08:00", "close": "22:00", "is_24h": false},
+                    "tuesday": {"open": "06:00", "close": "23:00"},
+                    ...
+                }
+            ');
+            
+            $table->json('facilities')->comment('
+                [
+                    {"name": "parking", "available": true, "description": "Free for members"},
+                    {"name": "pool", "available": true, "requires_booking": true},
+                    ...
+                ]
+            ');
+            
+            $table->json('pricing')->comment('
+                {
+                    "plans": {
+                        "basic": {"monthly": 39.99, "annual": 399.99},
+                        "premium": {"monthly": 59.99, "annual": 599.99}
+                    },
+                    "day_pass": 15.00,
+                    "currency": "USD"
+                }
+            ');
+            
+            $table->json('media')->nullable()->comment('
+                {
+                    "images": [
+                        {"url": "gyms/1/main.jpg", "caption": "Main Entrance", "is_featured": true},
+                        {"url": "gyms/1/equipment.jpg", "caption": "Weight Area"}
+                    ],
+                    "videos": [
+                        {"url": "gyms/1/tour.mp4", "thumbnail": "gyms/1/video-thumb.jpg"}
+                    ]
+                }
+            ');
+            $table->boolean('is_active')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
-        // Schema::create('gyms', function (Blueprint $table) {
-        //     $table->id(); // Auto-increment primary key
-        //     $table->string('name');
-        //     $table->string('location')->nullable(); // Nullable, as it’s optional
-        //     $table->text('description');
-        //     $table->json('opening_hours'); // JSON format for opening hours
-        //     $table->json('facilities'); // JSON format for facilities
-        //     $table->decimal('price', 8, 2); // Price column for the gym subscription
-        //     $table->json('images'); // JSON format to store image URLs
-        //     $table->timestamps(); // created_at and updated_at
-        // });
-        
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('gyms');
     }

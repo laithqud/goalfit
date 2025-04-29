@@ -6,7 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Models\UserSubscription;
+use App\Models\Gym;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -45,4 +46,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function homeGym()
+    {
+        return $this->belongsTo(Gym::class, 'home_gym_id');
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(UserSubscription::class);
+    }
+
+
 }

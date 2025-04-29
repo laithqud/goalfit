@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -9,22 +8,19 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('food_items', function (Blueprint $table) {
+        Schema::create('workout_categories', function (Blueprint $table) {
 
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->text('description');
             $table->string('image_url');
-            $table->boolean('is_featured')->default(false);
-            $table->foreignId('category_id')->constrained('nutrition_categories')->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
-            $table->index('is_featured');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('food_items');
+        Schema::dropIfExists('workout_categories');
     }
 };

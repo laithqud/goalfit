@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\FoodCategory;
 
 
 class FoodItem extends Model
@@ -15,8 +16,9 @@ class FoodItem extends Model
         'calories',
         'food_category_id',
     ];
-    public function foodCategory() // Use consistent naming
+    public function foodCategory()
     {
         return $this->belongsTo(FoodCategory::class);
     }
+
 }

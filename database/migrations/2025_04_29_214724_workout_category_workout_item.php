@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('video_categories', function (Blueprint $table) {
+        Schema::create('workout_category_workout_item', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // For example: Tutorials, Workouts, etc.
-            $table->timestamps();
+            $table->foreignId('workout_category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('workout_item_id')->constrained()->cascadeOnDelete();
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('video_categories');
+        //
     }
 };

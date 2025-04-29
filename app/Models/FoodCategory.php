@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory; // Add this
 use Illuminate\Database\Eloquent\Model;
+use App\Models\FoodItem; // Add this
 
 class FoodCategory extends Model
 {
@@ -17,8 +18,4 @@ class FoodCategory extends Model
         return $this->hasMany(FoodItem::class);
     }
 
-    public function foods()
-    {
-        return $this->hasMany(FoodItem::class);
-    }
 }

@@ -11,8 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subscriptions', function (Blueprint $table) {
+        Schema::create('user_subscriptions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->boolean('has_workout_access')->default(false);
+            $table->boolean('has_nutrition_access')->default(false);
+            $table->decimal('price', 8, 2)->nullable();
+            $table->enum('status', ['active', 'expired'])->default('active');
             $table->timestamps();
         });
     }

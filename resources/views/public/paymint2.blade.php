@@ -3,7 +3,7 @@
 @section('title', 'GoalFit - Digital Content Payment')
 
 @section('content')
-    <div class="container py-5" style="max-width: 800px;">
+    <div class="container" style="max-width: 800px; margin-top: 6rem;">
 
         <!-- Payment Card -->
         <div class="card border-0 shadow" style="background-color: #1a1a1a;">
@@ -56,7 +56,8 @@
                     <div class="alert alert-dark border border-secondary mb-4">
                         <div class="d-flex align-items-center">
                             <i class="fab fa-cc-visa fs-3 text-primary me-3"></i>
-                            <p class="text-light mb-0">We accept Visa cards only for digital content purchases</p>
+                            <p class="mb-0" style="color:#4d0909">We accept Visa cards only for digital content purchases
+                            </p>
                         </div>
                     </div>
 
