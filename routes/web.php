@@ -9,13 +9,8 @@ use App\Http\Controllers\dashboard\VideoCategoryController;
 use App\Http\Controllers\dashboard\VideoController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-
-Route::get('/',[HomeController::class,'index'])->name('home.index');
-
-Route::get('/dashboard', function () {
-    return view('admin.dashboard.dashboard');
-})->name('dashboard');
 
 
 Route::view('/gym', 'public.gym');
@@ -36,3 +31,6 @@ Route::get('/video-category',[VideoCategoryController::class,'index'])->name('da
 Route::get('/videos',[VideoController::class,'index'])->name('dashboard.video.index');
 Route::get('/category',[CategoryController::class,'index'])->name('dashboard.category.index');
 Route::get('/fooditem',[FoodItemController::class,'index'])->name('dashboard.foodItem.index');
+Auth::routes();
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
