@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Gym;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\WorkoutCategory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,12 +26,15 @@ class DatabaseSeeder extends Seeder
         // Seed Admins table
         $this->call([
             AdminSeeder::class,
-            UsersSeeder::class,
-            GymsSeeder::class,
-            VideoCategorySeeder::class,
-            VideoSeeder::class,
-            FoodCategorySeeder::class,
+            UserSeeder::class,
+            GymSeeder::class,
+            NutritionCategorySeeder::class,
             FoodItemSeeder::class,
+            GymSubscriptionSeeder::class,
+            WorkoutCategorySeeder::class,
+            WorkoutItemSeeder::class,
+            WorkoutCategoryWorkoutItemSeeder::class,
+
         ]);
         
     }

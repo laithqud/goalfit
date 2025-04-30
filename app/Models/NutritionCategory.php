@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\NutritionCategory;
+use App\Models\FoodItem;
 
-class FoodItem extends Model
+class NutritionCategory extends Model
 {
     use HasFactory;
 
@@ -14,12 +14,15 @@ class FoodItem extends Model
         'name',
         'description',
         'image_url',
-        'is_featured',
-        'category_id',
+        'calories',
+        'protien',
+        'carbs',
+        'fat',
+        'nutrients',
     ];
 
-    public function nutritionCategory()
+    public function foodItems()
     {
-        return $this->belongsTo(NutritionCategory::class, 'category_id');
+        return $this->hasMany(FoodItem::class, 'category_id');
     }
 }

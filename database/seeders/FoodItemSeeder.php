@@ -4,11 +4,18 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\FoodItem;
+use App\Models\NutritionCategory;
 
 class FoodItemSeeder extends Seeder
 {
     public function run()
     {
-        \App\Models\FoodItem::factory(1)->create(); // Generates 10 food items
+        // You can first create some categories
+        $category = NutritionCategory::factory()->create();
+
+        // Create a food item under this category
+        FoodItem::factory()->create([
+            'category_id' => $category->id,
+        ]);
     }
 }
