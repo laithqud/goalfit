@@ -4,13 +4,13 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\NutritionCategory;
 
-class CategoryController extends Controller
+class NutritionCategoryController extends Controller
 {
     public function index() 
     {
-        $categories = Category::all();
+        $categories = NutritionCategory::all();
         return view('admin.category.index', compact('categories'));
     }
 }

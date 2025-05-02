@@ -9,6 +9,8 @@
                 <div class="bg-black bg-opacity-75 rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">Food Items</h6>
+                        {{-- {{dd($foodItems)}} --}}
+                        {{-- {{dd($categories)}} --}}
                         <div class="d-flex gap-2">
                             <a href="
                                 {{-- {{ route('admin.food-items.create') }} --}}
@@ -84,7 +86,7 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="flex-shrink-0 me-2">
-                                                @switch($item->foodCategory->name)
+                                                @switch($item->nutritionCategory->name)
                                                 @case('Fruits')
                                                 <i class="fas fa-apple-alt text-success"></i>
                                                 @break
@@ -108,7 +110,7 @@
                                     </td>
                                     <td>
                                         <span class="badge bg-secondary">
-                                            {{ $item->foodCategory->name }}
+                                            {{ $item->nutritionCategory->name }}
                                         </span>
                                     </td>
                                     <td>
