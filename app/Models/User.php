@@ -8,10 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\UserSubscription;
 use App\Models\Gym;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes; 
 
     /**
      * The attributes that are mass assignable.
@@ -53,6 +55,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    // app/Models/User.php
+    public function getAgeAttribute()
+    {
+        return $this->birth_date ? Carbon::parse($this->birth_date)->age : null;
     }
     public function homeGym()
     {

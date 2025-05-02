@@ -9,7 +9,7 @@
                 <div class="bg-dark rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">Admin Users</h6>
-                        <a href="{{ route('dashboard.admins.create') }}" class="btn btn-primary btn-sm">
+                        <a href="{{ route('admin.admins.create') }}" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus me-1"></i> Add Admin
                         </a>
                     </div>
@@ -45,12 +45,12 @@
                                         </td>
                                         <td>
                                             <div class="d-flex gap-2">
-                                                <a href="{{ route('dashboard.admins.edit', $admin->id) }}"
+                                                <a href="{{ route('admin.admins.edit', $admin->id) }}"
                                                     class="btn btn-sm btn-warning">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 @if($admin->role !== 'superadmin')
-                                                    <form action="{{ route('dashboard.admins.destroy', $admin->id) }}"
+                                                    <form action="{{ route('admin.admins.destroy', $admin->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')

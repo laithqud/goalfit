@@ -9,7 +9,7 @@
                 <div class="bg-dark rounded p-4">
                     <h6 class="mb-4 text-light">Edit Admin User</h6>
 
-                    <form method="POST" action="{{ route('dashboard.admins.update', $admin->id) }}">
+                    <form method="POST" action="{{ route('admin.admins.update', $admin->id) }}">
                         @csrf
                         @method('PUT')
 
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('dashboard.admins.index') }}" class="btn btn-secondary">
+                            <a href="{{ route('admin.admins.index') }}" class="btn btn-secondary">
                                 <i class="fas fa-arrow-left me-1"></i> Back
                             </a>
                             <button type="submit" class="btn btn-primary">

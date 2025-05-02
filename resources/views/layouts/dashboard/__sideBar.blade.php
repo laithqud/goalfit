@@ -20,11 +20,11 @@
                 class="nav-item nav-link {{ request()->routeIs('dashboard') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-tachometer-alt me-2 bg-black bg-opacity-75 text-light"></i>Dashboard
             </a>
-            <a href="{{ route('dashboard.admins.index') }}"
+            <a href="{{ route('admin.admins.index') }}"
                 class="nav-item nav-link {{ request()->routeIs('admins.*') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-th me-2 bg-black bg-opacity-75 text-light"></i>Admins
             </a>
-            <a href="{{ route('dashboard.user.index') }}"
+            <a href="{{ route('admin.users.index') }}"
                 class="nav-item nav-link {{ request()->routeIs('users.*') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-keyboard me-2 bg-black bg-opacity-75 text-light"></i>Users
             </a>

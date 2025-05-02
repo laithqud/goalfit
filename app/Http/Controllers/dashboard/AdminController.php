@@ -34,7 +34,7 @@ class AdminController extends Controller
 
         Admin::create($validated);
 
-        return redirect()->route('dashboard.admins.index')
+        return redirect()->route('admin.admins.index')
             ->with('success', 'Admin created successfully');
     }
 
@@ -65,7 +65,7 @@ class AdminController extends Controller
 
     $admin->update($validated);
 
-    return redirect()->route('dashboard.admins.index')
+    return redirect()->route('admin.admins.index')
         ->with('success', 'Admin updated successfully');
 }
 
@@ -81,7 +81,7 @@ class AdminController extends Controller
 
         $admin->delete();
 
-        return redirect()->route('dashboard.admins.index')
+        return redirect()->route('admin.admins.index')
             ->with('success', 'Admin deleted successfully');
     }
 }

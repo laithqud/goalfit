@@ -10,7 +10,7 @@
                     <div class="card-header">Create New Admin</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('dashboard.admins.store') }}">
+                        <form method="POST" action="{{ route('admin.admins.store') }}">
                             @csrf
 
                             <div class="row mb-3">
@@ -84,7 +84,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Create Admin
                                     </button>
-                                    <a href="{{ route('dashboard.admins.index') }}" class="btn btn-secondary">
+                                    <a href="{{ route('admin.admins.index') }}" class="btn btn-secondary">
                                         Cancel
                                     </a>
                                 </div>
