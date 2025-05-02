@@ -20,7 +20,7 @@
                 class="nav-item nav-link {{ request()->routeIs('dashboard') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-tachometer-alt me-2 bg-black bg-opacity-75 text-light"></i>Dashboard
             </a>
-            <a href="{{ route('dashboard.admin.index') }}"
+            <a href="{{ route('dashboard.admins.index') }}"
                 class="nav-item nav-link {{ request()->routeIs('admins.*') ? 'active border border-dark' : '' }} text-light">
                 <i class="fa fa-th me-2 bg-black bg-opacity-75 text-light"></i>Admins
             </a>

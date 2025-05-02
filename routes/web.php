@@ -26,7 +26,19 @@ Route::view('/paymint2', 'public.paymint2');
 
 
 //dashboard routes
-Route::get('/admins',[AdminController::class,'index'])->name('dashboard.admin.index');
+Route::prefix('dashboard')->name('dashboard.')->group(function () {
+    // Admin management routes
+    Route::prefix('admins')->name('admins.')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::get('/create', [AdminController::class, 'create'])->name('create');
+        Route::post('/', [AdminController::class, 'store'])->name('store');
+        Route::get('/{admin}/edit', [AdminController::class, 'edit'])->name('edit');
+        Route::put('/{admin}', [AdminController::class, 'update'])->name('update');
+        Route::delete('/{admin}', [AdminController::class, 'destroy'])->name('destroy');
+    });
+    
+    // Other dashboard routes...
+});
 Route::get('/users',[UserController::class,'index'])->name('dashboard.user.index');
 Route::get('/gyms',[GymController::class,'index'])->name('gym.index');
 Route::get('/video-category',[WorkoutCategoryController::class,'index'])->name('dashboard.videoCategory.index');
