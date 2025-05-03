@@ -9,9 +9,7 @@
                 <div class="bg-black bg-opacity-75 rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">Gym Facilities</h6>
-                        <a href="
-                                    {{-- {{ route('admin.gyms.create') }} --}}
-                                     " class="btn btn-sm btn-primary">
+                        <a href="{{ route('admin.gyms.create') }}" class="btn btn-sm btn-primary">
                             <i class="fas fa-plus me-1"></i> Add New Gym
                         </a>
                     </div>
@@ -35,10 +33,20 @@
                                     <tr>
                                         <td>{{ $gym->id }}</td>
                                         <td>
-                                            @if($gym->image)
-                                                <img src="
-                                                                {{ asset('storage/' . $gym->image) }}
-                                                                 " class="img-thumbnail" width="80" height="80" alt="Gym Image">
+                                            @if($gym->media)
+                                                @php $media = $gym->media; 
+                                                $featuredImage = collect($media['images'] ?? [])->firstWhere('is_featured', true);
+                                                @endphp
+
+                                                @if($featuredImage)
+                                                    <img src="{{ asset('storage/' . $featuredImage['url']) }}" class="img-thumbnail"
+                                                        width="80" height="80" alt="Gym Image">
+                                                @else
+                                                    <div class="bg-secondary d-flex align-items-center justify-content-center"
+                                                        style="width: 80px; height: 80px;">
+                                                        <i class="fas fa-dumbbell text-light fa-2x"></i>
+                                                    </div>
+                                                @endif
                                             @else
                                                 <div class="bg-secondary d-flex align-items-center justify-content-center"
                                                     style="width: 80px; height: 80px;">
@@ -55,15 +63,12 @@
                                         <td>{{ $gym->created_at->format('M d, Y') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
-                                                <a href="
-                                                            {{-- {{ route('admin.gyms.edit', $gym->id) }} --}}
-                                                             " class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
+                                                <a href="{{ route('admin.gyms.edit', $gym->id) }}"
+                                                    class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <form action="
-                                                            {{-- {{ route('admin.gyms.destroy', $gym->id) }} --}}
-                                                             " method="POST">
+                                                <form action="{{ route('admin.gyms.destroy', $gym->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"

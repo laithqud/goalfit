@@ -47,27 +47,27 @@ class AdminController extends Controller
 
     // Update admin
     public function update(Request $request, $id)
-{
-    $admin = Admin::findOrFail($id);
-    
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:admins,email,'.$admin->id,
-        'role' => 'required|in:admin,superadmin',
-        'password' => 'nullable|min:8|confirmed'
-    ]);
+    {
+        $admin = Admin::findOrFail($id);
+        
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:admins,email,'.$admin->id,
+            'role' => 'required|in:admin,superadmin',
+            'password' => 'nullable|min:8|confirmed'
+        ]);
 
-    if ($request->filled('password')) {
-        $validated['password'] = bcrypt($validated['password']);
-    } else {
-        unset($validated['password']);
+        if ($request->filled('password')) {
+            $validated['password'] = bcrypt($validated['password']);
+        } else {
+            unset($validated['password']);
+        }
+
+        $admin->update($validated);
+
+        return redirect()->route('admin.admins.index')
+            ->with('success', 'Admin updated successfully');
     }
-
-    $admin->update($validated);
-
-    return redirect()->route('admin.admins.index')
-        ->with('success', 'Admin updated successfully');
-}
 
     // Delete admin
     public function destroy($id)

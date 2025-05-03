@@ -45,10 +45,20 @@ Route::prefix('dashboard')->name('admin.')->group(function () {
         Route::put('/{user}', [UserController::class, 'update'])->name('update');
         Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
     });
+
+    Route::prefix('gyms')->name('gyms.')->group(function () {
+        Route::get('/', [GymController::class, 'index'])->name('index');
+        Route::get('/create', [GymController::class, 'create'])->name('create');
+        Route::post('/', [GymController::class, 'store'])->name('store');
+        Route::get('/{gym}/edit', [GymController::class, 'edit'])->name('edit');
+        Route::put('/{gym}', [GymController::class, 'update'])->name('update');
+        Route::delete('/{gym}', [GymController::class, 'destroy'])->name('destroy');
+    });
     
     // Other dashboard routes...
 });
-Route::get('/users',[UserController::class,'index'])->name('dashboard.user.index');
+
+// Route::get('/users',[UserController::class,'index'])->name('dashboard.user.index');
 Route::get('/gyms',[GymController::class,'index'])->name('gym.index');
 Route::get('/video-category',[WorkoutCategoryController::class,'index'])->name('dashboard.videoCategory.index');
 Route::get('/videos',[WorkoutItemController::class,'index'])->name('dashboard.video.index');
