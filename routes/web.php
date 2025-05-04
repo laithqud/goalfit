@@ -54,6 +54,24 @@ Route::prefix('dashboard')->name('admin.')->group(function () {
         Route::put('/{gym}', [GymController::class, 'update'])->name('update');
         Route::delete('/{gym}', [GymController::class, 'destroy'])->name('destroy');
     });
+
+    Route::prefix('workout-categories')->name('workout-categories.')->group(function () {
+        Route::get('/', [WorkoutCategoryController::class, 'index'])->name('index');
+        Route::get('/create', [WorkoutCategoryController::class, 'create'])->name('create');
+        Route::post('/', [WorkoutCategoryController::class, 'store'])->name('store');
+        Route::get('/{category}/edit', [WorkoutCategoryController::class, 'edit'])->name('edit');
+        Route::put('/{category}', [WorkoutCategoryController::class, 'update'])->name('update');
+        Route::delete('/{category}', [WorkoutCategoryController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('videos')->name('videos.')->group(function () {
+        Route::get('/', [WorkoutItemController::class, 'index'])->name('index');
+        Route::get('/create', [WorkoutItemController::class, 'create'])->name('create');
+        Route::post('/', [WorkoutItemController::class, 'store'])->name('store');
+        Route::get('/{video}/edit', [WorkoutItemController::class, 'edit'])->name('edit');
+        Route::put('/{video}', [WorkoutItemController::class, 'update'])->name('update');
+        Route::delete('/{video}', [WorkoutItemController::class, 'destroy'])->name('destroy');
+    });
     
     // Other dashboard routes...
 });

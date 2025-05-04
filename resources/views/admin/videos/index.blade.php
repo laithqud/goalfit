@@ -9,9 +9,9 @@
                 <div class="bg-black bg-opacity-75 rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">Video Library</h6>
-                        <a href="
-                                {{-- {{ route('admin.videos.create') }} --}}
-                                 " class="btn btn-sm btn-primary">
+                        <a href="{{ route('admin.videos.create') }}
+                                                                                                                                                 "
+                            class="btn btn-sm btn-primary">
                             <i class="fas fa-plus me-1"></i> Add New Video
                         </a>
                     </div>
@@ -29,14 +29,54 @@
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
+
+                            @foreach ($videos as $video)
+                            <h1>{{ $video->name }}</h1>
+                            <h1>{{ $video->instructions }}</h1>
+                            <h1>{{ $video->video_url }}</h1>
+                            <h1>{{ $video->difficulty }}</h1>
+                            <h1>{{ $video->recommended_reps }}</h1>
+                            <h1>{{ $video->recommended_sets }}</h1>
+                        
+                            @php
+                                // Handle target_muscles
+                                try {
+                                    $targetMuscles = is_string($video->target_muscles) 
+                                        ? json_decode(str_replace('\"', '"', $video->target_muscles), true)
+                                        : $video->target_muscles;
+                                    
+                                    if (is_array($targetMuscles)) {
+                                        $primaryMuscles = $targetMuscles['primary'] ?? [];
+                                        $secondaryMuscles = $targetMuscles['secondary'] ?? [];
+                                    } else {
+                                        $primaryMuscles = [];
+                                        $secondaryMuscles = [];
+                                    }
+                                } catch (Exception $e) {
+                                    $primaryMuscles = [];
+                                    $secondaryMuscles = [];
+                                }
+                            @endphp
+                        
+                            <h1>Primary Muscles: {{ is_array($primaryMuscles) ? implode(', ', $primaryMuscles) : $primaryMuscles }}</h1>
+                            <h1>Secondary Muscles: {{ is_array($secondaryMuscles) ? implode(', ', $secondaryMuscles) : $secondaryMuscles }}</h1>
+                        
+                            <h1>{{ $video->category_id }}</h1>
+                            <h1>{{ $video->created_by }}</h1> {{-- Fixed from category_by to created_by based on your dd() output --}}
+                            <h1>{{ $video->is_premium ? 'Yes' : 'No' }}</h1>
+                            <h1>{{ $video->created_at }}</h1>
+                            <h1>{{ $video->updated_at }}</h1>
+                            <hr>
+                        @endforeach
+
+                            {{dd($videos)}}
                             <tbody>
                                 @foreach($videos as $video)
                                     <tr>
                                         <td>{{ $video->id }}</td>
                                         <td>
                                             <div class="position-relative" style="width: 120px; height: 80px;">
-                                                <img src="{{ $video->thumbnail_url ?? 'https://via.placeholder.com/120x80?text=No+Thumbnail' }}"
-                                                    class="img-thumbnail w-100 h-100" alt="Video Thumbnail">
+                                                <img src="{{ asset('storage/') }}" alt="Image">
                                                 <div class="position-absolute top-50 start-50 translate-middle">
                                                     <i class="fas fa-play text-white" style="font-size: 1.5rem;"></i>
                                                 </div>
@@ -51,20 +91,24 @@
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
                                                 <a href="
-                                                        {{-- {{ route('admin.videos.edit', $video->id) }} --}}
-                                                         " class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
+                                                                                                                                                                                                                                                                                        {{-- {{ route('admin.videos.edit', $video->id) }} --}}
+                                                                                                                                                                                                                                                                                         "
+                                                    class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="
-                                                        {{ $video->video_url }}
-                                                         " class="btn btn-sm btn-info" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" title="View" target="_blank">
+                                                                                                                                                                                                                                                                                        {{ $video->video_url }}
+                                                                                                                                                                                                                                                                                         "
+                                                    class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="View" target="_blank">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-                                                <form action="
-                                                        {{-- {{ route('admin.videos.destroy', $video->id) }} --}}
-                                                         " method="POST">
+                                                <form
+                                                    action="
+                                                                                                                                                                                                                                                                                        {{ route('admin.videos.destroy', $video->id) }}
+                                                                                                                                                                                                                                                                                         "
+                                                    method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"

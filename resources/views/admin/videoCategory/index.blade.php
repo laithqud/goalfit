@@ -10,12 +10,19 @@
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">Video Categories</h6>
                         <a href="
-                        {{-- {{ route('admin.video-categories.create') }} --}}
+                        {{ route('admin.workout-categories.create') }}
                          " class="btn btn-sm btn-primary">
                             <i class="fas fa-plus me-1"></i> Add New Category
                         </a>
                     </div>
 
+                    @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-check-circle me-2"></i>
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
                     <div class="table-responsive">
                         <table class="table table-dark table-hover align-middle">
                             <thead>
@@ -61,7 +68,7 @@
                                     <td>
                                         <div class="d-flex justify-content-center gap-2">
                                             <a href="
-                                            {{-- {{ route('admin.video-categories.edit', $category->id) }} --}}
+                                            {{ route('admin.workout-categories.edit', $category->id) }}
                                              " 
                                                class="btn btn-sm btn-warning"
                                                data-bs-toggle="tooltip" 
@@ -69,8 +76,7 @@
                                                title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="
-                                            {{-- {{ route('admin.video-categories.destroy', $category->id) }} --}}
+                                            <form action="{{ route('admin.workout-categories.destroy', $category->id) }}
                                              " method="POST">
                                                 @csrf
                                                 @method('DELETE')

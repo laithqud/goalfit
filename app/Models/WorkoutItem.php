@@ -25,6 +25,14 @@ class WorkoutItem extends Model
         'is_premium',
     ];
 
+    protected $casts = [
+        'equipment_needed' => 'array',
+        'target_muscles' => 'array',
+        'durations_in_minutes' => 'array',
+        'is_premium' => 'boolean',
+    ];
+    
+
     public function category()
     {
         return $this->belongsTo(WorkoutCategory::class);
