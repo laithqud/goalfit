@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\FoodItem;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NutritionCategory extends Model
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes;
 
+    protected $table = 'nutrition_categories';
     protected $fillable = [
         'name',
         'description',
@@ -20,6 +22,11 @@ class NutritionCategory extends Model
         'fat',
         'nutrients',
     ];
+
+    protected $casts = [
+        'nutrients' => 'array',
+    ];
+    
 
     public function foodItems()
     {

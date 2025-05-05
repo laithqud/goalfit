@@ -45,7 +45,7 @@
                                                             <td>{{ $user->id }}</td>
                                                             <td>
                                                                 @if($user->profile_photo_path)
-                                                                    <img src="{{ Storage::url($user->profile_photo_path) }}" class="rounded-circle"
+                                                                    <img src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('images/default-profile.png') }}" class="rounded-circle"
                                                                         width="40" height="40" alt="Profile"
                                                                         onerror="this.onerror=null;this.src='{{ asset('images/default-profile.png') }}'">
                                                                 @else

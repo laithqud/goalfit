@@ -72,6 +72,16 @@ Route::prefix('dashboard')->name('admin.')->group(function () {
         Route::put('/{video}', [WorkoutItemController::class, 'update'])->name('update');
         Route::delete('/{video}', [WorkoutItemController::class, 'destroy'])->name('destroy');
     });
+
+    // Use either snake_case or kebab-case consistently
+    Route::prefix('nutrition-categories')->name('nutrition-categories.')->group(function () {
+        Route::get('/', [NutritionCategoryController::class, 'index'])->name('index');
+        Route::get('/create', [NutritionCategoryController::class, 'create'])->name('create');
+        Route::post('/', [NutritionCategoryController::class, 'store'])->name('store');
+        Route::get('/{category}/edit', [NutritionCategoryController::class, 'edit'])->name('edit'); // Added edit route
+        Route::put('/{category}', [NutritionCategoryController::class, 'update'])->name('update');
+        Route::delete('/{category}', [NutritionCategoryController::class, 'destroy'])->name('destroy');
+    });
     
     // Other dashboard routes...
 });

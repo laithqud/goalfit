@@ -19,21 +19,7 @@ return new class extends Migration
             $table->float('protien');
             $table->float('carbs');
             $table->float('fat');
-            $table->json('nutrients')->comment('
-                {
-                    "calories": 250,
-                    "macros": {
-                        "protein": 20.5,
-                        "carbs": 30.2,
-                        "fats": 10.8,
-                        "fiber": 5.1
-                    },
-                    "micronutrients": {
-                        "vitamin_c": "15%",
-                        "iron": "8%"
-                    }
-                }
-            ');
+            $table->json('nutrients')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
