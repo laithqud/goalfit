@@ -85,11 +85,6 @@
                         </table>
                     </div>
 
-                    {{-- @if($gyms->hasPages())
-                    <div class="mt-3">
-                        {{ $gyms->links() }}
-                    </div>
-                    @endif --}}
                 </div>
             </div>
         </div>

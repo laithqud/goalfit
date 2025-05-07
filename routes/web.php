@@ -83,6 +83,14 @@ Route::prefix('dashboard')->name('admin.')->group(function () {
         Route::delete('/{category}', [NutritionCategoryController::class, 'destroy'])->name('destroy');
     });
     
+    Route::prefix('food-items')->name('food-items.')->group(function () {
+        Route::get('/', [FoodItemController::class, 'index'])->name('index');
+        Route::get('/create', [FoodItemController::class, 'create'])->name('create');
+        Route::post('/', [FoodItemController::class, 'store'])->name('store');
+        Route::get('/{foodItem}/edit', [FoodItemController::class, 'edit'])->name('edit');
+        Route::put('/{foodItem}', [FoodItemController::class, 'update'])->name('update');
+        Route::delete('/{foodItem}', [FoodItemController::class, 'destroy'])->name('destroy');
+    });
     // Other dashboard routes...
 });
 
