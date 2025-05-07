@@ -52,7 +52,7 @@
                         <h6 class="mb-0 text-light">Worldwide Sales</h6>
                         <a href="" class="text-light">Show All</a>
                     </div>
-                    <canvas id="worldwide-sales"></canvas>
+                    {{-- <canvas id="worldwide-sales"></canvas> --}}
                 </div>
             </div>
             <div class="col-sm-12 col-xl-6">
