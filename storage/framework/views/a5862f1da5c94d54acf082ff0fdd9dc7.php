@@ -1,10 +1,10 @@
-@extends('layouts.public.app')
 
-@section('title', 'GoalFit - Find Your Perfect Gym')
 
-@section('content')
+<?php $__env->startSection('title', 'GoalFit - Find Your Perfect Gym'); ?>
+
+<?php $__env->startSection('content'); ?>
     <!-- Hero Section -->
-    <div class="gym-hero position-relative" style="background-image: url('{{ asset('images/gym.png') }}'); height: 100vh;">
+    <div class="gym-hero position-relative" style="background-image: url('<?php echo e(asset('images/gym.png')); ?>'); height: 100vh;">
         <div class="hero-overlay"></div>
         <div class="hero-content container text-center text-white">
             <h1 class="display-3 fw-bold mb-4">Find Your Perfect Gym</h1>
@@ -28,43 +28,46 @@
             </div>
 
             <div class="row g-4">
-                @foreach ($gyms as $gym)
+                <?php $__currentLoopData = $gyms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gym): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-lg-4 col-md-6">
                         <div class="card gym-card h-100 border-0 overflow-hidden shadow-sm" style="background-color: lightgray">
                             <div class="gym-card-img"
-                                style="background-image: url('{{ isset($gym->media[1]) ? asset('storage/gym_images/' . $gym->media['1']) : asset('images/gym.png') }}');">
+                                style="background-image: url('<?php echo e(isset($gym->media[1]) ? asset('storage/gym_images/' . $gym->media['1']) : asset('images/gym.png')); ?>');">
                             </div>
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h3 class="h5 fw-bold mb-0">{{$gym->name}}</h3>
+                                    <h3 class="h5 fw-bold mb-0"><?php echo e($gym->name); ?></h3>
                                     <span class="badge bg-success">4.8 <i class="fas fa-star"></i></span>
                                 </div>
                                 <p class="text-muted mb-3"><i class="fas fa-map-marker-alt text-danger me-2"></i>
-                                    {{$gym->address}}
+                                    <?php echo e($gym->address); ?>
+
                                 </p>
 
                                 <div class="d-flex flex-wrap gap-2 mb-3">
-                                    @foreach ($gym->facilities as $facility)
-                                        @if ($facility['available'] == "1")
+                                    <?php $__currentLoopData = $gym->facilities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $facility): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($facility['available'] == "1"): ?>
                                             <span class="badge bg-light text-dark border">
                                                 <i class="fas fa-check me-1"></i>
-                                                {{ $facility['name'] }}
+                                                <?php echo e($facility['name']); ?>
+
                                             </span>
-                                        @endif
-                                    @endforeach
+                                        <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h4 class="fw-bold text-danger mb-0">
-                                        {{ $gym->pricing['monthly'] }}
+                                        <?php echo e($gym->pricing['monthly']); ?>
+
                                         <small class="text-muted fs-6">/month</small>
                                     </h4>
-                                    <a href="{{route('gym.detailes')}}" class="btn btn-sm btn-danger">View Details</a>
+                                    <a href="<?php echo e(route('gym.detailes')); ?>" class="btn btn-sm btn-danger">View Details</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
     </section>
@@ -143,56 +146,13 @@
     </section>
 
     <!-- Testimonials -->
-    {{-- <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold display-5">What Our Members Say</h2>
-                <p class="lead text-muted">Real stories from our fitness community</p>
-            </div>
-
-            <div class="row g-4">
-                @for($i = 0; $i < 3; $i++) <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center mb-3">
-                                <img src="{{ asset('images/user-' . ($i+1) . '.jpg') }}" class="rounded-circle me-3"
-                                    width="60" height="60" alt="User">
-                                <div>
-                                    <h5 class="fw-bold mb-0">Alex Johnson</h5>
-                                    <small class="text-muted">Member for 2 years</small>
-                                </div>
-                            </div>
-                            <div class="mb-3 text-warning">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="mb-0">"GoalFit helped me find the perfect gym near my office. The trainers are amazing
-                                and the facilities are always clean and well-maintained. I've never felt better!"</p>
-                        </div>
-                    </div>
-            </div>
-            @endfor
-        </div>
-        </div>
-    </section> --}}
+    
 
     <!-- CTA Section -->
-    {{-- <section class="py-5 bg-danger text-white">
-        <div class="container text-center py-4">
-            <h2 class="display-5 fw-bold mb-4">Ready to Start Your Fitness Journey?</h2>
-            <p class="lead mb-5 opacity-75">Join thousands of members achieving their goals with GoalFit</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="#" class="btn btn-light btn-lg px-4 fw-bold">Find Your Gym</a>
-                <a href="#" class="btn btn-outline-light btn-lg px-4">Learn More</a>
-            </div>
-        </div>
-    </section> --}}
-@endsection
+    
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
     <style>
         .gym-hero {
             height: 70vh;
@@ -240,4 +200,5 @@
             transition: all 0.3s ease;
         }
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.public.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\leoqu\Desktop\goalfit\resources\views/public/gym.blade.php ENDPATH**/ ?>

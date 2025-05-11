@@ -8,14 +8,20 @@ use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\WorkoutCategoryController;
 use App\Http\Controllers\dashboard\WorkoutItemController;
+
+
+
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GymController as PublicGymController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard'); //->middleware('auth')
 
-Route::view('/gym', 'public.gym');
+Route::get('/gym', [PublicGymController::class, 'index'])->name('gym.index');
+Route::get('/gym-details', [PublicGymController::class, 'detailes'])->name('gym.detailes');
 Route::view('/workout', 'public.workout');
 Route::view('/nutrition', 'public.nutrition');
 Route::view('/food-desc', 'public.food-desc');
@@ -25,9 +31,9 @@ Route::view('/paymint', 'public.paymint');
 Route::view('/paymint2', 'public.paymint2');
 
 
-//dashboard routes
+//-------------------------------dashboard routes---------------------------------
 Route::prefix('dashboard')->name('admin.')->group(function () {
-    // Admin management routes
+    
     Route::prefix('admins')->name('admins.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
         Route::get('/create', [AdminController::class, 'create'])->name('create');
@@ -73,7 +79,6 @@ Route::prefix('dashboard')->name('admin.')->group(function () {
         Route::delete('/{video}', [WorkoutItemController::class, 'destroy'])->name('destroy');
     });
 
-    // Use either snake_case or kebab-case consistently
     Route::prefix('nutrition-categories')->name('nutrition-categories.')->group(function () {
         Route::get('/', [NutritionCategoryController::class, 'index'])->name('index');
         Route::get('/create', [NutritionCategoryController::class, 'create'])->name('create');
@@ -91,15 +96,8 @@ Route::prefix('dashboard')->name('admin.')->group(function () {
         Route::put('/{foodItem}', [FoodItemController::class, 'update'])->name('update');
         Route::delete('/{foodItem}', [FoodItemController::class, 'destroy'])->name('destroy');
     });
-    // Other dashboard routes...
 });
 
-// Route::get('/users',[UserController::class,'index'])->name('dashboard.user.index');
-Route::get('/gyms',[GymController::class,'index'])->name('gym.index');
-Route::get('/video-category',[WorkoutCategoryController::class,'index'])->name('dashboard.videoCategory.index');
-Route::get('/videos',[WorkoutItemController::class,'index'])->name('dashboard.video.index');
-Route::get('/category',[NutritionCategoryController::class,'index'])->name('dashboard.category.index');
-Route::get('/fooditem',[FoodItemController::class,'index'])->name('dashboard.foodItem.index');
 
 
 Auth::routes();

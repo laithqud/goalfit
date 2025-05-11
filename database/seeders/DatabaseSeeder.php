@@ -28,12 +28,12 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             UserSeeder::class,
             GymSeeder::class,
-            NutritionCategorySeeder::class,
-            FoodItemSeeder::class,
-            GymSubscriptionSeeder::class,
-            WorkoutCategorySeeder::class,
-            WorkoutItemSeeder::class,
-            WorkoutCategoryWorkoutItemSeeder::class,
+            // NutritionCategorySeeder::class,
+            // FoodItemSeeder::class,
+            // GymSubscriptionSeeder::class,
+            // WorkoutCategorySeeder::class,
+            // WorkoutItemSeeder::class,
+            // WorkoutCategoryWorkoutItemSeeder::class,
 
         ]);
         

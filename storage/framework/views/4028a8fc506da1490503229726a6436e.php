@@ -1,10 +1,10 @@
 <header>
     <nav class="d-flex justify-content-between align-items-center">
-        <img src="{{asset('images/logo.png')}}" alt="GoalFit Logo" class="img-fluid" style="height: 100px;">
+        <img src="<?php echo e(asset('images/logo.png')); ?>" alt="GoalFit Logo" class="img-fluid" style="height: 100px;">
 
         <div class="d-flex gap-4 d-none d-md-flex">
-            <a href="{{route('home')}}" class="text-decoration-none">Home</a>
-            <a href="{{route('gym.index')}}" class="text-decoration-none">Gyms</a>
+            <a href="<?php echo e(route('home')); ?>" class="text-decoration-none">Home</a>
+            <a href="<?php echo e(route('gym.index')); ?>" class="text-decoration-none">Gyms</a>
             <a href="#" class="text-decoration-none">Workout</a>
             <a href="#" class="text-decoration-none">Nutrition</a>
             <a href="#" class="text-decoration-none">About Us</a>
@@ -24,21 +24,21 @@
                     <i class="fa-solid fa-user profileIcon" style="color: #ffffff;"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    @auth
-                        <li><span class="dropdown-item-text">Welcome, {{ Auth::user()->name }}</span></li>
+                    <?php if(auth()->guard()->check()): ?>
+                        <li><span class="dropdown-item-text">Welcome, <?php echo e(Auth::user()->name); ?></span></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
+                            <form method="POST" action="<?php echo e(route('logout')); ?>">
+                                <?php echo csrf_field(); ?>
                                 <button type="submit" class="dropdown-item">Logout</button>
                             </form>
                         </li>
-                    @else
-                        <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
-                        <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
-                    @endauth
+                    <?php else: ?>
+                        <li><a class="dropdown-item" href="<?php echo e(route('login')); ?>">Login</a></li>
+                        <li><a class="dropdown-item" href="<?php echo e(route('register')); ?>">Register</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -62,21 +62,21 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
-                @auth
+                <?php if(auth()->guard()->check()): ?>
                     <div class="mt-2">
-                        <span class="text-white me-2">Logged in as {{ Auth::user()->name }}</span>
-                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                            @csrf
+                        <span class="text-white me-2">Logged in as <?php echo e(Auth::user()->name); ?></span>
+                        <form method="POST" action="<?php echo e(route('logout')); ?>" class="d-inline">
+                            <?php echo csrf_field(); ?>
                             <button type="submit" class="btn btn-sm btn-outline-light">Logout</button>
                         </form>
                     </div>
-                @else
+                <?php else: ?>
                     <div class="d-flex gap-2 mt-2">
-                        <a href="{{ route('login') }}" class="btn btn-outline-light flex-grow-1">Login</a>
-                        <a href="{{ route('register') }}" class="btn btn-primary flex-grow-1">Register</a>
+                        <a href="<?php echo e(route('login')); ?>" class="btn btn-outline-light flex-grow-1">Login</a>
+                        <a href="<?php echo e(route('register')); ?>" class="btn btn-primary flex-grow-1">Register</a>
                     </div>
-                @endauth
+                <?php endif; ?>
             </div>
         </div>
     </nav>
-</header>
+</header><?php /**PATH C:\Users\leoqu\Desktop\goalfit\resources\views/layouts/public/__nav.blade.php ENDPATH**/ ?>
