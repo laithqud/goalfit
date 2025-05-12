@@ -86,9 +86,11 @@ class WorkoutItemController extends Controller
     }
     public function store(Request $request)
     {
+        // $test='store';
+        // dd($test);
         $request->validate([
             'name' => 'required|string|max:255',
-            'video_url' => 'nullable|url',
+            'video_url' => 'nullable|string',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'difficulty' => 'required|in:beginner,intermediate,advanced',
             'recommended_reps' => 'nullable|integer',

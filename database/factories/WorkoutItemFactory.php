@@ -14,25 +14,25 @@ class WorkoutItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word(),
-            'instructions' => $this->faker->sentence(),
-            'video_url' => $this->faker->url(),
-            'difficulty' => $this->faker->randomElement(['beginner', 'intermediate', 'advanced']),
-            'recommended_reps' => $this->faker->numberBetween(5, 15),
-            'recommended_sets' => $this->faker->numberBetween(3, 5),
-            'equipment_needed' => $this->faker->randomElement([json_encode(["dumbbells", "resistance_bands"]), json_encode(["yoga_mat", "dumbbells"])]),
-            'target_muscles' => json_encode([
+            'name' => 'chest press',
+            'instructions' => '1. Lie on a flat bench with a dumbbell in each hand, arms extended above your chest., 2. Lower the dumbbells to your chest, keeping your elbows at a 45-degree angle., 3. Press the dumbbells back up to the starting position, squeezing your chest muscles at the top.',
+            'video' => 'Bicep.mp4',
+            'difficulty' => 'intermediate',
+            'recommended_reps' => 12,
+            'recommended_sets' => 3,
+            'equipment_needed' => (object)['dumbbells', 'yoga_mat', 'resistance_bands'],
+            'target_muscles' => (object)[
                 'primary' => ['chest', 'triceps'],
                 'secondary' => ['shoulders']
-            ]),
-            'durations_in_minutes' => json_encode([
+            ],
+            'durations_in_minutes' => (object)[
                 'warmup' => 5,
-                'exercise' => 20,
+                'exercise' => 30,
                 'cooldown' => 5
-            ]),
-            'category_id' => WorkoutCategory::factory(),
+            ],
+            'category_id' => 1,
             'created_by' => User::factory(),
-            'is_premium' => $this->faker->boolean(),
+            'is_premium' => false,
         ];
     }
 }

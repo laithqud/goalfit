@@ -31,8 +31,8 @@ class DatabaseSeeder extends Seeder
             // NutritionCategorySeeder::class,
             // FoodItemSeeder::class,
             // GymSubscriptionSeeder::class,
-            // WorkoutCategorySeeder::class,
-            // WorkoutItemSeeder::class,
+            WorkoutCategorySeeder::class,
+            WorkoutItemSeeder::class,
             // WorkoutCategoryWorkoutItemSeeder::class,
 
         ]);

@@ -5,7 +5,7 @@
         <div class="d-flex gap-4 d-none d-md-flex">
             <a href="<?php echo e(route('home')); ?>" class="text-decoration-none">Home</a>
             <a href="<?php echo e(route('gym.index')); ?>" class="text-decoration-none">Gyms</a>
-            <a href="#" class="text-decoration-none">Workout</a>
+            <a href="<?php echo e(route('workout.index')); ?>" class="text-decoration-none">Workout</a>
             <a href="#" class="text-decoration-none">Nutrition</a>
             <a href="#" class="text-decoration-none">About Us</a>
         </div>

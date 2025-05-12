@@ -52,52 +52,22 @@
         <div class="container">
             <h2 class="text-center text-light mb-5 display-4 fw-bold">Workout Programs</h2>
 
-            <div class="row g-4">
-                <!-- Full Body -->
-                <div class="col-md-4">
-                    <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
-                        <img src="<?php echo e(asset('./images/fullbody.jpg')); ?>" class="card-img-top" alt="Full Body Workout">
-                        <div class="card-body" style="background-color: #373740">
-                            <h3 class="card-title fw-bold text-light fs-4">Full Body</h3>
-                            <p class="card-text text-light fs-5">Comprehensive workouts targeting all major muscle groups
-                                for
-                                balanced
-                                fitness.</p>
-                            <a href="/workout-list" class="btn btn-outline-danger mt-2">Start Programs</a>
+            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
+                            <img src="<?php echo e(asset('./images/fullbody.jpg')); ?>" class="card-img-top" alt="Full Body Workout">
+                            <div class="card-body" style="background-color: #373740">
+                                <h3 class="card-title fw-bold text-light fs-4"><?php echo e($category->name); ?></h3>
+                                <p class="card-text text-light fs-5"><?php echo e($category->description); ?></p>
+                                <a href="<?php echo e(route('schedule.index')); ?>" class="btn btn-outline-danger mt-2">Start Programs</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Upper Body -->
-                <div class="col-md-4">
-                    <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
-                        <img src="<?php echo e(asset('./images/fullbody.jpg')); ?>" class="card-img-top" alt="Upper Body Workout">
-                        <div class="card-body" style="background-color: #373740">
-                            <h3 class="card-title fw-bold text-light fs-4">Upper Body</h3>
-                            <p class="card-text text-light fs-5">Focus on arms, shoulders, chest and back for strength and
-                                definition.</p>
-                            <a href="#" class="btn btn-outline-danger mt-2">Start Programs</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Lower Body -->
-                <div class="col-md-4">
-                    <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
-                        <img src="<?php echo e(asset('./images/fullbody.jpg')); ?>" class="card-img-top" alt="Lower Body Workout">
-                        <div class="card-body" style="background-color: #373740">
-                            <h3 class="card-title fw-bold text-light fs-4">Lower Body</h3>
-                            <p class="card-text text-light fs-5">Build strength and endurance in your legs and core muscles.
-                            </p>
-                            <a href="#" class="btn btn-outline-danger mt-2">Start Programs</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-5">
-                <a href="#" class="btn btn-danger btn-lg px-4">View All Categories</a>
-            </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            
         </div>
     </section>
 

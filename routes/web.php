@@ -13,6 +13,8 @@ use App\Http\Controllers\dashboard\WorkoutItemController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GymController as PublicGymController;
+use App\Http\Controllers\WorkoutCategoryController as PublicWorkoutCategoryController;
+use App\Http\Controllers\WorkoutItemCategoryController as PublicWorkoutItemCategoryController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +24,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/gym', [PublicGymController::class, 'index'])->name('gym.index');
 Route::get('/gym-details', [PublicGymController::class, 'detailes'])->name('gym.detailes');
-Route::view('/workout', 'public.workout');
+Route::get('/workout', [PublicWorkoutCategoryController::class, 'index'])->name('workout.index');
+Route::get('/workout-schedule', [PublicWorkoutItemCategoryController::class, 'index'])->name('schedule.index');
 Route::view('/nutrition', 'public.nutrition');
 Route::view('/food-desc', 'public.food-desc');
 Route::view('/gym-card', 'public.gym-card');

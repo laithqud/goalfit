@@ -12,9 +12,9 @@ class WorkoutCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word(),
-            'description' => $this->faker->sentence(),
-            'image_url' => $this->faker->imageUrl(640, 480, 'fitness', true),
-        ];
+            'name' => 'Full Body Workout',
+            'description' => 'A comprehensive workout routine that targets all major muscle groups, promoting overall strength and fitness.',
+            'image_url' => 'fullbody.jpg'
+         ];
     }
 }
