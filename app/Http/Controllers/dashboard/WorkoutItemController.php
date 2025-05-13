@@ -34,10 +34,12 @@ class WorkoutItemController extends Controller
     }
     public function update(Request $request, WorkoutItem $video)
     {
+        // $test='update';
+        dd($request->all());
         // Validate the request data
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'video_url' => 'required|url',
+            'video_url' => 'nullable|file|mimes:mp4,avi,mkv|max:10240',
             'instructions' => 'nullable|string',
             'difficulty' => 'required|in:beginner,intermediate,advanced',
             'recommended_reps' => 'nullable|integer|min:1',
@@ -87,11 +89,10 @@ class WorkoutItemController extends Controller
     public function store(Request $request)
     {
         // $test='store';
-        // dd($test);
-        $request->validate([
+        // dd($request->all());
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'video_url' => 'nullable|string',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'video' => 'required|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo,video/x-flv,video/x-matroska|max:102400',
             'difficulty' => 'required|in:beginner,intermediate,advanced',
             'recommended_reps' => 'nullable|integer',
             'recommended_sets' => 'nullable|integer',
@@ -103,17 +104,16 @@ class WorkoutItemController extends Controller
             'durations' => 'nullable|array',
         ]);
 
-        // Handle image upload
-        $thumbnailPath = null;
-        if ($request->hasFile('thumbnail')) {
-            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
-        }
-
         // Merge muscles
         $targetMuscles = [
             'primary' => $request->input('primary_muscles', []),
             'secondary' => $request->input('secondary_muscles', []),
         ];
+
+        if ($request->hasFile('video')) {
+            $path = $request->file('video')->store('videos', 'public');
+            $validated['video'] = $path;
+        }
 
         // Create the workout item
         WorkoutItem::create([
@@ -129,7 +129,6 @@ class WorkoutItemController extends Controller
             'category_id' => $request->input('category_id'),
             'created_by' => 1, // or null
             'is_premium' => $request->has('is_premium'),
-            'thumbnail' => $thumbnailPath,
         ]);
 
         return redirect()->route('admin.videos.index')->with('success', 'Workout video created successfully.');

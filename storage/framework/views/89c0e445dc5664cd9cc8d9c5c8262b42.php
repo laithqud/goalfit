@@ -18,17 +18,6 @@
                     <?php echo csrf_field(); ?>
                     <?php echo method_field('PUT'); ?>
 
-                    <?php
-                        // Decode JSON fields with proper fallbacks
-                        $targetMuscles = json_decode($video->target_muscles, true) ?? ['primary' => [], 'secondary' => []];
-                        $equipment = json_decode($video->equipment_needed, true) ?? [];
-                        $durations = json_decode($video->durations_in_minutes, true) ?? [
-                            'warmup' => 0,
-                            'exercise' => 0,
-                            'cooldown' => 0
-                        ];
-                    ?>
-
                     <div class="row mb-3">
                         <label for="name" class="col-sm-2 col-form-label text-light">Workout Name</label>
                         <div class="col-sm-10">
@@ -80,18 +69,29 @@ unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="video_url" class="col-sm-2 col-form-label text-light">Video Embed Code</label>
+                        <label for="video" class="col-sm-2 col-form-label text-light">Video Upload</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control bg-dark text-light <?php $__errorArgs = ['video_url'];
+                            <input type="file" class="form-control bg-dark text-light <?php $__errorArgs = ['video'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" 
-                                      id="video_url" name="video_url" rows="3" required><?php echo e(old('video_url', $video->video_url)); ?></textarea>
-                            <?php $__errorArgs = ['video_url'];
+unset($__errorArgs, $__bag); ?>"
+                                   id="video" name="video">
+                            <?php if($video->video): ?>
+                                <div class="mt-2">
+                                    <small class="text-light">Current Video:</small>
+                                    <div class="d-flex align-items-center mt-1">
+                                        <span class="text-light me-2"><?php echo e($video->video); ?></span>
+                                        <a href="<?php echo e(asset('storage/'.$video->video)); ?>" target="_blank" class="btn btn-sm btn-info">
+                                            <i class="fas fa-eye"></i> View
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <?php $__errorArgs = ['video'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -101,7 +101,6 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                            <small class="text-muted">Paste full iframe embed code (e.g., YouTube iframe)</small>
                         </div>
                     </div>
 
@@ -146,7 +145,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                   id="recommended_reps" name="recommended_reps" value="<?php echo e(old('recommended_reps', $video->recommended_reps)); ?>" min="0" max="255">
+                                   id="recommended_reps" name="recommended_reps" 
+                                   value="<?php echo e(old('recommended_reps', $video->recommended_reps)); ?>" 
+                                   min="0" max="255">
                             <?php $__errorArgs = ['recommended_reps'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -171,7 +172,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                   id="recommended_sets" name="recommended_sets" value="<?php echo e(old('recommended_sets', $video->recommended_sets)); ?>" min="0" max="255">
+                                   id="recommended_sets" name="recommended_sets" 
+                                   value="<?php echo e(old('recommended_sets', $video->recommended_sets)); ?>" 
+                                   min="0" max="255">
                             <?php $__errorArgs = ['recommended_sets'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -191,11 +194,15 @@ unset($__errorArgs, $__bag); ?>
                             <div class="row">
                                 <div class="col-md-6">
                                     <h6 class="text-light">Primary Muscles</h6>
+                                    <?php
+                                        $primaryMuscles = $video->target_muscles['primary'] ?? [];
+                                        $oldPrimary = old('primary_muscles', $primaryMuscles);
+                                    ?>
                                     <?php $__currentLoopData = ['chest', 'back', 'shoulders', 'arms', 'legs', 'abs', 'glutes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $muscle): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" 
                                                    id="primary_<?php echo e($muscle); ?>" name="primary_muscles[]" 
-                                                   value="<?php echo e($muscle); ?>" <?php echo e(in_array($muscle, old('primary_muscles', $targetMuscles['primary'] ?? [])) ? 'checked' : ''); ?>>
+                                                   value="<?php echo e($muscle); ?>" <?php echo e(in_array($muscle, $oldPrimary) ? 'checked' : ''); ?>>
                                             <label class="form-check-label text-light" for="primary_<?php echo e($muscle); ?>">
                                                 <?php echo e(ucfirst($muscle)); ?>
 
@@ -205,11 +212,15 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="col-md-6">
                                     <h6 class="text-light">Secondary Muscles</h6>
+                                    <?php
+                                        $secondaryMuscles =$video->target_muscles['secondary'] ?? [];
+                                        $oldSecondary = old('secondary_muscles', $secondaryMuscles);
+                                    ?>
                                     <?php $__currentLoopData = ['chest', 'back', 'shoulders', 'arms', 'legs', 'abs', 'glutes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $muscle): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" 
                                                    id="secondary_<?php echo e($muscle); ?>" name="secondary_muscles[]" 
-                                                   value="<?php echo e($muscle); ?>" <?php echo e(in_array($muscle, old('secondary_muscles', $targetMuscles['secondary'] ?? [])) ? 'checked' : ''); ?>>
+                                                   value="<?php echo e($muscle); ?>" <?php echo e(in_array($muscle, $oldSecondary) ? 'checked' : ''); ?>>
                                             <label class="form-check-label text-light" for="secondary_<?php echo e($muscle); ?>">
                                                 <?php echo e(ucfirst($muscle)); ?>
 
@@ -234,11 +245,15 @@ unset($__errorArgs, $__bag); ?>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label text-light">Equipment Needed</label>
                         <div class="col-sm-10">
+                            <?php
+                                $equipment =$video->equipment_needed ?? [];
+                                $oldEquipment = old('equipment_needed', $equipment);
+                            ?>
                             <?php $__currentLoopData = ['dumbbells', 'yoga_mat', 'resistance_bands', 'kettlebell', 'pull_up_bar']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $equipmentItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" 
                                            id="equipment_<?php echo e($equipmentItem); ?>" name="equipment_needed[]" 
-                                           value="<?php echo e($equipmentItem); ?>" <?php echo e(in_array($equipmentItem, old('equipment_needed', $equipment ?? [])) ? 'checked' : ''); ?>>
+                                           value="<?php echo e($equipmentItem); ?>" <?php echo e(in_array($equipmentItem, $oldEquipment) ? 'checked' : ''); ?>>
                                     <label class="form-check-label text-light" for="equipment_<?php echo e($equipmentItem); ?>">
                                         <?php echo e(ucfirst(str_replace('_', ' ', $equipmentItem))); ?>
 
@@ -262,6 +277,10 @@ unset($__errorArgs, $__bag); ?>
                         <label class="col-sm-2 col-form-label text-light">Durations (minutes)</label>
                         <div class="col-sm-10">
                             <div class="row g-3">
+                                <?php
+                                    $durations =$video->durations_in_minutes ?? ['warmup' => 0, 'exercise' => 0, 'cooldown' => 0];
+                                    $oldDurations = old('durations', $durations);
+                                ?>
                                 <div class="col-md-4">
                                     <label for="warmup" class="form-label text-light">Warmup</label>
                                     <input type="number" class="form-control bg-dark text-light <?php $__errorArgs = ['durations.warmup'];
@@ -272,7 +291,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                           id="warmup" name="durations[warmup]" value="<?php echo e(old('durations.warmup', $durations['warmup'] ?? 0)); ?>" min="0">
+                                           id="warmup" name="durations[warmup]" 
+                                           value="<?php echo e($oldDurations['warmup'] ?? 0); ?>" min="0">
                                     <?php $__errorArgs = ['durations.warmup'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -294,7 +314,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                           id="exercise" name="durations[exercise]" value="<?php echo e(old('durations.exercise', $durations['exercise'] ?? 0)); ?>" min="0">
+                                           id="exercise" name="durations[exercise]" 
+                                           value="<?php echo e($oldDurations['exercise'] ?? 0); ?>" min="0">
                                     <?php $__errorArgs = ['durations.exercise'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -316,7 +337,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                           id="cooldown" name="durations[cooldown]" value="<?php echo e(old('durations.cooldown', $durations['cooldown'] ?? 0)); ?>" min="0">
+                                           id="cooldown" name="durations[cooldown]" 
+                                           value="<?php echo e($oldDurations['cooldown'] ?? 0); ?>" min="0">
                                     <?php $__errorArgs = ['durations.cooldown'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -376,8 +398,6 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
                     </div>
-
-                    <input type="hidden" name="created_by" value="<?php echo e(auth()->id()); ?>">
 
                     <div class="row">
                         <div class="col-sm-10 offset-sm-2">

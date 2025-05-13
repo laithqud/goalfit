@@ -11,7 +11,7 @@
                         <h6 class="mb-0 text-light">Video Library</h6>
                         <a href="<?php echo e(route('admin.videos.create')); ?>
 
-                                                                                                                                                                                                                             "
+                                                                                                                                                                                                                                                 "
                             class="btn btn-sm btn-primary">
                             <i class="fas fa-plus me-1"></i> Add New Video
                         </a>
@@ -34,163 +34,159 @@
                                     <th scope="col">Instructions</th>
                                     <th scope="col">Video-URL</th>
                                     <th scope="col">Difficulty</th>
-                                    <th scope="col">recommended_reps</th>
-                                    <th scope="col">recommended_sets</th>
+                                    <th scope="col">reps</th>
+                                    <th scope="col">sets</th>
                                     <th scope="col">Equipment Needed</th>
                                     <th scope="col">Target Muscles</th>
                                     <th scope="col">Durations/minutes</th>
-                                    <th scope="col">Category Id</th>
+                                    <th scope="col">Category Name</th>
                                     <th scope="col">Created by</th>
-                                    <th scope="col">Created at</th>
-                                    <th scope="col">Updated at</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $__currentLoopData = $videos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $video): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <tr>
-                                                                <td><?php echo e($video->id); ?></td>
-                                                                <td class="text-truncate" style="max-width: 150px;">
-                                                                    <?php echo e($video->name ?? 'No name'); ?>
+                                    <tr>
+                                        <td><?php echo e($video->id); ?></td>
+                                        <td class="text-truncate" style="max-width: 150px;">
+                                            <?php echo e($video->name ?? 'No name'); ?>
 
-                                                                </td>
-                                                                <td class="text-truncate" style="max-width: 200px;">
-                                                                    <?php echo e($video->instructions ?? 'No instructions'); ?>
+                                        </td>
+                                        <td class="text-truncate" style="max-width: 200px;">
+                                            <?php echo e($video->instructions ?? 'No instructions'); ?>
 
-                                                                </td>
-                                                                <td class="text-truncate" style="max-width: 200px;">
-                                                                    <a href="<?php echo e($video->video_url); ?>" class="text-light"
-                                                                        target="_blank"><?php echo e($video->video_url); ?></a>
-                                                                </td>
-                                                                <td><?php echo e($video->difficulty ?? 'No difficulty'); ?></td>
-                                                                <td><?php echo e($video->recommended_reps); ?></td>
-                                                                <td><?php echo e($video->recommended_sets); ?></td>
-                                                                <td>
-                                                                    <?php
-                                                                        // Handle equipment_needed
-                                                                        try {
-                                                                            $equipment = is_string($video->equipment_needed)
-                                                                                ? json_decode(str_replace('\"', '"', $video->equipment_needed), true)
-                                                                                : $video->equipment_needed;
+                                        </td>
+                                        <td class="text-truncate" style="max-width: 200px;">
+                                            <?php echo e($video->video ?? 'No video'); ?>
 
-                                                                            if (!is_array($equipment)) {
-                                                                                $equipment = [];
-                                                                            }
-                                                                        } catch (Exception $e) {
-                                                                            $equipment = [];
-                                                                        }
-                                                                    ?>
+                                        </td>
+                                        <td><?php echo e($video->difficulty ?? 'No difficulty'); ?></td>
+                                        <td><?php echo e($video->recommended_reps); ?></td>
+                                        <td><?php echo e($video->recommended_sets); ?></td>
+                                        <td>
+                                            <?php
+                                                // Handle equipment_needed
+                                                try {
+                                                    $equipment = is_string($video->equipment_needed)
+                                                        ? json_decode(str_replace('\"', '"', $video->equipment_needed), true)
+                                                        : $video->equipment_needed;
 
-                                                                    <?php if(!empty($equipment)): ?>
-                                                                        <?php echo e(is_array($equipment) ? implode(', ', $equipment) : $equipment); ?>
+                                                    if (!is_array($equipment)) {
+                                                        $equipment = [];
+                                                    }
+                                                } catch (Exception $e) {
+                                                    $equipment = [];
+                                                }
+                                            ?>
 
-                                                                    <?php else: ?>
-                                                                        <span class="text-muted">No equipment needed</span>
-                                                                    <?php endif; ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php
-                                                                        // Handle target_muscles
-                                                                        try {
-                                                                            $targetMuscles = is_string($video->target_muscles)
-                                                                                ? json_decode(str_replace('\"', '"', $video->target_muscles), true)
-                                                                                : $video->target_muscles;
+                                            <?php if(!empty($equipment)): ?>
+                                                <?php echo e(is_array($equipment) ? implode(', ', $equipment) : $equipment); ?>
 
-                                                                            if (is_array($targetMuscles)) {
-                                                                                $primaryMuscles = $targetMuscles['primary'] ?? [];
-                                                                                $secondaryMuscles = $targetMuscles['secondary'] ?? [];
-                                                                            } else {
-                                                                                $primaryMuscles = [];
-                                                                                $secondaryMuscles = [];
-                                                                            }
-                                                                        } catch (Exception $e) {
-                                                                            $primaryMuscles = [];
-                                                                            $secondaryMuscles = [];
-                                                                        }
-                                                                    ?>
+                                            <?php else: ?>
+                                                <span class="text-muted">No equipment needed</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                                // Handle target_muscles
+                                                try {
+                                                    $targetMuscles = is_string($video->target_muscles)
+                                                        ? json_decode(str_replace('\"', '"', $video->target_muscles), true)
+                                                        : $video->target_muscles;
 
-                                                                    <?php if(!empty($primaryMuscles) || !empty($secondaryMuscles)): ?>
-                                                                        <?php if(!empty($primaryMuscles)): ?>
-                                                                            <strong>Primary:</strong>
-                                                                            <?php echo e(is_array($primaryMuscles) ? implode(', ', $primaryMuscles) : $primaryMuscles); ?><br>
-                                                                        <?php endif; ?>
-                                                                        <?php if(!empty($secondaryMuscles)): ?>
-                                                                            <strong>Secondary:</strong>
-                                                                            <?php echo e(is_array($secondaryMuscles) ? implode(', ', $secondaryMuscles) : $secondaryMuscles); ?>
+                                                    if (is_array($targetMuscles)) {
+                                                        $primaryMuscles = $targetMuscles['primary'] ?? [];
+                                                        $secondaryMuscles = $targetMuscles['secondary'] ?? [];
+                                                    } else {
+                                                        $primaryMuscles = [];
+                                                        $secondaryMuscles = [];
+                                                    }
+                                                } catch (Exception $e) {
+                                                    $primaryMuscles = [];
+                                                    $secondaryMuscles = [];
+                                                }
+                                            ?>
 
-                                                                        <?php endif; ?>
-                                                                    <?php else: ?>
-                                                                        <span class="text-muted">No target muscles specified</span>
-                                                                    <?php endif; ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php
-                                                                        // Handle durations_in_minutes
-                                                                        try {
-                                                                            $durations = is_string($video->durations_in_minutes)
-                                                                                ? json_decode(str_replace('\"', '"', $video->durations_in_minutes), true)
-                                                                                : $video->durations_in_minutes;
+                                            <?php if(!empty($primaryMuscles) || !empty($secondaryMuscles)): ?>
+                                                <?php if(!empty($primaryMuscles)): ?>
+                                                    <strong>Primary:</strong>
+                                                    <?php echo e(is_array($primaryMuscles) ? implode(', ', $primaryMuscles) : $primaryMuscles); ?><br>
+                                                <?php endif; ?>
+                                                <?php if(!empty($secondaryMuscles)): ?>
+                                                    <strong>Secondary:</strong>
+                                                    <?php echo e(is_array($secondaryMuscles) ? implode(', ', $secondaryMuscles) : $secondaryMuscles); ?>
 
-                                                                            if (!is_array($durations)) {
-                                                                                $durations = [
-                                                                                    'warmup' => null,
-                                                                                    'exercise' => null,
-                                                                                    'cooldown' => null
-                                                                                ];
-                                                                            }
-                                                                        } catch (Exception $e) {
-                                                                            $durations = [
-                                                                                'warmup' => null,
-                                                                                'exercise' => null,
-                                                                                'cooldown' => null
-                                                                            ];
-                                                                        }
-                                                                    ?>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <span class="text-muted">No target muscles specified</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                                // Handle durations_in_minutes
+                                                try {
+                                                    $durations = is_string($video->durations_in_minutes)
+                                                        ? json_decode(str_replace('\"', '"', $video->durations_in_minutes), true)
+                                                        : $video->durations_in_minutes;
 
-                                                                    <div class="durations-container">
-                                                                        <?php if($durations['warmup']): ?>
-                                                                            <div><small>Warmup:</small> <?php echo e($durations['warmup']); ?> min</div>
-                                                                        <?php endif; ?>
-                                                                        <?php if($durations['exercise']): ?>
-                                                                            <div><small>Exercise:</small> <?php echo e($durations['exercise']); ?> min</div>
-                                                                        <?php endif; ?>
-                                                                        <?php if($durations['cooldown']): ?>
-                                                                            <div><small>Cooldown:</small> <?php echo e($durations['cooldown']); ?> min</div>
-                                                                        <?php endif; ?>
-                                                                        <?php if(empty(array_filter($durations))): ?>
-                                                                            <span class="text-muted">No durations set</span>
-                                                                        <?php endif; ?>
-                                                                    </div>
-                                                                </td>
+                                                    if (!is_array($durations)) {
+                                                        $durations = [
+                                                            'warmup' => null,
+                                                            'exercise' => null,
+                                                            'cooldown' => null
+                                                        ];
+                                                    }
+                                                } catch (Exception $e) {
+                                                    $durations = [
+                                                        'warmup' => null,
+                                                        'exercise' => null,
+                                                        'cooldown' => null
+                                                    ];
+                                                }
+                                            ?>
 
-                                                                <td><?php echo e($video->category->name ?? 'No category'); ?></td>
-                                                                <td><?php echo e($video->created_by ?? 'No creator'); ?></td>
-                                                                <td><?php echo e($video->created_at ?? 'No creation date'); ?></td>
-                                                                <td><?php echo e($video->updated_at ?? 'No update date'); ?></td>
-                                                                <td>
-                                                                    <div class="d-flex justify-content-center gap-2">
-                                                                        <a href="<?php echo e(route('admin.videos.edit', $video->id)); ?>" "
-                                                                                                            class=" btn btn-sm btn-warning"
-                                                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                            <i class="fas fa-edit"></i>
-                                                                        </a>
-                                                                        <form
-                                                                            action="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <?php echo e(route('admin.videos.destroy', $video->id)); ?>
+                                            <div class="durations-container">
+                                                <?php if($durations['warmup']): ?>
+                                                    <div><small>Warmup:</small> <?php echo e($durations['warmup']); ?> min</div>
+                                                <?php endif; ?>
+                                                <?php if($durations['exercise']): ?>
+                                                    <div><small>Exercise:</small> <?php echo e($durations['exercise']); ?> min</div>
+                                                <?php endif; ?>
+                                                <?php if($durations['cooldown']): ?>
+                                                    <div><small>Cooldown:</small> <?php echo e($durations['cooldown']); ?> min</div>
+                                                <?php endif; ?>
+                                                <?php if(empty(array_filter($durations))): ?>
+                                                    <span class="text-muted">No durations set</span>
+                                                <?php endif; ?>
+                                            </div>
+                                        </td>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "
-                                                                            method="POST">
-                                                                            <?php echo csrf_field(); ?>
-                                                                            <?php echo method_field('DELETE'); ?>
-                                                                            <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title="Delete"
-                                                                                onclick="return confirm('Are you sure you want to delete this video?')">
-                                                                                <i class="fas fa-trash"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
+                                        <td><?php echo e($video->category->name ?? 'No category'); ?></td>
+                                        <td><?php echo e($video->created_by ?? 'No creator'); ?></td>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <a href="<?php echo e(route('admin.videos.edit', $video->id)); ?>"
+                                                    class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <form
+                                                    action="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <?php echo e(route('admin.videos.destroy', $video->id)); ?>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        "
+                                                    method="POST">
+                                                    <?php echo csrf_field(); ?>
+                                                    <?php echo method_field('DELETE'); ?>
+                                                    <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="Delete"
+                                                        onclick="return confirm('Are you sure you want to delete this video?')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>

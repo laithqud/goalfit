@@ -29,23 +29,13 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="video_url" class="col-sm-2 col-form-label text-light">Video URL</label>
+                        <label for="video" class="col-sm-2 col-form-label text-light">Upload Video</label>
                         <div class="col-sm-10">
-                            <input type="url" class="form-control bg-dark text-light @error('video_url') is-invalid @enderror" 
-                                   id="video_url" name="video_url" value="{{ old('video_url') }}" required>
-                            @error('video_url')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            <small class="text-muted">YouTube, Vimeo, or direct video URL</small>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="thumbnail" class="col-sm-2 col-form-label text-light">Thumbnail</label>
-                        <div class="col-sm-10">
-                            <input class="form-control bg-dark text-light @error('thumbnail') is-invalid @enderror" 
-                                   type="file" id="thumbnail" name="thumbnail">
-                            @error('thumbnail')
+                            <input type="file"
+                                class="form-control bg-dark text-light @error('video') is-invalid @enderror"
+                                id="video" name="video" accept="video/mp4,video/x-m4v,video/*" required>
+                            <small class="text-muted">Max file size: 100MB. Supported formats: MP4, MOV, AVI</small>
+                            @error('video')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

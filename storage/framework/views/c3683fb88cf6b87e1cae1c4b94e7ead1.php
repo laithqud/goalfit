@@ -43,44 +43,20 @@ unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="video_url" class="col-sm-2 col-form-label text-light">Video URL</label>
+                        <label for="video" class="col-sm-2 col-form-label text-light">Upload Video</label>
                         <div class="col-sm-10">
-                            <input type="url" class="form-control bg-dark text-light <?php $__errorArgs = ['video_url'];
+                            <input type="file"
+                                class="form-control bg-dark text-light <?php $__errorArgs = ['video'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" 
-                                   id="video_url" name="video_url" value="<?php echo e(old('video_url')); ?>" required>
-                            <?php $__errorArgs = ['video_url'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <div class="invalid-feedback"><?php echo e($message); ?></div>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                            <small class="text-muted">YouTube, Vimeo, or direct video URL</small>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="thumbnail" class="col-sm-2 col-form-label text-light">Thumbnail</label>
-                        <div class="col-sm-10">
-                            <input class="form-control bg-dark text-light <?php $__errorArgs = ['thumbnail'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" 
-                                   type="file" id="thumbnail" name="thumbnail">
-                            <?php $__errorArgs = ['thumbnail'];
+unset($__errorArgs, $__bag); ?>"
+                                id="video" name="video" accept="video/mp4,video/x-m4v,video/*" required>
+                            <small class="text-muted">Max file size: 100MB. Supported formats: MP4, MOV, AVI</small>
+                            <?php $__errorArgs = ['video'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

@@ -18,17 +18,6 @@
                     @csrf
                     @method('PUT')
 
-                    @php
-                        // Decode JSON fields with proper fallbacks
-                        $targetMuscles = json_decode($video->target_muscles, true) ?? ['primary' => [], 'secondary' => []];
-                        $equipment = json_decode($video->equipment_needed, true) ?? [];
-                        $durations = json_decode($video->durations_in_minutes, true) ?? [
-                            'warmup' => 0,
-                            'exercise' => 0,
-                            'cooldown' => 0
-                        ];
-                    @endphp
-
                     <div class="row mb-3">
                         <label for="name" class="col-sm-2 col-form-label text-light">Workout Name</label>
                         <div class="col-sm-10">
@@ -52,14 +41,24 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="video_url" class="col-sm-2 col-form-label text-light">Video Embed Code</label>
+                        <label for="video" class="col-sm-2 col-form-label text-light">Video Upload</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control bg-dark text-light @error('video_url') is-invalid @enderror" 
-                                      id="video_url" name="video_url" rows="3" required>{{ old('video_url', $video->video_url) }}</textarea>
-                            @error('video_url')
+                            <input type="file" class="form-control bg-dark text-light @error('video') is-invalid @enderror"
+                                   id="video" name="video">
+                            @if($video->video)
+                                <div class="mt-2">
+                                    <small class="text-light">Current Video:</small>
+                                    <div class="d-flex align-items-center mt-1">
+                                        <span class="text-light me-2">{{ $video->video }}</span>
+                                        <a href="{{ asset('storage/'.$video->video) }}" target="_blank" class="btn btn-sm btn-info">
+                                            <i class="fas fa-eye"></i> View
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                            @error('video')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <small class="text-muted">Paste full iframe embed code (e.g., YouTube iframe)</small>
                         </div>
                     </div>
 
@@ -83,7 +82,9 @@
                         <label for="recommended_reps" class="col-sm-2 col-form-label text-light">Recommended Reps</label>
                         <div class="col-sm-10">
                             <input type="number" class="form-control bg-dark text-light @error('recommended_reps') is-invalid @enderror" 
-                                   id="recommended_reps" name="recommended_reps" value="{{ old('recommended_reps', $video->recommended_reps) }}" min="0" max="255">
+                                   id="recommended_reps" name="recommended_reps" 
+                                   value="{{ old('recommended_reps', $video->recommended_reps) }}" 
+                                   min="0" max="255">
                             @error('recommended_reps')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -94,7 +95,9 @@
                         <label for="recommended_sets" class="col-sm-2 col-form-label text-light">Recommended Sets</label>
                         <div class="col-sm-10">
                             <input type="number" class="form-control bg-dark text-light @error('recommended_sets') is-invalid @enderror" 
-                                   id="recommended_sets" name="recommended_sets" value="{{ old('recommended_sets', $video->recommended_sets) }}" min="0" max="255">
+                                   id="recommended_sets" name="recommended_sets" 
+                                   value="{{ old('recommended_sets', $video->recommended_sets) }}" 
+                                   min="0" max="255">
                             @error('recommended_sets')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -107,11 +110,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h6 class="text-light">Primary Muscles</h6>
+                                    @php
+                                        $primaryMuscles = $video->target_muscles['primary'] ?? [];
+                                        $oldPrimary = old('primary_muscles', $primaryMuscles);
+                                    @endphp
                                     @foreach(['chest', 'back', 'shoulders', 'arms', 'legs', 'abs', 'glutes'] as $muscle)
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" 
                                                    id="primary_{{ $muscle }}" name="primary_muscles[]" 
-                                                   value="{{ $muscle }}" {{ in_array($muscle, old('primary_muscles', $targetMuscles['primary'] ?? [])) ? 'checked' : '' }}>
+                                                   value="{{ $muscle }}" {{ in_array($muscle, $oldPrimary) ? 'checked' : '' }}>
                                             <label class="form-check-label text-light" for="primary_{{ $muscle }}">
                                                 {{ ucfirst($muscle) }}
                                             </label>
@@ -120,11 +127,15 @@
                                 </div>
                                 <div class="col-md-6">
                                     <h6 class="text-light">Secondary Muscles</h6>
+                                    @php
+                                        $secondaryMuscles =$video->target_muscles['secondary'] ?? [];
+                                        $oldSecondary = old('secondary_muscles', $secondaryMuscles);
+                                    @endphp
                                     @foreach(['chest', 'back', 'shoulders', 'arms', 'legs', 'abs', 'glutes'] as $muscle)
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" 
                                                    id="secondary_{{ $muscle }}" name="secondary_muscles[]" 
-                                                   value="{{ $muscle }}" {{ in_array($muscle, old('secondary_muscles', $targetMuscles['secondary'] ?? [])) ? 'checked' : '' }}>
+                                                   value="{{ $muscle }}" {{ in_array($muscle, $oldSecondary) ? 'checked' : '' }}>
                                             <label class="form-check-label text-light" for="secondary_{{ $muscle }}">
                                                 {{ ucfirst($muscle) }}
                                             </label>
@@ -141,11 +152,15 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label text-light">Equipment Needed</label>
                         <div class="col-sm-10">
+                            @php
+                                $equipment =$video->equipment_needed ?? [];
+                                $oldEquipment = old('equipment_needed', $equipment);
+                            @endphp
                             @foreach(['dumbbells', 'yoga_mat', 'resistance_bands', 'kettlebell', 'pull_up_bar'] as $equipmentItem)
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" 
                                            id="equipment_{{ $equipmentItem }}" name="equipment_needed[]" 
-                                           value="{{ $equipmentItem }}" {{ in_array($equipmentItem, old('equipment_needed', $equipment ?? [])) ? 'checked' : '' }}>
+                                           value="{{ $equipmentItem }}" {{ in_array($equipmentItem, $oldEquipment) ? 'checked' : '' }}>
                                     <label class="form-check-label text-light" for="equipment_{{ $equipmentItem }}">
                                         {{ ucfirst(str_replace('_', ' ', $equipmentItem)) }}
                                     </label>
@@ -161,10 +176,15 @@
                         <label class="col-sm-2 col-form-label text-light">Durations (minutes)</label>
                         <div class="col-sm-10">
                             <div class="row g-3">
+                                @php
+                                    $durations =$video->durations_in_minutes ?? ['warmup' => 0, 'exercise' => 0, 'cooldown' => 0];
+                                    $oldDurations = old('durations', $durations);
+                                @endphp
                                 <div class="col-md-4">
                                     <label for="warmup" class="form-label text-light">Warmup</label>
                                     <input type="number" class="form-control bg-dark text-light @error('durations.warmup') is-invalid @enderror" 
-                                           id="warmup" name="durations[warmup]" value="{{ old('durations.warmup', $durations['warmup'] ?? 0) }}" min="0">
+                                           id="warmup" name="durations[warmup]" 
+                                           value="{{ $oldDurations['warmup'] ?? 0 }}" min="0">
                                     @error('durations.warmup')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -172,7 +192,8 @@
                                 <div class="col-md-4">
                                     <label for="exercise" class="form-label text-light">Exercise</label>
                                     <input type="number" class="form-control bg-dark text-light @error('durations.exercise') is-invalid @enderror" 
-                                           id="exercise" name="durations[exercise]" value="{{ old('durations.exercise', $durations['exercise'] ?? 0) }}" min="0">
+                                           id="exercise" name="durations[exercise]" 
+                                           value="{{ $oldDurations['exercise'] ?? 0 }}" min="0">
                                     @error('durations.exercise')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -180,7 +201,8 @@
                                 <div class="col-md-4">
                                     <label for="cooldown" class="form-label text-light">Cooldown</label>
                                     <input type="number" class="form-control bg-dark text-light @error('durations.cooldown') is-invalid @enderror" 
-                                           id="cooldown" name="durations[cooldown]" value="{{ old('durations.cooldown', $durations['cooldown'] ?? 0) }}" min="0">
+                                           id="cooldown" name="durations[cooldown]" 
+                                           value="{{ $oldDurations['cooldown'] ?? 0 }}" min="0">
                                     @error('durations.cooldown')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -218,8 +240,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <input type="hidden" name="created_by" value="{{ auth()->id() }}">
 
                     <div class="row">
                         <div class="col-sm-10 offset-sm-2">
