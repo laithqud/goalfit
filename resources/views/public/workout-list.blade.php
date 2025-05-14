@@ -86,17 +86,17 @@
                                 <a href="javascript:void(0)"
                                     class="list-group-item list-group-item-action workout-item {{ $loop->first ? 'active-workout' : '' }}"
                                     onclick="loadWorkoutDetails(
-                                                                        {{ $workout->id }}, 
-                                                                        '{{ addslashes($workout->name) }}', 
-                                                                        '{{ $workout->difficulty }}', 
-                                                                        {{ $workout->recommended_sets ?? 'null' }}, 
-                                                                        {{ $workout->recommended_reps ?? 'null' }}, 
-                                                                        '{{ $workout->video }}', 
-                                                                        '{{ json_encode($workout->equipment_needed) }}', 
-                                                                        '{{ json_encode($workout->target_muscles) }}', 
-                                                                        '{{ addslashes($workout->instructions) }}',
-                                                                        '{{ $workout->createdBy->name ?? 'Trainer' }}'
-                                                                    )">
+                                                                                {{ $workout->id }}, 
+                                                                                '{{ addslashes($workout->name) }}', 
+                                                                                '{{ $workout->difficulty }}', 
+                                                                                {{ $workout->recommended_sets ?? 'null' }}, 
+                                                                                {{ $workout->recommended_reps ?? 'null' }}, 
+                                                                                '{{ $workout->video }}', 
+                                                                                '{{ json_encode($workout->equipment_needed) }}', 
+                                                                                '{{ json_encode($workout->target_muscles) }}', 
+                                                                                '{{ addslashes($workout->instructions) }}',
+                                                                                '{{ $workout->createdBy->name ?? 'Trainer' }}'
+                                                                            )">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-flex align-items-center">
                                             <div class="me-3">
@@ -232,12 +232,34 @@
             // Update video
             const videoContainer = document.getElementById('videoContainer');
             if (video) {
-                videoContainer.innerHTML = `
-                                    <video width="100%" height="100%" controls autoplay>
-                                        <source src="/images/${video}" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                `;
+                // videoContainer.innerHTML = `
+                //                     <video width="100%" height="100%" controls autoplay>
+                //                         <source src="/images/${video}" type="video/mp4">
+                //                         Your browser does not support the video tag.
+                //                     </video>
+                //                 `;
+                const videoPath = `/storage/${video}`;
+                const fallbackPath = `/images/Biceps.mp4`;
+
+                fetch(videoPath, { method: 'HEAD' })
+                    .then(response => {
+                        const sourcePath = response.ok ? videoPath : fallbackPath;
+                        videoContainer.innerHTML = `
+                                <video width="100%" height="100%" controls autoplay>
+                                    <source src="${sourcePath}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            `;
+                    })
+                    .catch(() => {
+                        videoContainer.innerHTML = `
+                                <video width="100%" height="100%" controls autoplay>
+                                    <source src="${fallbackPath}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            `;
+                    });
+
             } else {
                 videoContainer.innerHTML = '<div class="d-flex align-items-center justify-content-center bg-dark text-white h-100">No video available</div>';
             }
@@ -317,6 +339,6 @@
                     firstWorkout.created_by?.name || 'Trainer'
                 );
             @endif
-                        });
+                            });
     </script>
 @endpush

@@ -13,7 +13,7 @@ class WorkoutItem extends Model
     protected $fillable = [
         'name',
         'instructions',
-        'video_url',
+        'video',
         'difficulty',
         'recommended_reps',
         'recommended_sets',

@@ -43,8 +43,7 @@
                     <div class="row mb-3">
                         <label for="video" class="col-sm-2 col-form-label text-light">Video Upload</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control bg-dark text-light @error('video') is-invalid @enderror"
-                                   id="video" name="video">
+                            <input type="file" class="form-control bg-dark text-light @error('video') is-invalid @enderror" id="video" name="video">
                             @if($video->video)
                                 <div class="mt-2">
                                     <small class="text-light">Current Video:</small>
@@ -65,12 +64,13 @@
                     <div class="row mb-3">
                         <label for="difficulty" class="col-sm-2 col-form-label text-light">Difficulty</label>
                         <div class="col-sm-10">
-                            <select class="form-select bg-dark text-light @error('difficulty') is-invalid @enderror" 
-                                    id="difficulty" name="difficulty" required>
+                            <select class="form-select bg-dark text-light @error('difficulty') is-invalid @enderror" id="difficulty" name="difficulty" required>
                                 <option value="">Select Difficulty</option>
-                                <option value="beginner" {{ old('difficulty', $video->difficulty) == 'beginner' ? 'selected' : '' }}>Beginner</option>
-                                <option value="intermediate" {{ old('difficulty', $video->difficulty) == 'intermediate' ? 'selected' : '' }}>Intermediate</option>
-                                <option value="advanced" {{ old('difficulty', $video->difficulty) == 'advanced' ? 'selected' : '' }}>Advanced</option>
+                                @foreach(['beginner', 'intermediate', 'advanced'] as $level)
+                                    <option value="{{ $level }}" {{ old('difficulty', $video->difficulty) === $level ? 'selected' : '' }}>
+                                        {{ ucfirst($level) }}
+                                    </option>
+                                @endforeach
                             </select>
                             @error('difficulty')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -78,31 +78,13 @@
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <label for="recommended_reps" class="col-sm-2 col-form-label text-light">Recommended Reps</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control bg-dark text-light @error('recommended_reps') is-invalid @enderror" 
-                                   id="recommended_reps" name="recommended_reps" 
-                                   value="{{ old('recommended_reps', $video->recommended_reps) }}" 
-                                   min="0" max="255">
-                            @error('recommended_reps')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="recommended_sets" class="col-sm-2 col-form-label text-light">Recommended Sets</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control bg-dark text-light @error('recommended_sets') is-invalid @enderror" 
-                                   id="recommended_sets" name="recommended_sets" 
-                                   value="{{ old('recommended_sets', $video->recommended_sets) }}" 
-                                   min="0" max="255">
-                            @error('recommended_sets')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
+                    @php
+                        $oldPrimary = old('primary_muscles', $video->target_muscles['primary'] ?? []);
+                        $oldSecondary = old('secondary_muscles', $video->target_muscles['secondary'] ?? []);
+                        $oldEquipmentRaw = old('equipment_needed', $video->equipment_needed ?? []);
+                        $oldEquipment = is_array($oldEquipmentRaw) ? $oldEquipmentRaw : json_decode($oldEquipmentRaw, true);
+                        $oldDurations = old('durations', $video->durations_in_minutes ?? ['warmup' => 0, 'exercise' => 0, 'cooldown' => 0]);
+                    @endphp
 
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label text-light">Target Muscles</label>
@@ -110,14 +92,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h6 class="text-light">Primary Muscles</h6>
-                                    @php
-                                        $primaryMuscles = $video->target_muscles['primary'] ?? [];
-                                        $oldPrimary = old('primary_muscles', $primaryMuscles);
-                                    @endphp
                                     @foreach(['chest', 'back', 'shoulders', 'arms', 'legs', 'abs', 'glutes'] as $muscle)
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" 
-                                                   id="primary_{{ $muscle }}" name="primary_muscles[]" 
+                                            <input class="form-check-input" type="checkbox" id="primary_{{ $muscle }}" name="primary_muscles[]" 
                                                    value="{{ $muscle }}" {{ in_array($muscle, $oldPrimary) ? 'checked' : '' }}>
                                             <label class="form-check-label text-light" for="primary_{{ $muscle }}">
                                                 {{ ucfirst($muscle) }}
@@ -127,14 +104,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <h6 class="text-light">Secondary Muscles</h6>
-                                    @php
-                                        $secondaryMuscles =$video->target_muscles['secondary'] ?? [];
-                                        $oldSecondary = old('secondary_muscles', $secondaryMuscles);
-                                    @endphp
                                     @foreach(['chest', 'back', 'shoulders', 'arms', 'legs', 'abs', 'glutes'] as $muscle)
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" 
-                                                   id="secondary_{{ $muscle }}" name="secondary_muscles[]" 
+                                            <input class="form-check-input" type="checkbox" id="secondary_{{ $muscle }}" name="secondary_muscles[]" 
                                                    value="{{ $muscle }}" {{ in_array($muscle, $oldSecondary) ? 'checked' : '' }}>
                                             <label class="form-check-label text-light" for="secondary_{{ $muscle }}">
                                                 {{ ucfirst($muscle) }}
@@ -143,32 +115,21 @@
                                     @endforeach
                                 </div>
                             </div>
-                            @error('target_muscles')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label text-light">Equipment Needed</label>
                         <div class="col-sm-10">
-                            @php
-                                $equipment =$video->equipment_needed ?? [];
-                                $oldEquipment = old('equipment_needed', $equipment);
-                            @endphp
-                            @foreach(['dumbbells', 'yoga_mat', 'resistance_bands', 'kettlebell', 'pull_up_bar'] as $equipmentItem)
+                            @foreach(['dumbbells', 'yoga_mat', 'resistance_bands', 'kettlebell', 'pull_up_bar'] as $equipment)
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" 
-                                           id="equipment_{{ $equipmentItem }}" name="equipment_needed[]" 
-                                           value="{{ $equipmentItem }}" {{ in_array($equipmentItem, $oldEquipment) ? 'checked' : '' }}>
-                                    <label class="form-check-label text-light" for="equipment_{{ $equipmentItem }}">
-                                        {{ ucfirst(str_replace('_', ' ', $equipmentItem)) }}
+                                    <input class="form-check-input" type="checkbox" id="equipment_{{ $equipment }}" name="equipment_needed[]" 
+                                           value="{{ $equipment }}" {{ in_array($equipment, $oldEquipment ?? []) ? 'checked' : '' }}>
+                                    <label class="form-check-label text-light" for="equipment_{{ $equipment }}">
+                                        {{ ucfirst(str_replace('_', ' ', $equipment)) }}
                                     </label>
                                 </div>
                             @endforeach
-                            @error('equipment_needed')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
 
@@ -176,37 +137,13 @@
                         <label class="col-sm-2 col-form-label text-light">Durations (minutes)</label>
                         <div class="col-sm-10">
                             <div class="row g-3">
-                                @php
-                                    $durations =$video->durations_in_minutes ?? ['warmup' => 0, 'exercise' => 0, 'cooldown' => 0];
-                                    $oldDurations = old('durations', $durations);
-                                @endphp
-                                <div class="col-md-4">
-                                    <label for="warmup" class="form-label text-light">Warmup</label>
-                                    <input type="number" class="form-control bg-dark text-light @error('durations.warmup') is-invalid @enderror" 
-                                           id="warmup" name="durations[warmup]" 
-                                           value="{{ $oldDurations['warmup'] ?? 0 }}" min="0">
-                                    @error('durations.warmup')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="exercise" class="form-label text-light">Exercise</label>
-                                    <input type="number" class="form-control bg-dark text-light @error('durations.exercise') is-invalid @enderror" 
-                                           id="exercise" name="durations[exercise]" 
-                                           value="{{ $oldDurations['exercise'] ?? 0 }}" min="0">
-                                    @error('durations.exercise')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="cooldown" class="form-label text-light">Cooldown</label>
-                                    <input type="number" class="form-control bg-dark text-light @error('durations.cooldown') is-invalid @enderror" 
-                                           id="cooldown" name="durations[cooldown]" 
-                                           value="{{ $oldDurations['cooldown'] ?? 0 }}" min="0">
-                                    @error('durations.cooldown')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                @foreach(['warmup', 'exercise', 'cooldown'] as $part)
+                                    <div class="col-md-4">
+                                        <label for="{{ $part }}" class="form-label text-light">{{ ucfirst($part) }}</label>
+                                        <input type="number" class="form-control bg-dark text-light" id="{{ $part }}" name="durations[{{ $part }}]" 
+                                               value="{{ $oldDurations[$part] ?? 0 }}" min="0">
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -214,8 +151,7 @@
                     <div class="row mb-3">
                         <label for="category_id" class="col-sm-2 col-form-label text-light">Category</label>
                         <div class="col-sm-10">
-                            <select class="form-select bg-dark text-light @error('category_id') is-invalid @enderror" 
-                                    id="category_id" name="category_id" required>
+                            <select class="form-select bg-dark text-light @error('category_id') is-invalid @enderror" id="category_id" name="category_id" required>
                                 <option value="">Select Category</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ old('category_id', $video->category_id) == $category->id ? 'selected' : '' }}>
@@ -232,8 +168,7 @@
                     <div class="row mb-3">
                         <div class="col-sm-10 offset-sm-2">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="is_premium" 
-                                       name="is_premium" value="1" {{ old('is_premium', $video->is_premium) ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" id="is_premium" name="is_premium" value="1" {{ old('is_premium', $video->is_premium) ? 'checked' : '' }}>
                                 <label class="form-check-label text-light" for="is_premium">
                                     Premium Content (Only for paid members)
                                 </label>
@@ -252,11 +187,3 @@
     </div>
 </div>
 @endsection
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize any needed JavaScript here
-    });
-</script>
-@endpush

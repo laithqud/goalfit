@@ -34,57 +34,50 @@ class WorkoutItemController extends Controller
     }
     public function update(Request $request, WorkoutItem $video)
     {
-        // $test='update';
-        dd($request->all());
-        // Validate the request data
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'video_url' => 'nullable|file|mimes:mp4,avi,mkv|max:10240',
-            'instructions' => 'nullable|string',
+            'video' => 'nullable|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo|max:102400',
             'difficulty' => 'required|in:beginner,intermediate,advanced',
-            'recommended_reps' => 'nullable|integer|min:1',
-            'recommended_sets' => 'nullable|integer|min:1',
-            'primary_muscles' => 'nullable|string',
-            'secondary_muscles' => 'nullable|string',
-            'equipment' => 'nullable|array',
-            'warmup_duration' => 'nullable|numeric|min:0',
-            'exercise_duration' => 'nullable|numeric|min:0',
-            'cooldown_duration' => 'nullable|numeric|min:0',
+            'recommended_reps' => 'nullable|integer|min:0',
+            'recommended_sets' => 'nullable|integer|min:0',
+            'instructions' => 'nullable|string',
+            'equipment_needed' => 'nullable|array',
+            'primary_muscles' => 'nullable|array',
+            'secondary_muscles' => 'nullable|array',
+            'durations' => 'nullable|array',
             'category_id' => 'required|exists:workout_categories,id',
             'is_premium' => 'nullable|boolean'
         ]);
 
-        // Prepare JSON data
-        $targetMuscles = [
-            'primary' => $request->primary_muscles ? 
-                array_map('trim', explode(',', $request->primary_muscles)) : [],
-            'secondary' => $request->secondary_muscles ? 
-                array_map('trim', explode(',', $request->secondary_muscles)) : []
-        ];
+        $targetMuscles = $validated['primary_muscles'] ?? ($video->target_muscles['primary'] ?? []);
+        $secondaryMuscles = $validated['secondary_muscles'] ?? ($video->target_muscles['secondary'] ?? []);
+        $durations = $validated['durations'] ?? $video->durations_in_minutes ?? ['warmup' => 0, 'exercise' => 0, 'cooldown' => 0];
 
-        $durations = [
-            'warmup' => $request->warmup_duration,
-            'exercise' => $request->exercise_duration,
-            'cooldown' => $request->cooldown_duration
-        ];
+        // Handle video file update
+        if ($request->hasFile('video')) {
+            $videoPath = $request->file('video')->store('videos', 'public');
+            $video->video = $videoPath;
+        }
 
-        // Update the video
-        $video->update([
+        // Then apply:
+        $video->fill([
             'name' => $validated['name'],
-            'video_url' => $validated['video_url'],
-            'instructions' => $validated['instructions'],
+            'instructions' => $validated['instructions'] ?? $video->instructions,
             'difficulty' => $validated['difficulty'],
-            'recommended_reps' => $validated['recommended_reps'],
-            'recommended_sets' => $validated['recommended_sets'],
-            'target_muscles' => json_encode($targetMuscles),
-            'equipment_needed' => json_encode($request->equipment ?? []),
-            'durations_in_minutes' => json_encode(array_filter($durations)),
+            'recommended_reps' => $validated['recommended_reps'] ?? $video->recommended_reps,
+            'recommended_sets' => $validated['recommended_sets'] ?? $video->recommended_sets,
+            'equipment_needed' => $validated['equipment_needed'] ?? $video->equipment_needed,
+            'target_muscles' => [
+                'primary' => $targetMuscles,
+                'secondary' => $secondaryMuscles,
+            ],
+            'durations_in_minutes' => $durations,
             'category_id' => $validated['category_id'],
-            'is_premium' => $request->has('is_premium') ? 1 : 0,
-        ]);
+            'is_premium' => $request->has('is_premium'),
+        ])->save();
 
-        return redirect()->route('admin.videos.index')
-            ->with('success', 'Video updated successfully');
+
+        return redirect()->route('admin.videos.index')->with('success', 'Workout video updated successfully.');
     }
     public function store(Request $request)
     {
@@ -149,3 +142,6 @@ class WorkoutItemController extends Controller
     }
 
 }
+
+
+

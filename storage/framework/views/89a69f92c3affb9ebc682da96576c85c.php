@@ -51,22 +51,23 @@
     <section id="categories" class="py-5 bg-black">
         <div class="container">
             <h2 class="text-center text-light mb-5 display-4 fw-bold">Workout Programs</h2>
-
-            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
+            <div class="container">
                 <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
-                            <img src="<?php echo e(asset('./images/fullbody.jpg')); ?>" class="card-img-top" alt="Full Body Workout">
-                            <div class="card-body" style="background-color: #373740">
-                                <h3 class="card-title fw-bold text-light fs-4"><?php echo e($category->name); ?></h3>
-                                <p class="card-text text-light fs-5"><?php echo e($category->description); ?></p>
-                                <a href="<?php echo e(route('schedule.index')); ?>" class="btn btn-outline-danger mt-2">Start Programs</a>
+                    <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-md-4 d-flex">
+                            <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
+                                <img src="<?php echo e($category->image ? asset('storage/' . $category->image) : asset('images/fullbody.jpg')); ?>"
+                                    class="card-img-top" alt="<?php echo e($category->name); ?>">
+                                <div class="card-body" style="background-color: #373740">
+                                    <h3 class="card-title fw-bold text-light fs-4"><?php echo e($category->name); ?></h3>
+                                    <p class="card-text text-light fs-5"><?php echo e($category->description); ?></p>
+                                    <a href="<?php echo e(route('schedule.index')); ?>" class="btn btn-outline-danger mt-2">Start Programs</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
             
         </div>
     </section>

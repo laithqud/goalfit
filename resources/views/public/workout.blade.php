@@ -51,22 +51,23 @@
     <section id="categories" class="py-5 bg-black">
         <div class="container">
             <h2 class="text-center text-light mb-5 display-4 fw-bold">Workout Programs</h2>
-
-            @foreach ($categories as $category)
-
+            <div class="container">
                 <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
-                            <img src="{{asset('./images/fullbody.jpg')}}" class="card-img-top" alt="Full Body Workout">
-                            <div class="card-body" style="background-color: #373740">
-                                <h3 class="card-title fw-bold text-light fs-4">{{$category->name}}</h3>
-                                <p class="card-text text-light fs-5">{{$category->description}}</p>
-                                <a href="{{route('schedule.index')}}" class="btn btn-outline-danger mt-2">Start Programs</a>
+                    @foreach ($categories as $category)
+                        <div class="col-md-4 d-flex">
+                            <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
+                                <img src="{{ $category->image ? asset('storage/' . $category->image) : asset('images/fullbody.jpg') }}"
+                                    class="card-img-top" alt="{{ $category->name }}">
+                                <div class="card-body" style="background-color: #373740">
+                                    <h3 class="card-title fw-bold text-light fs-4">{{$category->name}}</h3>
+                                    <p class="card-text text-light fs-5">{{$category->description}}</p>
+                                    <a href="{{route('schedule.index')}}" class="btn btn-outline-danger mt-2">Start Programs</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-            @endforeach
+            </div>
             {{-- <div class="text-center mt-5">
                 <a href="#" class="btn btn-danger btn-lg px-4">View All Categories</a>
             </div> --}}
