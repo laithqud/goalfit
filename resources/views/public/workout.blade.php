@@ -61,7 +61,8 @@
                                 <div class="card-body" style="background-color: #373740">
                                     <h3 class="card-title fw-bold text-light fs-4">{{$category->name}}</h3>
                                     <p class="card-text text-light fs-5">{{$category->description}}</p>
-                                    <a href="{{route('schedule.index')}}" class="btn btn-outline-danger mt-2">Start Programs</a>
+                                    <a href="{{route('schedule.index', ['category' => $category->id]) }}"
+                                        class="btn btn-outline-danger mt-2">Start Programs</a>
                                 </div>
                             </div>
                         </div>

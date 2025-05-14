@@ -61,7 +61,8 @@
                                 <div class="card-body" style="background-color: #373740">
                                     <h3 class="card-title fw-bold text-light fs-4"><?php echo e($category->name); ?></h3>
                                     <p class="card-text text-light fs-5"><?php echo e($category->description); ?></p>
-                                    <a href="<?php echo e(route('schedule.index')); ?>" class="btn btn-outline-danger mt-2">Start Programs</a>
+                                    <a href="<?php echo e(route('schedule.index', ['category' => $category->id])); ?>"
+                                        class="btn btn-outline-danger mt-2">Start Programs</a>
                                 </div>
                             </div>
                         </div>
