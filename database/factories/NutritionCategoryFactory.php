@@ -9,26 +9,21 @@ class NutritionCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word() . ' Meals',
-            'description' => $this->faker->sentence(),
-            'image_url' => 'nutrition/categories/sample.jpg',
-            'calories' => $this->faker->numberBetween(100, 800),
-            'protien' => $this->faker->randomFloat(1, 5, 50),
-            'carbs' => $this->faker->randomFloat(1, 10, 100),
-            'fat' => $this->faker->randomFloat(1, 1, 40),
-            'nutrients' => json_encode([
-                'calories' => 300,
-                'macros' => [
-                    'protein' => 25.0,
-                    'carbs' => 35.0,
-                    'fats' => 10.0,
-                    'fiber' => 5.0
-                ],
-                'micronutrients' => [
-                    'vitamin_c' => '15%',
-                    'iron' => '10%'
-                ]
-            ]),
+            'name' => 'protien',
+            'description' => 'This is a sample description for the nutrition category.',
+            'image_url' => 'protien.jpg',
+            'calories' => 150,
+            'protien' => 30,
+            'carbs' => 20,
+            'fat' => 35,
+            'nutrients'=> (object)[
+                'protien' => 30,
+                'carbs' => 20,
+                'fat' => 35,
+                'fiber' => 5.0,
+                'vitamin_c' => '15%',
+                'iron' => '10%'
+            ],
         ];
     }
 }

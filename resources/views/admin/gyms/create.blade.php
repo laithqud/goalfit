@@ -116,20 +116,30 @@
                                         <div class="col-md-2">
                                             <label class="form-label text-light text-capitalize">{{ ucfirst($day) }}</label>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input is-open" type="checkbox"
+                                                    name="opening_hours[{{ $day }}][is_open]" value="1"
+                                                    id="isOpen{{ ucfirst($day) }}" checked>
+                                                <label class="form-check-label text-light" for="isOpen{{ ucfirst($day) }}">
+                                                    Open
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 time-inputs">
                                             <label class="form-label text-light">Opening Time</label>
                                             <input type="time" class="form-control bg-dark text-light opening-time"
                                                 name="opening_hours[{{ $day }}][open]"
                                                 value="{{ old("opening_hours.$day.open", '08:00') }}">
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3 time-inputs">
                                             <label class="form-label text-light">Closing Time</label>
                                             <input type="time" class="form-control bg-dark text-light closing-time"
                                                 name="opening_hours[{{ $day }}][close]"
                                                 value="{{ old("opening_hours.$day.close", '22:00') }}">
                                         </div>
-                                        <div class="col-md-2 d-flex align-items-end">
-                                            <div class="form-check">
+                                        <div class="col-md-2 time-inputs">
+                                            <div class="form-check mt-4">
                                                 <input class="form-check-input is-24h" type="checkbox"
                                                     name="opening_hours[{{ $day }}][is_24h]" value="1"
                                                     id="is24h{{ ucfirst($day) }}">
@@ -282,27 +292,27 @@
                 const newRow = document.createElement('div');
                 newRow.className = 'row mb-3 facility-row';
                 newRow.innerHTML = `
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control bg-dark text-light" 
-                                        name="facilities[${facilityCounter}][name]">
-                                </div>
-                                <div class="col-md-3">
-                                    <select class="form-select bg-dark text-light" 
-                                        name="facilities[${facilityCounter}][available]">
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control bg-dark text-light" 
-                                        name="facilities[${facilityCounter}][description]">
-                                </div>
-                                <div class="col-md-1 d-flex align-items-end">
-                                    <button type="button" class="btn btn-danger remove-facility">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            `;
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control bg-dark text-light" 
+                                            name="facilities[${facilityCounter}][name]">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select class="form-select bg-dark text-light" 
+                                            name="facilities[${facilityCounter}][available]">
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control bg-dark text-light" 
+                                            name="facilities[${facilityCounter}][description]">
+                                    </div>
+                                    <div class="col-md-1 d-flex align-items-end">
+                                        <button type="button" class="btn btn-danger remove-facility">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                `;
                 container.appendChild(newRow);
                 facilityCounter++;
             });

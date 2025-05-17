@@ -10,16 +10,29 @@
             <h1 class="display-3 fw-bold mb-4">Find Your Perfect Gym</h1>
             <p class="lead fs-3 mb-5">Discover fitness centers tailored to your goals, preferences, and location</p>
             <div class="search-box mx-auto bg-white rounded-pill p-2">
-                <form class="d-flex align-items-center">
+                <form action="{{ route('gym.search') }}" class="d-flex align-items-center">
                     <i class="fas fa-map-marker-alt text-dark ms-3 me-2"></i>
-                    <input type="text" class="form-control border-0 shadow-none" placeholder="Enter your location">
+                    <input type="text" name="location" class="form-control border-0 shadow-none"
+                        placeholder="Enter your location">
                     <button class="btn btn-danger rounded-pill px-4" type="submit">Search</button>
                 </form>
             </div>
         </div>
     </div>
+    @if(isset($message))
+        <div class="alert alert-success alert-dismissible fade show" id="success-alert">
+            {{ $message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 
-    <!-- Featured Gyms Section -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            setTimeout(function () {
+                $('#success-alert').alert('close');
+            }, 2000);
+        </script>
+    @endif
+
     <!-- Featured Gyms Section -->
     <section class="py-5" style="background-color: #4d0909">
         <div class="container">
@@ -32,7 +45,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="card gym-card h-100 border-0 overflow-hidden shadow-sm" style="background-color: lightgray">
                             <div class="gym-card-img"
-                                style="background-image: url('{{ isset($gym->media[1]) ? asset('storage/gym_images/' . $gym->media['1']) : asset('images/gym.png') }}');">
+                                style="background-image: url('{{ isset($gym->media[1]) ? asset('storage/gym_images/' . $gym->media[1]) : asset('images/gym.png') }}');">
                             </div>
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
@@ -54,12 +67,14 @@
                                     @endforeach
                                 </div>
 
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h4 class="fw-bold text-danger mb-0">
+                                <div class="d-flex justify-content-between align-items-center pt-3">
+                                    <h4 class="fw-bold text-danger position-absolute bottom-0 start-0 mb-3 ms-3">
                                         {{ $gym->pricing['monthly'] }}
                                         <small class="text-muted fs-6">/month</small>
                                     </h4>
-                                    <a href="{{route('gym.detailes')}}" class="btn btn-sm btn-danger">View Details</a>
+                                    <a href="{{route('gym.detailes', ['id' => $gym->id])}}"
+                                        class="btn btn-sm btn-danger position-absolute bottom-0 end-0 mb-3 me-3">View
+                                        Details</a>
                                 </div>
                             </div>
                         </div>

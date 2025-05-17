@@ -53,7 +53,7 @@
                     <h5 class="fw-bold mb-3">Workout instructions</h5>
                     <p id="workoutInstructions" class="text-muted">Select a workout to view instructions.</p>
                     <div id="equipmentSection" class="mb-3 d-none">
-                        <h6 class="fw-bold">Equipment Needed</h6>
+                        <h6 class="fw-bold mt-3">Equipment Needed</h6>
                         <div id="equipmentList" class="d-flex flex-wrap gap-2"></div>
                     </div>
                     <div id="musclesSection" class="mb-3 d-none">
@@ -86,17 +86,17 @@
                                 <a href="javascript:void(0)"
                                     class="list-group-item list-group-item-action workout-item {{ $loop->first ? 'active-workout' : '' }}"
                                     onclick="loadWorkoutDetails(
-                                                                                        {{ $workout->id }}, 
-                                                                                        '{{ addslashes($workout->name) }}', 
-                                                                                        '{{ $workout->difficulty }}', 
-                                                                                        {{ $workout->recommended_sets ?? 'null' }}, 
-                                                                                        {{ $workout->recommended_reps ?? 'null' }}, 
-                                                                                        '{{ $workout->video }}', 
-                                                                                        '{{ json_encode($workout->equipment_needed) }}', 
-                                                                                        '{{ json_encode($workout->target_muscles) }}', 
-                                                                                        '{{ addslashes($workout->instructions) }}',
-                                                                                        '{{ $workout->createdBy->name ?? 'Trainer' }}'
-                                                                                    )">
+                                                                                                                        {{ $workout->id }}, 
+                                                                                                                        '{{ addslashes($workout->name) }}', 
+                                                                                                                        '{{ $workout->difficulty }}', 
+                                                                                                                        {{ $workout->recommended_sets ?? 'null' }}, 
+                                                                                                                        {{ $workout->recommended_reps ?? 'null' }}, 
+                                                                                                                        '{{ $workout->video }}', 
+                                                                                                                        '{{ json_encode($workout->equipment_needed) }}', 
+                                                                                                                        '{{ json_encode($workout->target_muscles) }}', 
+                                                                                                                        '{{ addslashes($workout->instructions) }}',
+                                                                                                                        '{{ $workout->createdBy->name ?? 'Trainer' }}'
+                                                                                                                    )">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-flex align-items-center">
                                             <div class="me-3">
@@ -245,19 +245,19 @@
                     .then(response => {
                         const sourcePath = response.ok ? videoPath : fallbackPath;
                         videoContainer.innerHTML = `
-                                    <video width="100%" height="100%" controls autoplay>
-                                        <source src="${sourcePath}" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                `;
+                                                    <video width="100%" height="100%" controls autoplay>
+                                                        <source src="${sourcePath}" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                `;
                     })
                     .catch(() => {
                         videoContainer.innerHTML = `
-                                    <video width="100%" height="100%" controls autoplay>
-                                        <source src="${fallbackPath}" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                `;
+                                                    <video width="100%" height="100%" controls autoplay>
+                                                        <source src="${fallbackPath}" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                `;
                     });
 
             } else {
@@ -339,6 +339,6 @@
                     firstWorkout.created_by?.name || 'Trainer'
                 );
             @endif
-                                });
+                                                });
     </script>
 @endpush

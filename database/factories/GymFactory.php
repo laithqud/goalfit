@@ -21,7 +21,7 @@ class GymFactory extends Factory
                 (object)['name' => 'parking', 'available' => true, 'description' => 'Free for members'],
                 (object)['name' => 'pool', 'available' => true, 'requires_booking' => true],
             ],
-            'pricing' => (object)['monthly' => 50, 'yearly' => 500],
+            'pricing' => (object)['monthly' => 49.99, 'yearly' => 139.99],
             'media' => (object)[
                 '1' => "",
                 '2' => "",

@@ -8,10 +8,12 @@
 
         <!-- Product Main Section -->
         <div class="row g-4">
+            {{-- {{dd($categories)}} --}}
             <!-- Product Image -->
             <div class="col-lg-6">
                 <div class="bg-light p-4 rounded-3 shadow-sm">
-                    <img src="{{asset('./images/protien.jpg')}}" alt="Protein Sources" class="img-fluid rounded-3">
+                    <img src="{{asset(Storage::url($category->image_url))}}" alt="Protein Sources"
+                        class="img-fluid rounded-3">
                 </div>
             </div>
 
@@ -19,46 +21,45 @@
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body">
-                        <h1 class="display-6 fw-bold">Protein</h1>
-                        <span class="badge bg-warning text-dark mb-3">Muscle Building</span>
+                        <h1 class="display-6 fw-bold">{{$category->name}}</h1>
+                        {{-- <span class="badge bg-warning text-dark mb-3">Muscle Building</span> --}}
 
                         <!-- Nutrition Highlights -->
                         <div class="row g-3 mb-4">
                             <div class="col-6 col-md-3 text-center">
                                 <div class="p-3 bg-light rounded">
                                     <i class="fas fa-fire text-danger mb-2"></i>
-                                    <p class="mb-0 fw-bold">120 cal</p>
+                                    <p class="mb-0 fw-bold">{{$category->calories}} cal</p>
                                     <small class="text-muted">per serving</small>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3 text-center">
                                 <div class="p-3 bg-light rounded">
                                     <i class="fas fa-dumbbell text-primary mb-2"></i>
-                                    <p class="mb-0 fw-bold">24g</p>
+                                    <p class="mb-0 fw-bold">{{$category->protien}}</p>
                                     <small class="text-muted">protein</small>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3 text-center">
                                 <div class="p-3 bg-light rounded">
                                     <i class="fas fa-seedling text-success mb-2"></i>
-                                    <p class="mb-0 fw-bold">2g</p>
+                                    <p class="mb-0 fw-bold">{{$category->carbs}}</p>
                                     <small class="text-muted">carbs</small>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3 text-center">
                                 <div class="p-3 bg-light rounded">
                                     <i class="fas fa-oil-can text-warning mb-2"></i>
-                                    <p class="mb-0 fw-bold">1.5g</p>
+                                    <p class="mb-0 fw-bold">{{$category->fat}}</p>
                                     <small class="text-muted">fat</small>
                                 </div>
                             </div>
                         </div>
 
-                        <p class="lead">Essential for muscle recovery and growth. Packed with amino acids to support your
-                            fitness goals.</p>
+                        <p class="lead">{{$category->description}}</p>
 
                         <!-- NEW: Additional Protein Information -->
-                        <div class="mt-4">
+                        {{-- <div class="mt-4">
                             <h4 class="h5 text-success mb-3"><i class="fas fa-info-circle me-2"></i> Key Protein Facts</h4>
                             <ul class="list-unstyled">
                                 <li class="mb-2 d-flex">
@@ -75,7 +76,7 @@
                                     <span><strong>PDCAAS Score:</strong> 1.0 (perfect protein quality score)</span>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -90,7 +91,7 @@
                     </div>
                     <div class="card-body">
                         <!-- Combined Section 1 -->
-                        <div class="row g-4 mb-4">
+                        {{-- <div class="row g-4 mb-4">
                             <div class="col-md-6">
                                 <div class="h-100 p-3 bg-light rounded">
                                     <h3 class="h5 text-success"><i class="fas fa-check-circle me-2"></i> Essential Amino
@@ -166,37 +167,22 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- Additional Food Sources -->
                         <div class="p-3 bg-light rounded">
-                            <h3 class="h5 text-success mb-3"><i class="fas fa-utensils me-2"></i> More Protein-Rich Foods
+                            <h3 class="h5 text-success mb-3"><i class="fas fa-utensils me-2"></i> Example Food Sources</h3>
                             </h3>
-                            <div class="row g-3">
-                                <div class="col-6 col-md-3 text-center">
-                                    <img src="{{asset('./images/beef.jpg')}}" class="rounded mb-2" width="60" height="60"
-                                        alt="Beef">
-                                    <h4 class="h6 mb-1">Lean Beef</h4>
-                                    <p class="small text-muted">26g/100g</p>
-                                </div>
-                                <div class="col-6 col-md-3 text-center">
-                                    <img src="{{asset('./images/yogurt.jpg')}}" class="rounded mb-2" width="60" height="60"
-                                        alt="Yogurt">
-                                    <h4 class="h6 mb-1">Greek Yogurt</h4>
-                                    <p class="small text-muted">10g/100g</p>
-                                </div>
-                                <div class="col-6 col-md-3 text-center">
-                                    <img src="{{asset('./images/lentils.jpg')}}" class="rounded mb-2" width="60" height="60"
-                                        alt="Lentils">
-                                    <h4 class="h6 mb-1">Lentils</h4>
-                                    <p class="small text-muted">9g/100g</p>
-                                </div>
-                                <div class="col-6 col-md-3 text-center">
-                                    <img src="{{asset('./images/cheese.jpg')}}" class="rounded mb-2" width="60" height="60"
-                                        alt="Cheese">
-                                    <h4 class="h6 mb-1">Cottage Cheese</h4>
-                                    <p class="small text-muted">11g/100g</p>
-                                </div>
+                            <div class="row g-3 gap-2">
+                                @foreach ($category->foodItems as $food)
+                                    <div class="col-6 col-md-3 border p-3 text-center">
+                                        <img src="{{asset(Storage::url($food->image_url))}}" class="rounded mb-2" width="60"
+                                            height="60" alt="Beef">
+                                        <h4 class="h6 mb-1">{{$food->name}}</h4>
+                                        <p class="small mb-1">{{$food->description}}</p>
+                                        {{-- <p class="small text-muted">26g/100g</p> --}}
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -205,7 +191,7 @@
 
             <!-- Usage Tips Sidebar -->
             <div class="col-lg-4">
-                <div class="card border-0 shadow-sm mb-4">
+                {{-- <div class="card border-0 shadow-sm mb-4">
                     <div class="card-header bg-success text-white">
                         <h2 class="h5 mb-0">When to Use</h2>
                     </div>
@@ -234,14 +220,14 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-success text-white">
                         <h2 class="h5 mb-0">Nutrition Facts</h2>
                     </div>
                     <div class="card-body">
-                        <table class="table table-sm">
+                        {{-- <table class="table table-sm">
                             <tbody>
                                 <tr>
                                     <th scope="row">Serving Size</th>
@@ -272,7 +258,12 @@
                                     <td class="text-end">10% DV</td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> --}}
+                        <ol>
+                            @foreach($category->nutrients as $key => $value)
+                                <li class="mb-2 fs-5">{{ $key }}: {{ $value }}</li>
+                            @endforeach
+                        </ol>
                     </div>
                 </div>
             </div>

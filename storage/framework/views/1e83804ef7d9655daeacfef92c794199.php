@@ -51,80 +51,30 @@
             <!-- Categories Grid -->
             <div class="row g-4">
                 <!-- Protein -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-black bg-dark text-center">
-                        <img src="<?php echo e(asset('./images/protien.jpg')); ?>" class="card-img-top" alt="Protein"
-                            style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h3 class="h4 text-success">Protein</h3>
-                            <p class="card-text small">
-                                Builds and repairs muscles. Essential for recovery.
-                            </p>
-                        </div>
-                        <div class="card-footer bg-success border-0 py-3">
-                            <a href="<?php echo e(asset('/food-desc')); ?>" class="text-white text-decoration-none">
-                                Learn More <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Carbs -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-black bg-dark text-center">
-                        <img src="<?php echo e(asset('./images/carbs.jpg')); ?>" class="card-img-top" alt="Carbs"
-                            style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h3 class="h4 text-success">Carbohydrates</h3>
-                            <p class="card-text small">
-                                Primary energy source for workouts and brain function.
-                            </p>
-                        </div>
-                        <div class="card-footer bg-success border-0 py-3">
-                            <a href="#" class="text-white text-decoration-none">
-                                Learn More <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 border-black bg-dark text-center">
+                            <img src="<?php echo e(Storage::url($category->image_url)); ?>" class="card-img-top" alt="Protein"
+                                style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h3 class="h4 text-success"><?php echo e($category->name); ?></h3>
+                                <p class="card-text small">
+                                    <?php echo e($category->description); ?>
 
-                <!-- Fats -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-black bg-dark text-center">
-                        <img src="<?php echo e(asset('./images/fat.jpg')); ?>" class="card-img-top" alt="Fats"
-                            style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h3 class="h4 text-success">Healthy Fats</h3>
-                            <p class="card-text small">
-                                Supports hormone production and nutrient absorption.
-                            </p>
-                        </div>
-                        <div class="card-footer bg-success border-0 py-3">
-                            <a href="#" class="text-white text-decoration-none">
-                                Learn More <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                                </p>
+                            </div>
+                            <div class="card-footer bg-success border-0 py-3">
+                                <a href="<?php echo e(route('food-item.index', ['category' => $category->id])); ?>"
+                                    class="text-white text-decoration-none">
+                                    Learn More <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
 
-                <!-- Fiber -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-black bg-dark text-center">
-                        <img src="<?php echo e(asset('./images/fibers.jpg')); ?>" class="card-img-top" alt="Fiber"
-                            style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h3 class="h4 text-success">Dietary Fiber</h3>
-                            <p class="card-text small">
-                                Aids digestion and promotes gut health.
-                            </p>
-                        </div>
-                        <div class="card-footer bg-success border-0 py-3">
-                            <a href="#" class="text-white text-decoration-none">
-                                Learn More <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
+
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
     </section>
@@ -679,11 +629,11 @@
                     const tab = document.createElement('li');
                     tab.className = 'nav-item';
                     tab.innerHTML = `
-                                                                                                                                                                                                                                                                                                                                                                                            <button class="nav-link ${index === 0 ? 'active' : ''}" id="${day.toLowerCase()}-tab" data-bs-toggle="tab" 
-                                                                                                                                                                                                                                                                                                                                                                                                data-bs-target="#${day.toLowerCase()}" type="button" role="tab">
-                                                                                                                                                                                                                                                                                                                                                                                                ${day}
-                                                                                                                                                                                                                                                                                                                                                                                            </button>
-                                                                                                                                                                                                                                                                                                                                                                                        `;
+                                                                                                                                                                                                                                                                                                                                                                                                                                <button class="nav-link ${index === 0 ? 'active' : ''}" id="${day.toLowerCase()}-tab" data-bs-toggle="tab" 
+                                                                                                                                                                                                                                                                                                                                                                                                                                    data-bs-target="#${day.toLowerCase()}" type="button" role="tab">
+                                                                                                                                                                                                                                                                                                                                                                                                                                    ${day}
+                                                                                                                                                                                                                                                                                                                                                                                                                                </button>
+                                                                                                                                                                                                                                                                                                                                                                                                                            `;
                     tabsContainer.appendChild(tab);
 
                     // Create content
@@ -696,31 +646,31 @@
                     const meals = generateDailyMeals(goal, calories, days[index]);
 
                     content.innerHTML = `
-                                                                                                                                                                                                                                                                                                                                                                                            <div class="row g-4">
-                                                                                                                                                                                                                                                                                                                                                                                                ${meals.map(meal => `
-                                                                                                                                                                                                                                                                                                                                                                                                    <div class="col-md-6 col-lg-3">
-                                                                                                                                                                                                                                                                                                                                                                                                        <div class="card h-100 border-success bg-dark">
-                                                                                                                                                                                                                                                                                                                                                                                                            <div class="card-img-top position-relative" style="height: 150px; overflow: hidden;">
-                                                                                                                                                                                                                                                                                                                                                                                                                <img src="<?php echo e(asset('images/nutrition/${meal.img}')); ?>" class="w-100 h-100" style="object-fit: cover;" alt="${meal.name}">
-                                                                                                                                                                                                                                                                                                                                                                                                                <span class="badge bg-success position-absolute top-0 start-0 m-2">${meal.time}</span>
-                                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                                            <div class="card-body">
-                                                                                                                                                                                                                                                                                                                                                                                                                <h5 class="card-title text-success">${meal.name}</h5>
-                                                                                                                                                                                                                                                                                                                                                                                                                <p class="card-text text-light small">${meal.desc}</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                <div class="nutrition-facts">
-                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="d-flex justify-content-between small text-muted">
-                                                                                                                                                                                                                                                                                                                                                                                                                        <span>${meal.calories} cal</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                        <span>P: ${meal.protein}g</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                        <span>C: ${meal.carbs}g</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                        <span>F: ${meal.fats}g</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                `).join('')}
-                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                        `;
+                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="row g-4">
+                                                                                                                                                                                                                                                                                                                                                                                                                                    ${meals.map(meal => `
+                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-md-6 col-lg-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="card h-100 border-success bg-dark">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="card-img-top position-relative" style="height: 150px; overflow: hidden;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    <img src="<?php echo e(asset('images/nutrition/${meal.img}')); ?>" class="w-100 h-100" style="object-fit: cover;" alt="${meal.name}">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span class="badge bg-success position-absolute top-0 start-0 m-2">${meal.time}</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="card-body">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    <h5 class="card-title text-success">${meal.name}</h5>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p class="card-text text-light small">${meal.desc}</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="nutrition-facts">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="d-flex justify-content-between small text-muted">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>${meal.calories} cal</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>P: ${meal.protein}g</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>C: ${meal.carbs}g</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>F: ${meal.fats}g</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    `).join('')}
+                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                            `;
 
                     contentContainer.appendChild(content);
                 });

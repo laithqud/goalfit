@@ -37,47 +37,148 @@ class GymController extends Controller
             'pricing.monthly' => 'required|numeric|min:0',
             'pricing.yearly' => 'required|numeric|min:0',
         ]);
-
+    
         $images = [];
-        
-        // Process each image input (max 3 images)
+    
         foreach ($request->file('images', []) as $key => $image) {
             if ($image) {
-                // Store in public disk (storage/app/public/gym_images)
                 $path = $image->store('gym_images', 'public');
-                $images[$key+1] = $path; // Save just the relative path
+                $filename = basename($path); // remove "gym_images/"
+                $images[$key] = $filename;
+            }
+        }
+    
+        // Process opening hours to handle closed days
+        $processedOpeningHours = [];
+        foreach ($validated['opening_hours'] as $day => $hours) {
+            // If the day is not marked as open, set it as closed
+            if (!isset($hours['is_open']) || $hours['is_open'] != 1) {
+                $processedOpeningHours[$day] = [
+                    'is_open' => false
+                ];
+            } else {
+                // If it's open, check if it's 24 hours
+                if (isset($hours['is_24h']) && $hours['is_24h'] == 1) {
+                    $processedOpeningHours[$day] = [
+                        'is_open' => true,
+                        'is_24h' => true
+                    ];
+                } else {
+                    // Regular opening hours
+                    $processedOpeningHours[$day] = [
+                        'is_open' => true,
+                        'open' => $hours['open'],
+                        'close' => $hours['close']
+                    ];
+                }
             }
         }
 
+        // dd($validated);
+    
         Gym::create([
             'name' => $validated['name'],
             'description' => $validated['description'],
             'location' => $validated['location'],
             'phone' => $validated['phone'],
             'address' => $validated['address'],
-            'images' => !empty($images) ? $images : null,
+            'media' => !empty($images) ? $images : null,
             'is_active' => $request->boolean('is_active'),
-            'opening_hours' => $validated['opening_hours'],
+            'opening_hours' => $processedOpeningHours,
             'facilities' => $validated['facilities'],
             'pricing' => [
                 'monthly' => $validated['pricing']['monthly'],
                 'yearly' => $validated['pricing']['yearly']
             ],
         ]);
-
+    
         return redirect()->route('admin.gyms.index')->with('success', 'Gym added successfully');
     }
-
     public function edit(Gym $gym)
     {
         return view('admin.gyms.edit', compact('gym'));
     }
 
 
+    // public function update(Request $request, $id)
+    // {
+    //     $gym = Gym::findOrFail($id);
+
+    //     $validated = $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'description' => 'required|string',
+    //         'location' => 'required|string',
+    //         'phone' => 'required|string|max:20',
+    //         'address' => 'required|string|max:255',
+    //         'images' => 'nullable|array|max:3',
+    //         'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:5120',
+    //         'is_active' => 'sometimes|boolean',
+    //         'opening_hours' => 'required|array',
+    //         'facilities' => 'required|array',
+    //         'pricing.monthly' => 'required|numeric|min:0',
+    //         'pricing.yearly' => 'required|numeric|min:0',
+    //     ]);
+
+    //     // Start with existing images or empty
+    //     $existingImages = $gym->media ?? [];
+
+    //     // Handle image removals
+    //     if ($request->has('remove_images')) {
+    //         foreach ($request->remove_images as $index) {
+    //             if (isset($existingImages[$index])) {
+    //                 Storage::delete('public/gym_images/' . $existingImages[$index]);
+    //                 unset($existingImages[$index]);
+    //             }
+    //         }
+    //     }
+
+    //     // Process new images
+    //     if ($request->hasFile('images')) {
+    //         foreach ($request->file('images') as $index => $image) {
+    //             if ($image) {
+    //                 // Delete existing image if replacing
+    //                 if (isset($existingImages[$index])) {
+    //                     Storage::delete('public/gym_images/' . $existingImages[$index]);
+    //                 }
+
+    //                 // Store new image and save just the filename
+    //                 $path = $image->store('gym_images', 'public');
+    //                 $existingImages[$index] = basename($path);
+    //             }
+    //         }
+    //     }
+
+    //     // Reindex media array to 1, 2, 3 (optional)
+    //     ksort($existingImages);
+    //     $media = $existingImages; // keep keys intact
+
+
+    //     // Update the gym
+    //     $gym->update([
+    //         'name' => $validated['name'],
+    //         'description' => $validated['description'],
+    //         'location' => $validated['location'],
+    //         'phone' => $validated['phone'],
+    //         'address' => $validated['address'],
+    //         'media' => $media,
+    //         'is_active' => $request->boolean('is_active'),
+    //         'opening_hours' => $validated['opening_hours'],
+    //         'facilities' => $validated['facilities'],
+    //         'pricing' => [
+    //             'monthly' => $validated['pricing']['monthly'],
+    //             'yearly' => $validated['pricing']['yearly'],
+    //         ],
+    //     ]);
+
+    //     return redirect()->route('admin.gyms.index')->with('success', 'Gym updated successfully.');
+    // }
+
+
     public function update(Request $request, $id)
     {
         $gym = Gym::findOrFail($id);
-
+    
+        // dd($request->all());
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -92,10 +193,10 @@ class GymController extends Controller
             'pricing.monthly' => 'required|numeric|min:0',
             'pricing.yearly' => 'required|numeric|min:0',
         ]);
-
+    
         // Start with existing images or empty
         $existingImages = $gym->media ?? [];
-
+    
         // Handle image removals
         if ($request->has('remove_images')) {
             foreach ($request->remove_images as $index) {
@@ -105,7 +206,7 @@ class GymController extends Controller
                 }
             }
         }
-
+    
         // Process new images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $image) {
@@ -114,18 +215,46 @@ class GymController extends Controller
                     if (isset($existingImages[$index])) {
                         Storage::delete('public/gym_images/' . $existingImages[$index]);
                     }
-
+    
                     // Store new image and save just the filename
                     $path = $image->store('gym_images', 'public');
                     $existingImages[$index] = basename($path);
                 }
             }
         }
-
+    
         // Reindex media array to 1, 2, 3 (optional)
         ksort($existingImages);
-        $media = array_values($existingImages);
-
+        $media = $existingImages; // keep keys intact
+    
+        // Process opening hours to handle closed days (same as store method)
+        $processedOpeningHours = [];
+        foreach ($validated['opening_hours'] as $day => $hours) {
+            $isOpen = isset($hours['is_open']) && $hours['is_open'] == 1;
+            $is24h = isset($hours['is_24h']) && $hours['is_24h'] == 1;
+        
+            if (!$isOpen) {
+                // Always save is_open as false for closed days
+                $processedOpeningHours[$day] = [
+                    'is_open' => false
+                ];
+            } elseif ($is24h) {
+                // Open 24h
+                $processedOpeningHours[$day] = [
+                    'is_open' => true,
+                    'is_24h' => true
+                ];
+            } else {
+                // Validate presence of open/close keys to avoid errors
+                $processedOpeningHours[$day] = [
+                    'is_open' => true,
+                    'open' => $hours['open'] ?? '00:00',
+                    'close' => $hours['close'] ?? '23:59',
+                ];
+            }
+        }
+        
+    
         // Update the gym
         $gym->update([
             'name' => $validated['name'],
@@ -135,50 +264,24 @@ class GymController extends Controller
             'address' => $validated['address'],
             'media' => $media,
             'is_active' => $request->boolean('is_active'),
-            'opening_hours' => $validated['opening_hours'],
+            'opening_hours' => $processedOpeningHours, // Use processed opening hours
             'facilities' => $validated['facilities'],
             'pricing' => [
                 'monthly' => $validated['pricing']['monthly'],
                 'yearly' => $validated['pricing']['yearly'],
             ],
         ]);
-
+    
         return redirect()->route('admin.gyms.index')->with('success', 'Gym updated successfully.');
     }
-
-
-
     public function destroy(Gym $gym)
     {
-        $gym->delete();
-        return redirect()->route('admin.gyms.index')->with('success', 'Gym soft deleted successfully.');
-    }
-
-    public function trashed()
-    {
-        $gyms = Gym::onlyTrashed()->get();
-        return view('admin.gyms.trashed', compact('gyms'));
-    }
-
-    public function restore($id)
-    {
-        $gym = Gym::onlyTrashed()->findOrFail($id);
-        $gym->restore();
-        return redirect()->route('admin.gyms.index')->with('success', 'Gym restored successfully.');
-    }
-
-    public function forceDelete($id)
-    {
-        $gym = Gym::onlyTrashed()->findOrFail($id);
-
-        // Delete associated images
-        if ($gym->images) {
-            foreach ($gym->images as $image) {
-                Storage::delete('public/gym_images/'.basename($image));
+        if ($gym->media) {
+            foreach ($gym->media as $image) {
+                Storage::disk('public')->delete('gym_images/' . $image);
             }
         }
-
-        $gym->forceDelete();
-        return redirect()->route('admin.gyms.trashed')->with('success', 'Gym permanently deleted.');
+        $gym->delete();
+        return redirect()->route('admin.gyms.index')->with('success', 'Gym soft deleted successfully.');
     }
 }

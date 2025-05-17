@@ -45,14 +45,14 @@
                         </div>
 
                         <div class="row mb-3">
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <label for="calories" class="form-label text-light">Calories (kcal)</label>
                                 <input type="number" class="form-control bg-dark text-light @error('calories') is-invalid @enderror" 
                                     id="calories" name="calories" value="{{ old('calories') }}" required min="0" step="1">
                                 @error('calories')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-6">
                                 <label for="image" class="form-label text-light">Food Image</label>

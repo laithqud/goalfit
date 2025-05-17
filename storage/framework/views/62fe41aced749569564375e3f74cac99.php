@@ -222,41 +222,61 @@ unset($__errorArgs, $__bag); ?>
                             <div class="card-body">
                                 <?php
                                     $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-                                    $openingHours = $gym->opening_hours ?? [];
+                                    $defaultHours = [
+                                        'is_open' => true,
+                                        'open' => '08:00',
+                                        'close' => '22:00',
+                                        'is_24h' => false
+                                    ];
                                 ?>
 
                                 <?php $__currentLoopData = $days; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $day): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div class="row mb-3 opening-hour-row" data-day="<?php echo e($day); ?>">
-                                    <div class="col-md-2">
-                                        <label class="form-label text-light text-capitalize"><?php echo e(ucfirst($day)); ?></label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label text-light">Opening Time</label>
-                                        <input type="time" class="form-control bg-dark text-light opening-time" 
-                                            name="opening_hours[<?php echo e($day); ?>][open]" 
-                                            value="<?php echo e(old("opening_hours.$day.open", $openingHours[$day]['open'] ?? '08:00')); ?>"
-                                            <?php echo e(($openingHours[$day]['is_24h'] ?? false) ? 'disabled' : ''); ?>>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label text-light">Closing Time</label>
-                                        <input type="time" class="form-control bg-dark text-light closing-time" 
-                                            name="opening_hours[<?php echo e($day); ?>][close]" 
-                                            value="<?php echo e(old("opening_hours.$day.close", $openingHours[$day]['close'] ?? '22:00')); ?>"
-                                            <?php echo e(($openingHours[$day]['is_24h'] ?? false) ? 'disabled' : ''); ?>>
-                                    </div>
-                                    <div class="col-md-2 d-flex align-items-end">
-                                        <div class="form-check">
-                                            <input class="form-check-input is-24h" type="checkbox" 
-                                                name="opening_hours[<?php echo e($day); ?>][is_24h]" 
-                                                value="1" 
-                                                id="is24h<?php echo e(ucfirst($day)); ?>"
-                                                <?php echo e(($openingHours[$day]['is_24h'] ?? false) ? 'checked' : ''); ?>>
-                                            <label class="form-check-label text-light" for="is24h<?php echo e(ucfirst($day)); ?>">
-                                                24 Hours
-                                            </label>
+                                    <?php
+                                        // Get stored hours or use defaults
+                                        $hours = $gym->opening_hours[$day] ?? $defaultHours;
+                                        $isOpen = isset($hours['is_open']) ? (bool)$hours['is_open'] : false;
+                                        $is24h = isset($hours['is_24h']) ? (bool)$hours['is_24h'] : false;
+                                    ?>
+
+                                    <div class="row mb-3 opening-hour-row" data-day="<?php echo e($day); ?>">
+                                        <div class="col-md-2">
+                                            <label class="form-label text-light text-capitalize"><?php echo e(ucfirst($day)); ?></label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input is-open" type="checkbox"
+                                                    name="opening_hours[<?php echo e($day); ?>][is_open]" value="1"
+                                                    id="isOpen<?php echo e(ucfirst($day)); ?>" <?php echo e($isOpen ? 'checked' : ''); ?>>
+                                                <label class="form-check-label text-light" for="isOpen<?php echo e(ucfirst($day)); ?>">
+                                                    Open
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 time-inputs">
+                                            <label class="form-label text-light">Opening Time</label>
+                                            <input type="time" class="form-control bg-dark text-light opening-time"
+                                                name="opening_hours[<?php echo e($day); ?>][open]"
+                                                value="<?php echo e(old("opening_hours.$day.open", $hours['open'] ?? '08:00')); ?>"
+                                                <?php echo e(!$isOpen || $is24h ? 'disabled' : ''); ?>>
+                                        </div>
+                                        <div class="col-md-3 time-inputs">
+                                            <label class="form-label text-light">Closing Time</label>
+                                            <input type="time" class="form-control bg-dark text-light closing-time"
+                                                name="opening_hours[<?php echo e($day); ?>][close]"
+                                                value="<?php echo e(old("opening_hours.$day.close", $hours['close'] ?? '22:00')); ?>"
+                                                <?php echo e(!$isOpen || $is24h ? 'disabled' : ''); ?>>
+                                        </div>
+                                        <div class="col-md-2 time-inputs">
+                                            <div class="form-check mt-4">
+                                                <input class="form-check-input is-24h" type="checkbox"
+                                                    name="opening_hours[<?php echo e($day); ?>][is_24h]" value="1"
+                                                    id="is24h<?php echo e(ucfirst($day)); ?>" <?php echo e($is24h ? 'checked' : ''); ?>>
+                                                <label class="form-check-label text-light" for="is24h<?php echo e(ucfirst($day)); ?>">
+                                                    24 Hours
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                         </div>

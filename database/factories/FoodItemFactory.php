@@ -13,11 +13,11 @@ class FoodItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word(),
-            'description' => $this->faker->sentence(),
-            'image_url' => $this->faker->imageUrl(640, 480, 'food', true),
-            'is_featured' => $this->faker->boolean(),
-            'category_id' => NutritionCategory::factory(),  // Assuming you want to link a food category
+            'name' => 'eggs',
+            'description' => 'This is a sample description for the food item.',
+            'image_url' => 'eggs.jpg',
+            'is_featured' => '1',
+            'category_id' => 1,  // Assuming you want to link a food category
         ];
     }
 }

@@ -15,7 +15,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GymController as PublicGymController;
 use App\Http\Controllers\WorkoutCategoryController as PublicWorkoutCategoryController;
 use App\Http\Controllers\WorkoutItemCategoryController as PublicWorkoutItemCategoryController;
-
+use App\Http\Controllers\NutritionCategoryController as PublicNutritionCategoryController;
+use App\Http\Controllers\FoodItemController as PublicFoodItemController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,10 +24,13 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard'); //->middleware('auth')
 
 Route::get('/gym', [PublicGymController::class, 'index'])->name('gym.index');
-Route::get('/gym-details', [PublicGymController::class, 'detailes'])->name('gym.detailes');
+Route::get('/gyms/search', [PublicGymController::class, 'search'])->name('gym.search');
+Route::get('/gym-details/{id}', [PublicGymController::class, 'detailes'])->name('gym.detailes');
 Route::get('/workout', [PublicWorkoutCategoryController::class, 'index'])->name('workout.index');
 Route::get('/workout-schedule', [PublicWorkoutItemCategoryController::class, 'index'])->name('schedule.index');
-Route::view('/nutrition', 'public.nutrition');
+Route::get('/nutrition', [PublicNutritionCategoryController::class, 'index'])->name('nutrition.index');
+Route::get('/food-item', [PublicFoodItemController::class, 'index'])->name('food-item.index');
+
 Route::view('/food-desc', 'public.food-desc');
 Route::view('/gym-card', 'public.gym-card');
 Route::view('/workout-list', 'public.workout-list');

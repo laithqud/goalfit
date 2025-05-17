@@ -30,7 +30,6 @@ class FoodItemController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'calories' => 'required|numeric|min:0',
             'category_id' => 'required|exists:nutrition_categories,id',
             'image' => 'required|image|max:2048',
         ]);
@@ -40,7 +39,6 @@ class FoodItemController extends Controller
         FoodItem::create([
             'name' => $request->name,
             'description' => $request->description,
-            'calories' => $request->calories,
             'image_url' => $imagePath,
             'category_id' => $request->category_id,
             'is_featured' => $request->has('is_featured'),
@@ -60,7 +58,6 @@ class FoodItemController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'calories' => 'required|numeric|min:0',
             'category_id' => 'required|exists:nutrition_categories,id',
             'image' => 'nullable|image|max:2048',
         ]);
@@ -73,7 +70,6 @@ class FoodItemController extends Controller
         $foodItem->update([
             'name' => $request->name,
             'description' => $request->description,
-            'calories' => $request->calories,
             'category_id' => $request->category_id,
             'is_featured' => $request->has('is_featured'),
         ]);
