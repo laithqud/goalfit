@@ -16,13 +16,20 @@
                             <i class="fas fa-plus me-1"></i> Add New Category
                         </a>
                     </div>
-                    <?php if(session('success')): ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                   <?php if(session('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show" id="success-alert">
                             <?php echo e(session('success')); ?>
 
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
+
+                        <script>
+                            setTimeout(function () {
+                                $('#success-alert').alert('close');
+                            }, 2000);
+                        </script>
                     <?php endif; ?>
+
                     <?php if($errors->any()): ?>
                         <div class="alert alert-danger">
                             <ul>

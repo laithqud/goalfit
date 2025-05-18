@@ -23,8 +23,8 @@ class GymFactory extends Factory
             ],
             'pricing' => (object)['monthly' => 49.99, 'yearly' => 139.99],
             'media' => (object)[
-                '1' => "",
-                '2' => "",
+                '1' =>"image1.png",
+                '2' => "image2.png",
             ],
             'is_active' => true,
         ];

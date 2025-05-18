@@ -13,12 +13,25 @@
                         {{-- {{dd($categories)}} --}}
                         <div class="d-flex gap-2">
                             <a href="
-                                                        {{ route('admin.food-items.create') }}
-                                                         " class="btn btn-sm btn-primary">
+                                                            {{ route('admin.food-items.create') }}
+                                                             " class="btn btn-sm btn-primary">
                                 <i class="fas fa-plus me-1"></i> Add New Food
                             </a>
                         </div>
                     </div>
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" id="success-alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        <script>
+                            setTimeout(function () {
+                                $('#success-alert').alert('close');
+                            }, 2000);
+                        </script>
+                    @endif
+
 
                     <div class="table-responsive">
                         <table class="table table-dark table-hover align-middle">
@@ -49,23 +62,23 @@
 
                                         <td class="text-truncate" style="max-width: 200px;" data-bs-toggle="tooltip"
                                             data-bs-placement="top" title="
-                                                                                            {{ $item->description ?? 'No description' }}
-                                                                                             ">
+                                                                                                    {{ $item->description ?? 'No description' }}
+                                                                                                     ">
                                             {{ $item->description ? Str::limit($item->description, 30) : '-' }}
                                         </td>
                                         <td>{{ $item->created_at->format('M d, Y') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
                                                 <a href="
-                                                                                                {{ route('admin.food-items.edit', $item->id) }}
-                                                                                                 "
+                                                                                                        {{ route('admin.food-items.edit', $item->id) }}
+                                                                                                         "
                                                     class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <form action="
-                                                                                                {{ route('admin.food-items.destroy', $item->id) }}
-                                                                                                 " method="POST">
+                                                                                                        {{ route('admin.food-items.destroy', $item->id) }}
+                                                                                                         " method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"

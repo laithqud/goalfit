@@ -13,13 +13,27 @@
                         
                         <div class="d-flex gap-2">
                             <a href="
-                                                        <?php echo e(route('admin.food-items.create')); ?>
+                                                            <?php echo e(route('admin.food-items.create')); ?>
 
-                                                         " class="btn btn-sm btn-primary">
+                                                             " class="btn btn-sm btn-primary">
                                 <i class="fas fa-plus me-1"></i> Add New Food
                             </a>
                         </div>
                     </div>
+                    <?php if(session('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show" id="success-alert">
+                            <?php echo e(session('success')); ?>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        <script>
+                            setTimeout(function () {
+                                $('#success-alert').alert('close');
+                            }, 2000);
+                        </script>
+                    <?php endif; ?>
+
 
                     <div class="table-responsive">
                         <table class="table table-dark table-hover align-middle">
@@ -52,9 +66,9 @@
 
                                         <td class="text-truncate" style="max-width: 200px;" data-bs-toggle="tooltip"
                                             data-bs-placement="top" title="
-                                                                                            <?php echo e($item->description ?? 'No description'); ?>
+                                                                                                    <?php echo e($item->description ?? 'No description'); ?>
 
-                                                                                             ">
+                                                                                                     ">
                                             <?php echo e($item->description ? Str::limit($item->description, 30) : '-'); ?>
 
                                         </td>
@@ -62,17 +76,17 @@
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
                                                 <a href="
-                                                                                                <?php echo e(route('admin.food-items.edit', $item->id)); ?>
+                                                                                                        <?php echo e(route('admin.food-items.edit', $item->id)); ?>
 
-                                                                                                 "
+                                                                                                         "
                                                     class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <form action="
-                                                                                                <?php echo e(route('admin.food-items.destroy', $item->id)); ?>
+                                                                                                        <?php echo e(route('admin.food-items.destroy', $item->id)); ?>
 
-                                                                                                 " method="POST">
+                                                                                                         " method="POST">
                                                     <?php echo csrf_field(); ?>
                                                     <?php echo method_field('DELETE'); ?>
                                                     <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"

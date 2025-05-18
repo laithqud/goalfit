@@ -15,12 +15,19 @@
                             <i class="fas fa-plus me-1"></i> Add New Category
                         </a>
                     </div>
-                    @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                   @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" id="success-alert">
                             {{ session('success') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
+
+                        <script>
+                            setTimeout(function () {
+                                $('#success-alert').alert('close');
+                            }, 2000);
+                        </script>
                     @endif
+
                     @if($errors->any())
                         <div class="alert alert-danger">
                             <ul>

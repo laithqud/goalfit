@@ -47,15 +47,6 @@
                         </div>
 
                         <div class="row mb-3">
-                            {{-- <div class="col-md-6">
-                                <label for="calories" class="form-label text-light">Calories (kcal)</label>
-                                <input type="number" class="form-control bg-dark text-light @error('calories') is-invalid @enderror" 
-                                    id="calories" name="calories" value="{{ old('calories', $foodItem->calories) }}" required min="0" step="1">
-                                @error('calories')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div> --}}
-
                             <div class="col-md-6">
                                 <label for="image" class="form-label text-light">Food Image</label>
                                 <input type="file" class="form-control bg-dark text-light @error('image') is-invalid @enderror" 
@@ -66,7 +57,7 @@
                                 @if($foodItem->image_url)
                                     <div class="mt-2">
                                         <small class="text-muted">Current Image:</small>
-                                        <img src="{{ asset($foodItem->image_url) }}" alt="{{ $foodItem->name }}" 
+                                        <img src="{{ asset('storage/' . $foodItem->image_url) }}" alt="{{ $foodItem->name }}"
                                             class="img-thumbnail mt-1" style="max-height: 100px;">
                                     </div>
                                 @endif

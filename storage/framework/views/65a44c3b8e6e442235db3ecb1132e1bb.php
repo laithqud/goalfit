@@ -76,8 +76,6 @@ unset($__errorArgs, $__bag); ?>
                         </div>
 
                         <div class="row mb-3">
-                            
-
                             <div class="col-md-6">
                                 <label for="image" class="form-label text-light">Food Image</label>
                                 <input type="file" class="form-control bg-dark text-light <?php $__errorArgs = ['image'];
@@ -102,7 +100,7 @@ unset($__errorArgs, $__bag); ?>
                                 <?php if($foodItem->image_url): ?>
                                     <div class="mt-2">
                                         <small class="text-muted">Current Image:</small>
-                                        <img src="<?php echo e(asset($foodItem->image_url)); ?>" alt="<?php echo e($foodItem->name); ?>" 
+                                        <img src="<?php echo e(asset('storage/' . $foodItem->image_url)); ?>" alt="<?php echo e($foodItem->name); ?>"
                                             class="img-thumbnail mt-1" style="max-height: 100px;">
                                     </div>
                                 <?php endif; ?>
