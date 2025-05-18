@@ -35,7 +35,7 @@
     <?php endif; ?>
 
     <!-- Featured Gyms Section -->
-    <section class="py-5" style="background-color: #4d0909">
+    <section class="py-5" style="background-color: #390707">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="fw-bold display-6 text-light">Featured Gyms Near You</h2>
