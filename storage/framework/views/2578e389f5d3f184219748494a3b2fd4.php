@@ -10,20 +10,25 @@
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">Video Categories</h6>
                         <a href="
-                            <?php echo e(route('admin.workout-categories.create')); ?>
+                                                <?php echo e(route('admin.workout-categories.create')); ?>
 
-                             " class="btn btn-sm btn-primary">
+                                                 " class="btn btn-sm btn-primary">
                             <i class="fas fa-plus me-1"></i> Add New Category
                         </a>
                     </div>
 
                     <?php if(session('success')): ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <i class="fas fa-check-circle me-2"></i>
+                        <div class="alert alert-success alert-dismissible fade show" id="success-alert">
                             <?php echo e(session('success')); ?>
 
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
+
+                        <script>
+                            setTimeout(function () {
+                                $('#success-alert').alert('close');
+                            }, 2000);
+                        </script>
                     <?php endif; ?>
                     <div class="table-responsive">
                         <table class="table table-dark table-hover align-middle">
@@ -47,21 +52,21 @@
 
                                         </td>
                                         <td><?php echo e($category->name); ?></td>
-                                        <td><?php echo e($category->videos_count ?? 0); ?></td>
+                                        <td><?php echo e($category->workout_items_count); ?></td>
                                         <td><?php echo e($category->created_at->format('M d, Y')); ?></td>
                                         <td><?php echo e($category->updated_at->format('M d, Y')); ?></td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
                                                 <a href="
-                                                    <?php echo e(route('admin.workout-categories.edit', $category->id)); ?>
+                                                                                            <?php echo e(route('admin.workout-categories.edit', $category->id)); ?>
 
-                                                     " class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" title="Edit">
+                                                                                             " class="btn btn-sm btn-warning"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <form action="<?php echo e(route('admin.workout-categories.destroy', $category->id)); ?>
 
-                                                     " method="POST">
+                                                                                             " method="POST">
                                                     <?php echo csrf_field(); ?>
                                                     <?php echo method_field('DELETE'); ?>
                                                     <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"

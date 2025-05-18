@@ -239,7 +239,7 @@ unset($__errorArgs, $__bag); ?>
                     <div class="row mb-3">
                         <label for="instructions" class="col-sm-2 col-form-label text-light">Instructions</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control bg-dark text-light" id="instructions" 
+                            <textarea class="form-control bg-dark text-light" placeholder="1. Lie on a flat bench, 2. Lower the... " id="instructions" 
                                       name="instructions" rows="3"><?php echo e(old('instructions')); ?></textarea>
                         </div>
                     </div>

@@ -53,7 +53,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" 
+unset($__errorArgs, $__bag); ?>"  
+                                        placeholder="1. Lie on a flat bench, 2. Lower the... "
                                       id="instructions" name="instructions" rows="5"><?php echo e(old('instructions', $video->instructions)); ?></textarea>
                             <?php $__errorArgs = ['instructions'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

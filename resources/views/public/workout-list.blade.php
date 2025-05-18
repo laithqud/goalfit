@@ -50,25 +50,20 @@
                 </div>
 
                 <div class="mb-4">
-                    <h5 class="fw-bold mb-3">Workout instructions</h5>
+                    <h5 class="fw-bold mb-2">Workout instructions</h5>
                     <p id="workoutInstructions" class="text-muted">Select a workout to view instructions.</p>
                     <div id="equipmentSection" class="mb-3 d-none">
-                        <h6 class="fw-bold mt-3">Equipment Needed</h6>
+                        <h6 class="fw-bold mt-3 mb-2">Equipment Needed</h6>
                         <div id="equipmentList" class="d-flex flex-wrap gap-2"></div>
                     </div>
                     <div id="musclesSection" class="mb-3 d-none">
-                        <h6 class="fw-bold">Target Muscles</h6>
+                        <h6 class="fw-bold mb-2">Target Muscles</h6>
                         <div class="d-flex flex-wrap gap-2">
                             <div id="primaryMuscles" class="d-flex flex-wrap gap-2"></div>
                             <div id="secondaryMuscles" class="d-flex flex-wrap gap-2"></div>
                         </div>
                     </div>
                 </div>
-
-                {{-- <div class="mt-auto d-flex gap-2">
-                    <button class="btn btn-danger flex-grow-1">Start Workout</button>
-                    <button class="btn btn-outline-secondary">Save for Later</button>
-                </div> --}}
             </div>
         </div>
 
@@ -86,17 +81,17 @@
                                 <a href="javascript:void(0)"
                                     class="list-group-item list-group-item-action workout-item {{ $loop->first ? 'active-workout' : '' }}"
                                     onclick="loadWorkoutDetails(
-                                                                                                                        {{ $workout->id }}, 
-                                                                                                                        '{{ addslashes($workout->name) }}', 
-                                                                                                                        '{{ $workout->difficulty }}', 
-                                                                                                                        {{ $workout->recommended_sets ?? 'null' }}, 
-                                                                                                                        {{ $workout->recommended_reps ?? 'null' }}, 
-                                                                                                                        '{{ $workout->video }}', 
-                                                                                                                        '{{ json_encode($workout->equipment_needed) }}', 
-                                                                                                                        '{{ json_encode($workout->target_muscles) }}', 
-                                                                                                                        '{{ addslashes($workout->instructions) }}',
-                                                                                                                        '{{ $workout->createdBy->name ?? 'Trainer' }}'
-                                                                                                                    )">
+                                                                                                                                                                                                                        {{ $workout->id }}, 
+                                                                                                                                                                                                                        '{{ addslashes($workout->name) }}', 
+                                                                                                                                                                                                                        '{{ $workout->difficulty }}', 
+                                                                                                                                                                                                                        {{ $workout->recommended_sets ?? 'null' }}, 
+                                                                                                                                                                                                                        {{ $workout->recommended_reps ?? 'null' }}, 
+                                                                                                                                                                                                                        '{{ $workout->video }}', 
+                                                                                                                                                                                                                        '{{ json_encode($workout->equipment_needed) }}', 
+                                                                                                                                                                                                                        '{{ json_encode($workout->target_muscles) }}', 
+                                                                                                                                                                                                                        '{{ addslashes($workout->instructions) }}',
+                                                                                                                                                                                                                        '{{ $workout->createdBy->name ?? 'Trainer' }}'
+                                                                                                                                                                                                                    )">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-flex align-items-center">
                                             <div class="me-3">
@@ -194,50 +189,76 @@
 @push('scripts')
     <script>
         function loadWorkoutDetails(id, name, difficulty, sets, reps, video, equipmentNeeded, targetMuscles, instructions, trainerName) {
-            // Update active state in the list
-            document.querySelectorAll('.workout-item').forEach(item => {
+            const workoutItems = document.querySelectorAll('.workout-item');
+
+            workoutItems.forEach(item => {
                 item.classList.remove('active-workout');
-                item.querySelector('h6').classList.remove('fw-bold');
-                const iconDiv = item.querySelector('div.me-3 > div');
-                iconDiv.classList.remove('bg-danger', 'text-danger');
-                iconDiv.classList.add('bg-secondary', 'text-secondary');
-                const icon = item.querySelector('i');
-                icon.classList.remove('fa-play');
-                icon.classList.add('fa-dumbbell');
-                item.querySelector('.badge').textContent = 'Up Next';
+
+                const itemTitle = item.querySelector('h6');
+                if (itemTitle) itemTitle.classList.remove('fw-bold');
+
+                const iconContainer = item.querySelector('.rounded-circle');
+                if (iconContainer) {
+                    iconContainer.classList.remove('bg-danger', 'text-danger');
+                    iconContainer.classList.add('bg-secondary', 'text-secondary');
+                }
+
+                const icon = item.querySelector('.rounded-circle i');
+                if (icon) {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-dumbbell');
+                }
+
+                const badge = item.querySelector('.badge');
+                if (badge) badge.textContent = 'Up Next';
             });
 
-            // Set the clicked item as active
             const clickedItem = document.querySelector(`.workout-item[onclick*="${id}"]`);
             if (clickedItem) {
                 clickedItem.classList.add('active-workout');
-                clickedItem.querySelector('h6').classList.add('fw-bold');
-                const iconDiv = clickedItem.querySelector('div.me-3 > div');
-                iconDiv.classList.remove('bg-secondary', 'text-secondary');
-                iconDiv.classList.add('bg-danger', 'text-danger');
-                const icon = clickedItem.querySelector('i');
-                icon.classList.remove('fa-dumbbell');
-                icon.classList.add('fa-play');
-                clickedItem.querySelector('.badge').textContent = 'Now Playing';
+
+                const clickedTitle = clickedItem.querySelector('h6');
+                if (clickedTitle) clickedTitle.classList.add('fw-bold');
+
+                const clickedIconContainer = clickedItem.querySelector('.rounded-circle');
+                if (clickedIconContainer) {
+                    clickedIconContainer.classList.remove('bg-secondary', 'text-secondary');
+                    clickedIconContainer.classList.add('bg-danger', 'text-danger');
+                }
+
+                const clickedIcon = clickedItem.querySelector('.rounded-circle i');
+                if (clickedIcon) {
+                    clickedIcon.classList.remove('fa-dumbbell');
+                    clickedIcon.classList.add('fa-play');
+                }
+
+                const clickedBadge = clickedItem.querySelector('.badge');
+                if (clickedBadge) clickedBadge.textContent = 'Now Playing';
             }
 
-            // Update workout details
             document.getElementById('workoutTitle').textContent = name;
             document.getElementById('workoutTrainer').textContent = `With Trainer ${trainerName}`;
             document.getElementById('workoutDifficulty').textContent = difficulty;
             document.getElementById('workoutSets').textContent = sets || 'N/A';
             document.getElementById('workoutReps').textContent = reps || 'N/A';
-            document.getElementById('workoutInstructions').textContent = instructions || 'No instructions provided.';
 
-            // Update video
+            let formattedInstructions = '';
+            if (instructions) {
+                const steps = instructions
+                    .split(/(?=\d+\.\s)/)
+                    .map(step => step.replace(/,\s*$/, ''))
+                    .map(step => step.trim());
+
+                formattedInstructions = steps.join('<br>');
+
+                document.getElementById('workoutInstructions').innerHTML = formattedInstructions;
+            } else {
+                document.getElementById('workoutInstructions').textContent = 'No instructions provided.';
+            }
+
             const videoContainer = document.getElementById('videoContainer');
             if (video) {
-                // videoContainer.innerHTML = `
-                //                     <video width="100%" height="100%" controls autoplay>
-                //                         <source src="/images/${video}" type="video/mp4">
-                //                         Your browser does not support the video tag.
-                //                     </video>
-                //                 `;
+
                 const videoPath = `/storage/${video}`;
                 const fallbackPath = `/images/Biceps.mp4`;
 
@@ -245,26 +266,25 @@
                     .then(response => {
                         const sourcePath = response.ok ? videoPath : fallbackPath;
                         videoContainer.innerHTML = `
-                                                    <video width="100%" height="100%" controls autoplay>
-                                                        <source src="${sourcePath}" type="video/mp4">
-                                                        Your browser does not support the video tag.
-                                                    </video>
-                                                `;
+                                                                                                    <video width="100%" height="100%" controls autoplay>
+                                                                                                        <source src="${sourcePath}" type="video/mp4">
+                                                                                                        Your browser does not support the video tag.
+                                                                                                    </video>
+                                                                                                `;
                     })
                     .catch(() => {
                         videoContainer.innerHTML = `
-                                                    <video width="100%" height="100%" controls autoplay>
-                                                        <source src="${fallbackPath}" type="video/mp4">
-                                                        Your browser does not support the video tag.
-                                                    </video>
-                                                `;
+                                                                                                    <video width="100%" height="100%" controls autoplay>
+                                                                                                        <source src="${fallbackPath}" type="video/mp4">
+                                                                                                        Your browser does not support the video tag.
+                                                                                                    </video>
+                                                                                                `;
                     });
 
             } else {
                 videoContainer.innerHTML = '<div class="d-flex align-items-center justify-content-center bg-dark text-white h-100">No video available</div>';
             }
 
-            // Update equipment needed
             const equipmentSection = document.getElementById('equipmentSection');
             const equipmentList = document.getElementById('equipmentList');
             equipmentList.innerHTML = '';
@@ -286,7 +306,6 @@
                 equipmentSection.classList.add('d-none');
             }
 
-            // Update target muscles
             const musclesSection = document.getElementById('musclesSection');
             const primaryMuscles = document.getElementById('primaryMuscles');
             const secondaryMuscles = document.getElementById('secondaryMuscles');
@@ -322,7 +341,6 @@
             }
         }
 
-        // Load first workout by default
         document.addEventListener('DOMContentLoaded', function () {
             @if($workoutItems->count() > 0)
                 const firstWorkout = @json($workoutItems->first());
@@ -339,6 +357,6 @@
                     firstWorkout.created_by?.name || 'Trainer'
                 );
             @endif
-                                                });
+                                                                                                });
     </script>
 @endpush

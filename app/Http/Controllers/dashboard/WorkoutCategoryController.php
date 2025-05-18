@@ -12,7 +12,7 @@ class WorkoutCategoryController extends Controller
 {
     public function index()
     {
-        $categories = WorkoutCategory::all();
+        $categories = WorkoutCategory::withCount('workoutItems')->get();
         return view('admin.videoCategory.index', compact('categories'));
     }
 

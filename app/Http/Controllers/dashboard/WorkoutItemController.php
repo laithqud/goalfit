@@ -81,8 +81,6 @@ class WorkoutItemController extends Controller
     }
     public function store(Request $request)
     {
-        // $test='store';
-        // dd($request->all());
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'video' => 'required|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo,video/x-flv,video/x-matroska|max:102400',
@@ -96,50 +94,56 @@ class WorkoutItemController extends Controller
             'secondary_muscles' => 'nullable|array',
             'durations' => 'nullable|array',
         ]);
-
+    
         // Merge muscles
         $targetMuscles = [
             'primary' => $request->input('primary_muscles', []),
             'secondary' => $request->input('secondary_muscles', []),
         ];
-
+    
+        // Set the video path
+        $videoPath = null;
         if ($request->hasFile('video')) {
-            $path = $request->file('video')->store('videos', 'public');
-            $validated['video'] = $path;
+            $videoPath = $request->file('video')->store('videos', 'public');
         }
-
+    
+        $createdBy = Auth::check() ? Auth::id() : 1;
         // Create the workout item
         WorkoutItem::create([
             'name' => $request->input('name'),
-            'instructions' => $request->input('instructions'),
-            'video_url' => $request->input('video_url'),
-            'difficulty' => $request->input('difficulty'),
-            'recommended_reps' => $request->input('recommended_reps'),
-            'recommended_sets' => $request->input('recommended_sets'),
-            'equipment_needed' => json_encode($request->input('equipment_needed', [])),
-            'target_muscles' => json_encode($targetMuscles),
-            'durations_in_minutes' => json_encode($request->input('durations', [])),
-            'category_id' => $request->input('category_id'),
-            'created_by' => 1, // or null
-            'is_premium' => $request->has('is_premium'),
+        'instructions' => $request->input('instructions'),
+        'video' => $videoPath, // Using the correct column name
+        'difficulty' => $request->input('difficulty'),
+        'recommended_reps' => $request->input('recommended_reps'),
+        'recommended_sets' => $request->input('recommended_sets'),
+        'equipment_needed' => $request->input('equipment_needed', []),
+        'target_muscles' => [
+            'primary' => $request->input('primary_muscles', []),
+            'secondary' => $request->input('secondary_muscles', [])
+        ],
+        'durations_in_minutes' => [
+            'warmup' => $request->input('durations.warmup'),
+            'exercise' => $request->input('durations.exercise'),
+            'cooldown' => $request->input('durations.cooldown')
+        ],
+        'category_id' => $request->input('category_id'),
+        'created_by' => $createdBy, // This will never be null
+        'is_premium' => $request->has('is_premium'),
         ]);
-
+    
         return redirect()->route('admin.videos.index')->with('success', 'Workout video created successfully.');
     }
 
 
-    public function destroy(WorkoutItem $video)
+    public function destroy($id)
     {
-        // Optional: delete the thumbnail if it exists
-        if ($video->thumbnail_url && Storage::disk('public')->exists($video->thumbnail_url)) {
-            Storage::disk('public')->delete($video->thumbnail_url);
-        }
+        $item = WorkoutItem::findOrFail($id);
+        $item->delete(); // soft delete only
 
-        $video->delete();
-
-        return redirect()->route('admin.videos.index')
-            ->with('success', 'Video deleted successfully!');
+        return redirect()->route('admin.videos.index')->with('success', 'Workout item moved to trash.');
     }
+
+
 
 }
 

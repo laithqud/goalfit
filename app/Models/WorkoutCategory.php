@@ -18,8 +18,16 @@ class WorkoutCategory extends Model
 
     public function workoutItems()
     {
-        return $this->hasMany(WorkoutItem::class);
+        return $this->hasMany(WorkoutItem::class, 'category_id');
     }
+
+    protected static function booted()
+    {
+        static::deleting(function ($category) {
+            $category->workoutItems()->delete();
+        });
+    }
+
 
     
 }

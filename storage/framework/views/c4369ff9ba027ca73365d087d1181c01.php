@@ -11,18 +11,23 @@
                         <h6 class="mb-0 text-light">Video Library</h6>
                         <a href="<?php echo e(route('admin.videos.create')); ?>
 
-                                                                                                                                                                                                                                                 "
+                                                                                                                                                                                                                                                     "
                             class="btn btn-sm btn-primary">
                             <i class="fas fa-plus me-1"></i> Add New Video
                         </a>
                     </div>
                     <?php if(session('success')): ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <i class="fas fa-check-circle me-2"></i>
+                        <div class="alert alert-success alert-dismissible fade show" id="success-alert">
                             <?php echo e(session('success')); ?>
 
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
+
+                        <script>
+                            setTimeout(function () {
+                                $('#success-alert').alert('close');
+                            }, 2000);
+                        </script>
                     <?php endif; ?>
 
                     <div class="table-responsive">
@@ -166,15 +171,15 @@
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
                                                 <a href="<?php echo e(route('admin.videos.edit', $video->id)); ?>"
-                                                    class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Edit">
+                                                    class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <form
                                                     action="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <?php echo e(route('admin.videos.destroy', $video->id)); ?>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <?php echo e(route('admin.videos.destroy', $video->id)); ?>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        "
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "
                                                     method="POST">
                                                     <?php echo csrf_field(); ?>
                                                     <?php echo method_field('DELETE'); ?>

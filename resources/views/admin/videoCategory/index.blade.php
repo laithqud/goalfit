@@ -10,18 +10,23 @@
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">Video Categories</h6>
                         <a href="
-                            {{ route('admin.workout-categories.create') }}
-                             " class="btn btn-sm btn-primary">
+                                                {{ route('admin.workout-categories.create') }}
+                                                 " class="btn btn-sm btn-primary">
                             <i class="fas fa-plus me-1"></i> Add New Category
                         </a>
                     </div>
 
                     @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <i class="fas fa-check-circle me-2"></i>
+                        <div class="alert alert-success alert-dismissible fade show" id="success-alert">
                             {{ session('success') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
+
+                        <script>
+                            setTimeout(function () {
+                                $('#success-alert').alert('close');
+                            }, 2000);
+                        </script>
                     @endif
                     <div class="table-responsive">
                         <table class="table table-dark table-hover align-middle">
@@ -44,19 +49,19 @@
                                             {!! $category->image_url ? "<img src='" . asset("storage/{$category->image_url}") . "' alt='Category Image' width='50' height='50'>" : 'No Image' !!}
                                         </td>
                                         <td>{{ $category->name }}</td>
-                                        <td>{{ $category->videos_count ?? 0 }}</td>
+                                        <td>{{ $category->workout_items_count }}</td>
                                         <td>{{ $category->created_at->format('M d, Y') }}</td>
                                         <td>{{ $category->updated_at->format('M d, Y') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
                                                 <a href="
-                                                    {{ route('admin.workout-categories.edit', $category->id) }}
-                                                     " class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" title="Edit">
+                                                                                            {{ route('admin.workout-categories.edit', $category->id) }}
+                                                                                             " class="btn btn-sm btn-warning"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <form action="{{ route('admin.workout-categories.destroy', $category->id) }}
-                                                     " method="POST">
+                                                                                             " method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"

@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\WorkoutCategory;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes; 
 
 class WorkoutItem extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -38,9 +40,26 @@ class WorkoutItem extends Model
         return $this->belongsTo(WorkoutCategory::class);
     }
 
-    public function workoutCategories()
+    protected static function boot()
     {
-        return $this->belongsToMany(WorkoutCategory::class, 'workout_category_workout_item');
+        parent::boot();
+
+        // For soft deletes — delete the video when moving to trash
+        static::deleting(function ($item) {
+            if (! $item->isForceDeleting()) return; // Prevent accidental delete during soft delete
+
+            if ($item->video && Storage::disk('public')->exists($item->video)) {
+                Storage::disk('public')->delete($item->video);
+            }
+        });
+
+        // For force deletes — delete the video from storage
+        static::forceDeleted(function ($item) {
+            if ($item->video && Storage::disk('public')->exists($item->video)) {
+                Storage::disk('public')->delete($item->video);
+            }
+        });
     }
+
 
 }

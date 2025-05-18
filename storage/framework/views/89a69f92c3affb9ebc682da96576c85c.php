@@ -55,23 +55,42 @@
                 <div class="row g-4">
                     <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-md-4 d-flex">
-                            <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg">
-                                <img src="<?php echo e($category->image ? asset('storage/' . $category->image) : asset('images/fullbody.jpg')); ?>"
-                                    class="card-img-top" alt="<?php echo e($category->name); ?>">
-                                <div class="card-body" style="background-color: #373740">
-                                    <h3 class="card-title fw-bold text-light fs-4"><?php echo e($category->name); ?></h3>
-                                    <p class="card-text text-light fs-5"><?php echo e($category->description); ?></p>
-                                    <a href="<?php echo e(route('schedule.index', ['category' => $category->id])); ?>"
-                                        class="btn btn-outline-danger mt-2">Start Programs</a>
+                            <div class="card workout-card h-100 border-0 overflow-hidden shadow-lg d-flex flex-column">
+                                <div class="image-container" style="height: 200px; width: 350px; overflow: hidden;">
+                                    <?php echo $category->image_url ? "<img src='" . asset("storage/{$category->image_url}") . "' alt='Category Image' class='w-100 h-100 object-fit-cover'>" : '<div class="w-100 h-100 bg-secondary d-flex align-items-center justify-content-center text-light">No Image</div>'; ?>
+
+                                </div>
+                                <div class="card-body d-flex flex-column" style="background-color: #373740; flex-grow: 1;">
+                                    <div>
+                                        <h3 class="card-title fw-bold text-light fs-4"><?php echo e($category->name); ?></h3>
+                                        <p class="card-text text-light fs-5"><?php echo e($category->description); ?></p>
+                                    </div>
+                                    <div class="mt-auto pt-3">
+                                        <a href="<?php echo e(route('schedule.index', ['category' => $category->id])); ?>"
+                                            class="btn btn-outline-danger w-100">Start Program</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
-            
         </div>
     </section>
+
+    <style>
+        .object-fit-cover {
+            object-fit: cover;
+        }
+
+        .workout-card {
+            transition: transform 0.3s ease;
+        }
+
+        .workout-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
 
     <!-- Expert Guidance Section -->
     <section class="py-5 bg-dark text-light mb-5">
@@ -91,8 +110,7 @@
                         </li>
                         <li class="mb-3 fs-5"><i class="fas fa-check-circle text-danger me-2"></i> Progressive overload
                             techniques</li>
-                        <li class="mb-3 fs-5"><i class="fas fa-check-circle text-danger me-2"></i> Nutrition recommendations
-                        </li>
+
                     </ul>
                 </div>
                 <div class="col-lg-6">
