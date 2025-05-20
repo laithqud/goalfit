@@ -31,11 +31,9 @@ Route::get('/workout-schedule', [PublicWorkoutItemCategoryController::class, 'in
 Route::get('/nutrition', [PublicNutritionCategoryController::class, 'index'])->name('nutrition.index');
 Route::get('/food-item', [PublicFoodItemController::class, 'index'])->name('food-item.index');
 
-Route::view('/food-desc', 'public.food-desc');
-Route::view('/gym-card', 'public.gym-card');
-Route::view('/workout-list', 'public.workout-list');
 Route::view('/paymint', 'public.paymint');
 Route::view('/paymint2', 'public.paymint2');
+Route::view('/about', 'public.about-us');
 
 
 //-------------------------------dashboard routes---------------------------------
