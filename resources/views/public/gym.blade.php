@@ -72,9 +72,17 @@
                                         {{ $gym->pricing['monthly'] }}
                                         <small class="text-muted fs-6">/month</small>
                                     </h4>
-                                    <a href="{{route('gym.detailes', ['id' => $gym->id])}}"
-                                        class="btn btn-sm btn-danger position-absolute bottom-0 end-0 mb-3 me-3">View
-                                        Details</a>
+                                    @auth
+                                        <a href="{{ route('gym.detailes', ['id' => $gym->id]) }}"
+                                        class="btn btn-sm btn-danger position-absolute bottom-0 end-0 mb-3 me-3">View Details</a>
+                                    @else
+                                       <a href="{{ route(   'login') }}" 
+                                        class="btn btn-sm btn-danger position-absolute bottom-0 end-0 mb-3 me-3"
+                                        onclick="event.preventDefault(); Swal.fire('Login Required', 'Please log in to view gym details.', 'warning').then(() => { window.location.href = '{{ route('login') }}'; });">
+                                        View Details
+                                        </a>
+                                    @endauth
+
                                 </div>
                             </div>
                         </div>

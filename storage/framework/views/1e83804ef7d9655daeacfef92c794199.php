@@ -65,13 +65,20 @@
                                 </p>
                             </div>
                             <div class="card-footer bg-success border-0 py-3">
-                                <a href="<?php echo e(route('food-item.index', ['category' => $category->id])); ?>"
-                                    class="text-white text-decoration-none">
-                                    Learn More <i class="fas fa-arrow-right ms-1"></i>
-                                </a>
+                                <?php if(auth()->guard()->check()): ?>
+                                    <a href="<?php echo e(route('food-item.index', ['category' => $category->id])); ?>"
+                                        class="text-white text-decoration-none">
+                                        Learn More <i class="fas fa-arrow-right ms-1"></i>
+                                    </a>
+                                <?php endif; ?>
 
-
+                                <?php if(auth()->guard()->guest()): ?>
+                                    <a href="<?php echo e(route('login')); ?>" class="text-white text-decoration-none">
+                                        Login to Learn More <i class="fas fa-sign-in-alt ms-1"></i>
+                                    </a>
+                                <?php endif; ?>
                             </div>
+
                         </div>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -212,75 +219,85 @@
                             <h3 class="h4 mb-0"><i class="fas fa-user-edit me-2"></i>Your Profile</h3>
                         </div>
                         <div class="card-body p-4">
-                            <form id="plan-form">
-                                <div class="row g-3">
-                                    <!-- Basic Info -->
-                                    <div class="col-md-6">
-                                        <label class="form-label text-light">Gender</label>
-                                        <select class="form-select bg-dark border-secondary text-light" id="gender"
-                                            required>
-                                            <option value="">Select</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label text-light">Age</label>
-                                        <input type="number" class="form-control bg-dark border-secondary text-light"
-                                            id="age" placeholder="e.g. 28" required>
-                                    </div>
+                            <?php if(auth()->guard()->check()): ?>
+                                <form id="plan-form">
+                                    <div class="row g-3">
+                                        <!-- Basic Info -->
+                                        <div class="col-md-6">
+                                            <label class="form-label text-light">Gender</label>
+                                            <select class="form-select bg-dark border-secondary text-light" id="gender"
+                                                required>
+                                                <option value="">Select</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label text-light">Age</label>
+                                            <input type="number" class="form-control bg-dark border-secondary text-light"
+                                                id="age" placeholder="e.g. 28" required>
+                                        </div>
 
-                                    <!-- Body Metrics -->
-                                    <div class="col-md-6">
-                                        <label class="form-label text-light">Height (cm)</label>
-                                        <input type="number" class="form-control bg-dark border-secondary text-light"
-                                            id="height" placeholder="e.g. 175" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label text-light">Weight (kg)</label>
-                                        <input type="number" class="form-control bg-dark border-secondary text-light"
-                                            id="weight" placeholder="e.g. 75" required>
-                                    </div>
+                                        <!-- Body Metrics -->
+                                        <div class="col-md-6">
+                                            <label class="form-label text-light">Height (cm)</label>
+                                            <input type="number" class="form-control bg-dark border-secondary text-light"
+                                                id="height" placeholder="e.g. 175" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label text-light">Weight (kg)</label>
+                                            <input type="number" class="form-control bg-dark border-secondary text-light"
+                                                id="weight" placeholder="e.g. 75" required>
+                                        </div>
 
-                                    <!-- Activity Level -->
-                                    <div class="col-md-6">
-                                        <label class="form-label text-light">Activity Level</label>
-                                        <select class="form-select bg-dark border-secondary text-light" id="activity"
-                                            required>
-                                            <option value="">Select</option>
-                                            <option value="1.2">Sedentary (little exercise)</option>
-                                            <option value="1.375">Lightly Active</option>
-                                            <option value="1.55">Moderately Active</option>
-                                            <option value="1.725">Very Active</option>
-                                            <option value="1.9">Extremely Active</option>
-                                        </select>
-                                    </div>
+                                        <!-- Activity Level -->
+                                        <div class="col-md-6">
+                                            <label class="form-label text-light">Activity Level</label>
+                                            <select class="form-select bg-dark border-secondary text-light" id="activity"
+                                                required>
+                                                <option value="">Select</option>
+                                                <option value="1.2">Sedentary (little exercise)</option>
+                                                <option value="1.375">Lightly Active</option>
+                                                <option value="1.55">Moderately Active</option>
+                                                <option value="1.725">Very Active</option>
+                                                <option value="1.9">Extremely Active</option>
+                                            </select>
+                                        </div>
 
-                                    <!-- Goal Selection -->
-                                    <div class="col-md-6">
-                                        <label class="form-label text-light">Your Goal</label>
-                                        <div class="btn-group w-100" role="group">
-                                            <input type="radio" class="btn-check" name="goal" id="goal-cut" value="cut"
-                                                autocomplete="off" required>
-                                            <label class="btn btn-outline-success" for="goal-cut">Cut</label>
+                                        <!-- Goal Selection -->
+                                        <div class="col-md-6">
+                                            <label class="form-label text-light">Your Goal</label>
+                                            <div class="btn-group w-100" role="group">
+                                                <input type="radio" class="btn-check" name="goal" id="goal-cut" value="cut"
+                                                    autocomplete="off" required>
+                                                <label class="btn btn-outline-success" for="goal-cut">Cut</label>
 
-                                            <input type="radio" class="btn-check" name="goal" id="goal-normal"
-                                                value="maintain" autocomplete="off">
-                                            <label class="btn btn-outline-success" for="goal-normal">Maintain</label>
+                                                <input type="radio" class="btn-check" name="goal" id="goal-normal"
+                                                    value="maintain" autocomplete="off">
+                                                <label class="btn btn-outline-success" for="goal-normal">Maintain</label>
 
-                                            <input type="radio" class="btn-check" name="goal" id="goal-bulk" value="bulk"
-                                                autocomplete="off">
-                                            <label class="btn btn-outline-success" for="goal-bulk">Bulk</label>
+                                                <input type="radio" class="btn-check" name="goal" id="goal-bulk" value="bulk"
+                                                    autocomplete="off">
+                                                <label class="btn btn-outline-success" for="goal-bulk">Bulk</label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
+                                    <div class="mt-4 text-center">
+                                        <button type="submit" class="btn btn-success btn-lg px-5">
+                                            <i class="fas fa-calculator me-2"></i> Generate My Plan
+                                        </button>
+                                    </div>
+                                </form>
+                            <?php endif; ?>
+
+                            <?php if(auth()->guard()->guest()): ?>
                                 <div class="mt-4 text-center">
-                                    <button type="submit" class="btn btn-success btn-lg px-5">
-                                        <i class="fas fa-calculator me-2"></i> Generate My Plan
-                                    </button>
+                                    <a href="<?php echo e(route('login')); ?>" class="btn btn-success btn-lg px-5">
+                                        <i class="fas fa-sign-in-alt me-2"></i> Login to Generate Plan
+                                    </a>
                                 </div>
-                            </form>
+                            <?php endif; ?>
                         </div>
                     </div>
 
@@ -629,11 +646,11 @@
                     const tab = document.createElement('li');
                     tab.className = 'nav-item';
                     tab.innerHTML = `
-                                                                                                                                                                                                                                                                                                                                                                                                                                <button class="nav-link ${index === 0 ? 'active' : ''}" id="${day.toLowerCase()}-tab" data-bs-toggle="tab" 
-                                                                                                                                                                                                                                                                                                                                                                                                                                    data-bs-target="#${day.toLowerCase()}" type="button" role="tab">
-                                                                                                                                                                                                                                                                                                                                                                                                                                    ${day}
-                                                                                                                                                                                                                                                                                                                                                                                                                                </button>
-                                                                                                                                                                                                                                                                                                                                                                                                                            `;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                <button class="nav-link ${index === 0 ? 'active' : ''}" id="${day.toLowerCase()}-tab" data-bs-toggle="tab" 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    data-bs-target="#${day.toLowerCase()}" type="button" role="tab">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    ${day}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                </button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                            `;
                     tabsContainer.appendChild(tab);
 
                     // Create content
@@ -646,31 +663,31 @@
                     const meals = generateDailyMeals(goal, calories, days[index]);
 
                     content.innerHTML = `
-                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="row g-4">
-                                                                                                                                                                                                                                                                                                                                                                                                                                    ${meals.map(meal => `
-                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-md-6 col-lg-3">
-                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="card h-100 border-success bg-dark">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="card-img-top position-relative" style="height: 150px; overflow: hidden;">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    <img src="<?php echo e(asset('images/nutrition/${meal.img}')); ?>" class="w-100 h-100" style="object-fit: cover;" alt="${meal.name}">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span class="badge bg-success position-absolute top-0 start-0 m-2">${meal.time}</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="card-body">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    <h5 class="card-title text-success">${meal.name}</h5>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p class="card-text text-light small">${meal.desc}</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="nutrition-facts">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="d-flex justify-content-between small text-muted">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>${meal.calories} cal</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>P: ${meal.protein}g</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>C: ${meal.carbs}g</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>F: ${meal.fats}g</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="row g-4">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    ${meals.map(meal => `
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-md-6 col-lg-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="card h-100 border-success bg-dark">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="card-img-top position-relative" style="height: 150px; overflow: hidden;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <img src="<?php echo e(asset('images/nutrition/${meal.img}')); ?>" class="w-100 h-100" style="object-fit: cover;" alt="${meal.name}">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span class="badge bg-success position-absolute top-0 start-0 m-2">${meal.time}</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="card-body">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <h5 class="card-title text-success">${meal.name}</h5>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p class="card-text text-light small">${meal.desc}</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="nutrition-facts">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="d-flex justify-content-between small text-muted">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>${meal.calories} cal</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>P: ${meal.protein}g</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>C: ${meal.carbs}g</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>F: ${meal.fats}g</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
                                                                                                                                                                                                                                                                                                                                                                                                                                                         </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    `).join('')}
                                                                                                                                                                                                                                                                                                                                                                                                                                                 </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                    `).join('')}
-                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                            `;
+                                                                                                                                                                                                                                                                                                                                                                                                                                            `;
 
                     contentContainer.appendChild(content);
                 });

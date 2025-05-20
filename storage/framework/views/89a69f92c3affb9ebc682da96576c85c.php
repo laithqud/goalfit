@@ -66,8 +66,15 @@
                                         <p class="card-text text-light fs-5"><?php echo e($category->description); ?></p>
                                     </div>
                                     <div class="mt-auto pt-3">
-                                        <a href="<?php echo e(route('schedule.index', ['category' => $category->id])); ?>"
-                                            class="btn btn-outline-danger w-100">Start Program</a>
+                                        <?php if(auth()->guard()->check()): ?>
+                                            <a href="<?php echo e(route('schedule.index', ['category' => $category->id])); ?>"
+                                                class="btn btn-outline-danger w-100">Start Program</a>
+                                        <?php else: ?>
+                                            <a href="<?php echo e(route('login')); ?>" class="btn btn-outline-danger w-100"
+                                                onclick="event.preventDefault(); Swal.fire('Login Required', 'Please log in to start the workout program.', 'warning').then(() => { window.location.href = '<?php echo e(route('login')); ?>'; });">
+                                                Start Program
+                                            </a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>

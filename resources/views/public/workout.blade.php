@@ -65,8 +65,15 @@
                                         <p class="card-text text-light fs-5">{{$category->description}}</p>
                                     </div>
                                     <div class="mt-auto pt-3">
-                                        <a href="{{route('schedule.index', ['category' => $category->id]) }}"
-                                            class="btn btn-outline-danger w-100">Start Program</a>
+                                        @auth
+                                            <a href="{{ route('schedule.index', ['category' => $category->id]) }}"
+                                                class="btn btn-outline-danger w-100">Start Program</a>
+                                        @else
+                                            <a href="{{ route('login') }}" class="btn btn-outline-danger w-100"
+                                                onclick="event.preventDefault(); Swal.fire('Login Required', 'Please log in to start the workout program.', 'warning').then(() => { window.location.href = '{{ route('login') }}'; });">
+                                                Start Program
+                                            </a>
+                                        @endauth
                                     </div>
                                 </div>
                             </div>

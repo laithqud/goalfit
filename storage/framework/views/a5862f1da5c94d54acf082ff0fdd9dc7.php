@@ -76,9 +76,17 @@
 
                                         <small class="text-muted fs-6">/month</small>
                                     </h4>
-                                    <a href="<?php echo e(route('gym.detailes', ['id' => $gym->id])); ?>"
-                                        class="btn btn-sm btn-danger position-absolute bottom-0 end-0 mb-3 me-3">View
-                                        Details</a>
+                                    <?php if(auth()->guard()->check()): ?>
+                                        <a href="<?php echo e(route('gym.detailes', ['id' => $gym->id])); ?>"
+                                        class="btn btn-sm btn-danger position-absolute bottom-0 end-0 mb-3 me-3">View Details</a>
+                                    <?php else: ?>
+                                       <a href="<?php echo e(route(   'login')); ?>" 
+                                        class="btn btn-sm btn-danger position-absolute bottom-0 end-0 mb-3 me-3"
+                                        onclick="event.preventDefault(); Swal.fire('Login Required', 'Please log in to view gym details.', 'warning').then(() => { window.location.href = '<?php echo e(route('login')); ?>'; });">
+                                        View Details
+                                        </a>
+                                    <?php endif; ?>
+
                                 </div>
                             </div>
                         </div>
