@@ -11,10 +11,10 @@ class AdminFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'role' => 'admin',
-            'password' => Hash::make('password'), // or bcrypt('password')
+            'name' => 'The Admin',
+            'email' => 'superadmin@gmail.com',
+            'role' => 'superadmin',
+            'password' => Hash::make('123456789'), // or bcrypt('password')
         ];
     }
 }

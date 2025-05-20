@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard'); //->middleware('auth')
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::get('/gym', [PublicGymController::class, 'index'])->name('gym.index');
 Route::get('/gyms/search', [PublicGymController::class, 'search'])->name('gym.search');
@@ -39,7 +39,7 @@ Route::view('/paymint2', 'public.paymint2');
 
 
 //-------------------------------dashboard routes---------------------------------
-Route::prefix('dashboard')->name('admin.')->group(function () {
+Route::prefix('dashboard')->name('admin.')->middleware('auth')->group(function () {
     
     Route::prefix('admins')->name('admins.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
