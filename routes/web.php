@@ -21,7 +21,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard')
+    ->middleware('auth:admin');
 
 Route::get('/gym', [PublicGymController::class, 'index'])->name('gym.index');
 Route::get('/gyms/search', [PublicGymController::class, 'search'])->name('gym.search');
@@ -37,7 +40,7 @@ Route::view('/about', 'public.about-us');
 
 
 //-------------------------------dashboard routes---------------------------------
-Route::prefix('dashboard')->name('admin.')->middleware('auth')->group(function () {
+Route::prefix('dashboard')->name('admin.')->middleware('auth:admin')->group(function () {
     
     Route::prefix('admins')->name('admins.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
@@ -108,3 +111,7 @@ Route::prefix('dashboard')->name('admin.')->middleware('auth')->group(function (
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/admin/logout', function () {
+    Auth::guard('admin')->logout();
+    return redirect('/');
+})->name('admin.logout');

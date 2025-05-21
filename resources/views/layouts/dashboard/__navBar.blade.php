@@ -12,30 +12,24 @@
                 <img class="rounded-circle me-lg-2" src="{{ asset('img/user.jpg') }}" alt=""
                     style="width: 40px; height: 40px;">
                 @php
-                    // This will help us debug what's happening
-                    $adminUser = Auth::user();
-                    $adminName = $adminUser ? $adminUser->name : 'No user found';
-
-                    // Alternative method using DB query
-                    if (Auth::check()) {
-                        $adminEmail = Auth::user()->email;
-                        $adminFromDB = DB::table('admins')->where('email', $adminEmail)->first();
-                        if ($adminFromDB) {
-                            $adminName = $adminFromDB->name;
-                        }
-                    }
+                    $admin = Auth::guard('admin')->user();
                 @endphp
-                <span class="d-none d-lg-inline-flex text-light">{{ $adminName }}</span>
+
+                <span class="d-none d-lg-inline-flex text-light">
+                    {{ $admin ? $admin->name : 'Guest' }}
+                </span>
+
             </a>
             <div
                 class="dropdown-menu dropdown-menu-end bg-secondary bg-opacity-50 border-0 rounded-0 rounded-bottom m-0">
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('admin.logout') }}">
                     @csrf
-                    <a href="{{ route('logout') }}" class="dropdown-item text-light"
+                    <a href="{{ route('admin.logout') }}" class="dropdown-item text-light"
                         onclick="event.preventDefault(); this.closest('form').submit();">
                         Log Out
                     </a>
                 </form>
+
             </div>
         </div>
     </div>

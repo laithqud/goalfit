@@ -37,34 +37,30 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function login(Request $request)
+    
+     public function login(Request $request)
     {
         $this->validateLogin($request);
 
-        // Check if login is rate limited
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
             return $this->sendLockoutResponse($request);
         }
 
-        // First check if the user exists in the admins table
+        // Check admin first
         $admin = DB::table('admins')->where('email', $request->email)->first();
-        
+
         if ($admin && Hash::check($request->password, $admin->password)) {
-            // Admin login is successful - create a session
-            Auth::loginUsingId($admin->id);
-            
+            Auth::guard('admin')->loginUsingId($admin->id);
             return redirect('/dashboard');
         }
 
-        // If not an admin, try the regular user authentication
+        // Otherwise try normal user
         if ($this->attemptLogin($request)) {
             return $this->sendLoginResponse($request);
         }
 
-        // Increment failed login attempts
         $this->incrementLoginAttempts($request);
-
         return $this->sendFailedLoginResponse($request);
     }
 
@@ -75,15 +71,16 @@ class LoginController extends Controller
      * @param  mixed  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function authenticated(Request $request, $user)
-    {
-        // Check if this admin exists in the admins table
-        $isAdmin = DB::table('admins')->where('email', $user->email)->exists();
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     // Check if this admin exists in the admins table
+    //     $isAdmin = DB::table('admins')->where('email', $user->email)->exists();
         
-        if ($isAdmin) {
-            return redirect('/dashboard');
-        }
+    //     if ($admin && Hash::check($request->password, $admin->password)) {
+    //     Auth::guard('admin')->loginUsingId($admin->id);
+    //     return redirect('/dashboard');
+    //     }
         
-        return redirect('/');
-    }
+    //     return redirect('/');
+    // }
 }
