@@ -17,6 +17,7 @@ use App\Http\Controllers\WorkoutCategoryController as PublicWorkoutCategoryContr
 use App\Http\Controllers\WorkoutItemCategoryController as PublicWorkoutItemCategoryController;
 use App\Http\Controllers\NutritionCategoryController as PublicNutritionCategoryController;
 use App\Http\Controllers\FoodItemController as PublicFoodItemController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -111,6 +112,9 @@ Route::prefix('dashboard')->name('admin.')->middleware('auth:admin')->group(func
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
+
 Route::post('/admin/logout', function () {
     Auth::guard('admin')->logout();
     return redirect('/');

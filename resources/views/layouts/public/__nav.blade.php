@@ -11,7 +11,7 @@
         </div>
 
         <div class="d-flex gap-2 align-items-center d-none d-md-flex">
-            <form class="d-flex align-items-center siteSearch" action="">
+            <form class="d-flex align-items-center siteSearch" action="{{route('search')}}" method="GET">
                 <input class="form-control me-2 search-bar" type="search" placeholder="Search" aria-label="Search"
                     name="search" />
                 <button title="Search" class="btn btn-outline-light" type="submit">
@@ -25,14 +25,15 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     @auth
-                        <li><span class="dropdown-item-text">Welcome, {{ Auth::user()->name }}</span></li>
+                        <li><span class="dropdown-item-text fs-4">Welcome, {{ Auth::user()->name }}</span></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                        <li><a class="dropdown-item fs-5" href="{{route('profile')}}">Profile</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="dropdown-item">Logout</button>
+                                <button type="submit" class="dropdown-item fs-5">Logout</button>
                             </form>
                         </li>
                     @else

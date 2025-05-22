@@ -11,7 +11,7 @@
         </div>
 
         <div class="d-flex gap-2 align-items-center d-none d-md-flex">
-            <form class="d-flex align-items-center siteSearch" action="">
+            <form class="d-flex align-items-center siteSearch" action="<?php echo e(route('search')); ?>" method="GET">
                 <input class="form-control me-2 search-bar" type="search" placeholder="Search" aria-label="Search"
                     name="search" />
                 <button title="Search" class="btn btn-outline-light" type="submit">
@@ -25,14 +25,15 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <?php if(auth()->guard()->check()): ?>
-                        <li><span class="dropdown-item-text">Welcome, <?php echo e(Auth::user()->name); ?></span></li>
+                        <li><span class="dropdown-item-text fs-4">Welcome, <?php echo e(Auth::user()->name); ?></span></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                        <li><a class="dropdown-item fs-5" href="<?php echo e(route('profile')); ?>">Profile</a></li>
                         <li>
                             <form method="POST" action="<?php echo e(route('logout')); ?>">
                                 <?php echo csrf_field(); ?>
-                                <button type="submit" class="dropdown-item">Logout</button>
+                                <button type="submit" class="dropdown-item fs-5">Logout</button>
                             </form>
                         </li>
                     <?php else: ?>
