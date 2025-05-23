@@ -114,6 +114,9 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
+Route::get('/edit-profile',[ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/editProfile',[ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/delete-profile',[ProfileController::class, 'destroy'])->name('profile.destroy');
 
 Route::post('/admin/logout', function () {
     Auth::guard('admin')->logout();
