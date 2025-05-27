@@ -37,7 +37,7 @@
                 <div class="bg-black bg-opacity-75 rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start text-light">
-                            &copy; <a href="#" class="text-danger">GoalFit,</a> All Right Reserved.
+                            &copy; <a href="#" class="text-light fw-bolder">GoalFit,</a> All Right Reserved.
                         </div>
                     </div>
                 </div>

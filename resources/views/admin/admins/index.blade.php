@@ -9,9 +9,12 @@
                 <div class="bg-dark rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">Admin Users</h6>
-                        <a href="{{ route('admin.admins.create') }}" class="btn btn-primary btn-sm">
-                            <i class="fas fa-plus me-1"></i> Add Admin
-                        </a>
+                        @if(auth()->user()->role === 'superadmin')
+                            <a href="{{ route('admin.admins.create') }}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus me-1"></i> Add Admin
+                            </a>
+                        @endif
+
                     </div>
 
                     @if(session('success'))
@@ -45,13 +48,17 @@
                                         </td>
                                         <td>
                                             <div class="d-flex gap-2">
-                                                <a href="{{ route('admin.admins.edit', $admin->id) }}"
-                                                    class="btn btn-sm btn-warning">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                @if($admin->role !== 'superadmin')
-                                                    <form action="{{ route('admin.admins.destroy', $admin->id) }}"
-                                                        method="POST">
+                                                {{-- Allow edit only if user is superadmin or editing their own account --}}
+                                                @if(auth()->user()->role === 'superadmin' || auth()->id() === $admin->id)
+                                                    <a href="{{ route('admin.admins.edit', $admin->id) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                @endif
+
+                                                {{-- Only superadmins can delete others and cannot delete themselves --}}
+                                                @if(auth()->user()->role === 'superadmin' && auth()->id() !== $admin->id)
+                                                    <form action="{{ route('admin.admins.destroy', $admin->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm btn-danger"

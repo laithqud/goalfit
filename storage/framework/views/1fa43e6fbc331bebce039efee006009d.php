@@ -129,7 +129,8 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="col-md-6 mb-3">
                                     <label for="birth_date" class="form-label text-white">Date of Birth</label>
                                     <input type="date" class="form-control bg-dark text-white border-secondary"
-                                        id="birth_date" name="birth_date" value="">
+                                        id="birth_date" name="birth_date"
+                                        value="<?php echo e(old('phone', Auth::user()->birth_date)); ?>">
                                     <?php $__errorArgs = ['birth_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

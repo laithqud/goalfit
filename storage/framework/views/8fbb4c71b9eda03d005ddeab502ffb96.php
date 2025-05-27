@@ -9,9 +9,12 @@
                 <div class="bg-dark rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0 text-light">Admin Users</h6>
-                        <a href="<?php echo e(route('admin.admins.create')); ?>" class="btn btn-primary btn-sm">
-                            <i class="fas fa-plus me-1"></i> Add Admin
-                        </a>
+                        <?php if(auth()->user()->role === 'superadmin'): ?>
+                            <a href="<?php echo e(route('admin.admins.create')); ?>" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus me-1"></i> Add Admin
+                            </a>
+                        <?php endif; ?>
+
                     </div>
 
                     <?php if(session('success')): ?>
@@ -47,13 +50,17 @@
                                         </td>
                                         <td>
                                             <div class="d-flex gap-2">
-                                                <a href="<?php echo e(route('admin.admins.edit', $admin->id)); ?>"
-                                                    class="btn btn-sm btn-warning">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <?php if($admin->role !== 'superadmin'): ?>
-                                                    <form action="<?php echo e(route('admin.admins.destroy', $admin->id)); ?>"
-                                                        method="POST">
+                                                
+                                                <?php if(auth()->user()->role === 'superadmin' || auth()->id() === $admin->id): ?>
+                                                    <a href="<?php echo e(route('admin.admins.edit', $admin->id)); ?>"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                <?php endif; ?>
+
+                                                
+                                                <?php if(auth()->user()->role === 'superadmin' && auth()->id() !== $admin->id): ?>
+                                                    <form action="<?php echo e(route('admin.admins.destroy', $admin->id)); ?>" method="POST">
                                                         <?php echo csrf_field(); ?>
                                                         <?php echo method_field('DELETE'); ?>
                                                         <button type="submit" class="btn btn-sm btn-danger"

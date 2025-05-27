@@ -7,7 +7,7 @@
             <a href="{{route('gym.index')}}" class="text-decoration-none">Gyms</a>
             <a href="{{route('workout.index')}}" class="text-decoration-none">Workout</a>
             <a href="{{route('nutrition.index')}}" class="text-decoration-none">Nutrition</a>
-            <a href="#" class="text-decoration-none">About Us</a>
+            <a href="/about" class="text-decoration-none">About Us</a>
         </div>
 
         <div class="d-flex gap-2 align-items-center d-none d-md-flex">
@@ -52,11 +52,11 @@
         <div class="collapse navbar-collapse bg-dark position-absolute top-100 start-0 w-100 p-3" id="mobileMenu"
             style="z-index: 1000;">
             <div class="d-flex flex-column gap-3">
-                <a href="#" class="text-decoration-none text-white">Home</a>
-                <a href="#" class="text-decoration-none text-white">Gyms</a>
-                <a href="#" class="text-decoration-none text-white">Workout</a>
-                <a href="#" class="text-decoration-none text-white">Nutrition</a>
-                <a href="#" class="text-decoration-none text-white">About Us</a>
+                <a href="{{route('home')}}" class="text-decoration-none text-white">Home</a>
+                <a href="{{route('gym.index')}}" class="text-decoration-none text-white">Gyms</a>
+                <a href="{{route('workout.index')}}" class="text-decoration-none text-white">Workout</a>
+                <a href="{{route('nutrition.index')}}" class="text-decoration-none text-white">Nutrition</a>
+                <a href="/about" class="text-decoration-none text-white">About Us</a>
                 <form class="d-flex mt-2" action="">
                     <input class="form-control me-2" type="search" placeholder="Search" name="search" />
                     <button class="btn btn-outline-light" type="submit">

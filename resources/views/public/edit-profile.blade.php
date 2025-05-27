@@ -99,7 +99,8 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="birth_date" class="form-label text-white">Date of Birth</label>
                                     <input type="date" class="form-control bg-dark text-white border-secondary"
-                                        id="birth_date" name="birth_date" value="">
+                                        id="birth_date" name="birth_date"
+                                        value="{{ old('phone', Auth::user()->birth_date) }}">
                                     @error('birth_date')
                                         <div class="text-danger small">{{ $message }}</div>
                                     @enderror
